@@ -1,0 +1,56 @@
+# Site
+name: Olaya Alvarez-Tuñon
+description: Just another website
+meta_description: Just another website
+logo: /assets/images/logo.png
+favicon: /assets/images/favicon.ico
+paginate: 6
+baseurl:
+email: 'oalvarez@ing.uc3m.es'
+google_analytics:
+disqus:
+sharethis:
+
+# Authors
+authors:
+  john:
+    name: olaya
+    display_name: Olaya Alvarez-Tuñon
+    image: /assets/images/agua.jpg
+    email: oalvarez@ing.uc3m.es
+    web: muonic.wordpress.com
+    twitter:
+    description: Hi, I am Olaya.
+
+# Plugins
+plugins:
+  - jekyll-archives
+  - jekyll-paginate
+  - jekyll-seo-tag
+
+permalinks: pretty
+
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: 'category/:name/'
+
+# Other
+markdown: kramdown
+highlighter: rouge
+
+# SEO
+twitter:
+  username: oplahoma
+  card: summary
+
+
+social:
+name: Olaya Alvarez-Tuñon
+links:
+    - https://twitter.com/oplahoma
+    - https://www.linkedin.com/in/olayaelectronics/
+    - https://github.com/olayasturias
