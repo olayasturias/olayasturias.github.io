@@ -7,6 +7,7 @@ categories: blog
 author: olaya
 featured: true
 summary: Automating you home with a low budget and using open-source tools
+tags: hassio home automation raspberry
 ---
 
 Under construction.
