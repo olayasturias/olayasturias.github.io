@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: assets/images/ha.jpg
+cover: assets/images/ha.png
 title: Setting up Home Assistant at your house
 date: 2020-05-20 12:00:00 +0545
 categories: blog
