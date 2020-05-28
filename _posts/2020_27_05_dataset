@@ -1,0 +1,71 @@
+---
+layout: post
+cover: assets/images/yoloventana.jpg
+title: Deep Learning Datasets in the COVID era
+date: 2020-05-28 12:00:00 +0545
+categories: blog
+author: olaya
+featured: true
+summary:
+---
+
+From 2020 I was expecting to collect a dataset for my Deep Learning PhD project,
+but instead, 2020 brought me quarantine. This was quite frustrating because,
+how can I keep going with my project, if I can't even make the first and more basic
+step?
+
+Well, I guess that once again, the answer is in the internet. Aren't there millions
+of pictures on the internet that I can use to make my own database? Well, sure there are.
+However, this idea arises some questions:
+
+- Is there any tool that can help me with this? I could just google "cat pics"
+(just to keep going with the typical cat example) and download the ones that fit my needs,
+but that seems extremely time-consuming and ineffective.
+- What about image rights? I'm not quite sure about the rights of using images
+for a dataset, so I'll show you my findings on this in this post.
+
+# Gathering images from Google
+
+## Making custom scripts
+The first solution I found for this was from the great blog
+[pyimagesearch](https://www.pyimagesearch.com/2017/12/04/how-to-create-a-deep-learning-dataset-using-google-images/)
+(seriously, is there any computer vision problem for which this blog doesn't
+already have a solution?). I won't come into details since it is already clearly
+explained in the original post, but I'll make a quick resume so you can get an idea
+of how much human effort this solution requires. It can be basically divided in
+three steps:
+
+1. Search the query term on Google images.
+2. Gather the URLs into a text file using the JavaScript console. You'll scroll
+ through the results, and the script will simulate clicking on them and copying
+ the URL for you.
+3. Download the images from the URLs using a Python script.
+
+This is indeed a very interesting solution. However, I see two inconvenients here:
+First, you need to scroll through the results. It is not that much of a big deal,
+but still would require your time on something that could be automated. And second,
+although the google results are very good (and always improving) there are always
+incorrect results  or duplicates on the results. Adrian proposes a manual search
+for this cases, which will again consume your time and attention, but there is no
+really a straightforward solution for this.
+
+## Python libraries
+
+I found a bunch of python libraries like
+[this](https://pypi.org/project/google_images_download/2.3.0/), or
+[this one](https://pypi.org/project/googleimagedownloader/) that are supposed to
+download pictures from Google Images with just a simple bash command or a shell
+script. However, they recently stopped workin.
+The next workaround was a similar script,
+[but this time for Bing](https://medium.com/@yfujiki/googleimagesdownload-is-dead-long-live-bingimagesdownload-fb9f5d3b4296).
+But just like the others, it no longer works.
+
+They all launch the same error: the images are not downloadable. There are
+several Github issues around this problem, and it seems to be that the links
+created by the scripts no longer work because Google has recently changed the
+way they present the data (and I guess, same for Bing).
+
+I'm sorry for the bad news, but I think this should be noted out to avoid you
+from losing time by trying to make these libraries work.
+
+- under construction -
