@@ -27,6 +27,7 @@ plugins:
   - jekyll-archives
   - jekyll-paginate
   - jekyll-seo-tag
+  - jemoji
 
 permalinks: pretty
 
