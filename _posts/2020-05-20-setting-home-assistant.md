@@ -21,7 +21,7 @@ follows:
 
 An example of ´my-network´ file for a WiFi connection with a static IP:
 
-``ini
+```ini
 [connection]
 id=my-network
 uuid=72111c67-4a5d-4d5c-925e-f8ee26efb3c3
