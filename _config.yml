@@ -7,7 +7,7 @@ favicon: /assets/images/favicon.ico
 paginate: 6
 baseurl:
 email: 'oalvarez@ing.uc3m.es'
-google_analytics:
+google_analytics: UA-168043498-1
 disqus:
 sharethis:
 
