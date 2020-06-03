@@ -16,8 +16,7 @@ instructions we can see how to set up a static IP, so our router doesn't
 reassing it every time we power OFF and ON the raspberry pi. The steps are as
 follows:
 1. Format an USB-Stick as a FAT32 partition called `CONFIG`.
-2. create a file called ´my-network´ inside of a directory called `network`.
-
+2. create a file called `my-network` inside of a directory called `network`.
 
 An example of ´my-network´ file for a WiFi connection with a static IP:
 
@@ -49,6 +48,13 @@ method=auto
 ```
 The static IP is defined in the `ipv4` field.
 For `address`, the value before the semicolon is the IP address and subnet prefix bitlength. The second value (after the semicolon) is the IP address of the local gateway.
+
+3. If this is a new installation of home Assistant, you just need to boot your
+raspberry with the USB already plugged in. If you want to modify an existing configuration,
+plug in the USB and go to `supervisor`>`system` and click `import from USB`.
+![](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/importUSB.PNG)
+
+And that's it for configuring a static IP in your WiFi!
 
 ## Remote access
 
