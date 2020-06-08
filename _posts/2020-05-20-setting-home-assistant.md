@@ -18,7 +18,7 @@ follows:
 1. Format an USB-Stick as a FAT32 partition called `CONFIG`.
 2. create a file called `my-network` inside of a directory called `network`.
 
-An example of ´my-network´ file for a WiFi connection with a static IP:
+An example of `my-network` file for a WiFi connection with a static IP:
 
 ```ini
 [connection]
@@ -83,25 +83,28 @@ domains:
 aliases: []
 seconds: 300
 ```
-Note that I didn't write the http:// extension. Otherwise it throws an error.
+Note that I didn't write the `http://` extension. Otherwise it throws an error.
 Once you're done, click `save`.
 
 Now, in the add-on Log tab, click `refresh` and check if it gives you any error.
 If it says you're done... well, you're done with the add-on config :wink:
 
-Now, go to your `configuration.yml` file and modify the following section:
+Now, in the file editor, go to your `configuration.yml` file and modify the
+following section:
 
 ```ini
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  base_url: lesfonteslavandera.duckdns.org:8123
+  base_url: myhouse.duckdns.org:8123
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
 
 ```
 
 Now, in your router configuration you'll need to forward port 8123 for the IP
-address of your home assistant.
+address of your home assistant. Since every router is very different, I recommend
+you to look for information in Google on how to do this for your particular router.
 
 
-Under construction.
+Once this is all done, you should be able to access your home assistant through
+your address  `https://myhouse.duckdns.org:8123`.
