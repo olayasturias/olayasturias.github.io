@@ -58,4 +58,50 @@ And that's it for configuring a static IP in your WiFi!
 
 ## Remote access
 
+You can access your home assistant remotely by port forwarding. You can do this
+by using a free Dynamic DNS service like DuckDNS.
+You can install DuckDNS addon through the Add-on Store accessible from the home
+assistant supervisor.
+![](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/duckassistant.PNG)
+Once installed, click in go to the Duck DNS page: you'll need an account to use
+the service. I signed up with my Github account, but it offers multiple choices.
+Once logged in, you'll see the token generated, and you can write your desired
+name for your domain, for example `myhouse.duckdns.org`.
+
+In the add-on configuration tab, copy the generated token in the so called `token` field,
+and the domain you defined into the `domains` field. Finally, change the field
+`accept_terms` to true. It should look like this:
+
+```ini
+lets_encrypt:
+  accept_terms: true
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+token: your-generated-token
+domains:
+  - myhouse.duckdns.org
+aliases: []
+seconds: 300
+```
+Note that I didn't write the http:// extension. Otherwise it throws an error.
+Once you're done, click `save`.
+
+Now, in the add-on Log tab, click `refresh` and check if it gives you any error.
+If it says you're done... well, you're done with the add-on config :wink:
+
+Now, go to your `configuration.yml` file and modify the following section:
+
+```ini
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  base_url: lesfonteslavandera.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+```
+
+Now, in your router configuration you'll need to forward port 8123 for the IP
+address of your home assistant.
+
+
 Under construction.
