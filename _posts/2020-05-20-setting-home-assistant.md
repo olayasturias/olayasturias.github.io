@@ -108,3 +108,13 @@ you to look for information in Google on how to do this for your particular rout
 
 Once this is all done, you should be able to access your home assistant through
 your address  `https://myhouse.duckdns.org:8123`.
+
+
+### Local access
+After configuring the remote access, you'll find that the local access no longer
+works. Or it does, but using the IP rather that the DuckDNS address. This will
+happen to you if your router doesn't have NAT Loopback (which is my case).
+
+Here we'll see how to fix that.
+
+ still under construction!
