@@ -3,12 +3,23 @@ layout: post
 cover: assets/images/flysky/flysky.jpg
 title: Using your RC controller as an USB joystick
 date: 2020-07-21 12:00:00 +0545
-categories: flysky fs-i6x
+categories: flysky fs-i6x phdstuff
 author: olaya
 featured: true
 summary: Using the flysky fs-i6x as a joystick in Ubuntu
 
 ---
+Hello all! First of all, I want to note the new `phdstuff` label that I'm introducing in this post. The point
+is to show you which of these publications are contributing to my PhD, even if they're trivial, because there's much
+work behind a PhD than just the "journal-worthy" work. I feel like this kind of work is normally invisible,
+or even undervalued, even if it takes loads of time and it's essential for the whole system to work.
+Anyway, let's go with the post!
+
+This post comes from my need to have an USB joystick more precise than a xbox controller, but cheaper than the professional hall effect joysticks.
+The ideal solution for this seemed to be the RC joysticks typically used with drones. However, we need to interface somehow the radio signal to the PC.
+Some RC controllers (the one of this post included) have a simulator cable. However, I was looking for a wireless solution, which I find more convenient to operate a robot.
+In this post, we will get the wireless radio signal from the controller, and interface it to an Ubuntu PC.
+
 # Hardware Setup
 What we first need to do, is to connect the radio receiver that will get the signal from the controller to our PC.
 We will do so with a TTL to USB adapter.
@@ -40,8 +51,10 @@ And that's it with the hardware setup!!
 # Software setup
 
 ```ini
-under construction
+sudo modprobe serio
+sudo inputattach --fsia6b /dev/ttyUSBx
 ```
+This creates a joystick device, which you can check with the `jstest-gtk` command
 
 
 
