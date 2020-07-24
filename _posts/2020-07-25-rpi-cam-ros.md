@@ -94,6 +94,46 @@ Again in Preferences > Raspberry Pi configuration > Interfaces,
 check that you have the camera enabled. If not, enable it and reboot
 your Raspberry Pi.
 
+Now, we will install the required ROS packages to put the camera to work.
+I'm using the raspicam node by [Ubiquity Robotics](https://github.com/UbiquityRobotics/raspicam_node).
+
+First, clone it to your `src` directory:
+
+```ini
+git clone https://github.com/UbiquityRobotics/raspicam_node.git
+```
+An additional step this package needs to install the dependencies not recognized by ros is
+to create the file `/etc/ros/rosdep/sources.list.d/30-ubiquity.list`:
+
+```ini
+sudo nano /etc/ros/rosdep/sources.list.d/30-ubiquity.list
+```
+And write the following in it:
+
+```ini
+yaml https://raw.githubusercontent.com/UbiquityRobotics/rosdep/master/raspberry-pi.yaml
+```
+
+And run `rosdep update`. Install the dependencies with:
+
+```ini
+cd ~/catkin_ws
+rosdep install --from-paths src --ignore-src --rosdistro=melodic -y
+```
+
+Now it might have given you an error like this:
+
+> ERROR: The following packages/stacks could not have their rosdep keys resolved to system dependencies:
+> raspicam_node: No definition of [camera_info_manager] for OS version [buster]
+
+I solved it by manually cloning the package `image_common` into `src`, and then
+compiling everything:
+
+```ini
+sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
+```
+
+
 
 
 
