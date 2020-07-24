@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: assets/images/flysky/flysky.jpg
+cover: assets\images\rpicam.jpg
 title: Streaming video from a Raspberry Pi Cam using ROS
 date: 2020-07-25 12:00:00 +0545
 categories: ros raspberry picam phdstuff
