@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: assets/images/rpicam.jpg
+cover: assets/images/rpi-cam-ros/rpicam.jpg
 title: Streaming video from a Raspberry Pi Cam using ROS
 date: 2020-07-25 12:00:00 +0545
 categories: ros raspberry picam phdstuff
@@ -70,6 +70,9 @@ Be sure to have ssh (and the camera) enabled on Preferences > Raspberry Pi confi
 
 ![](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/rpi-cam-ros/interfaces.PNG)
 
+If you and the terminal are not great friends, you can alternatively use some
+VNC viewer (with VNC enabled in your raspberry) to log into
+your raspberry and see its screen from your computer.
 
 Now, the `ROS_IP` of the RPi is the raspberry's IP, and the `ROS_MASTER_URI` is the
 same PC IP that you specified before:
@@ -87,8 +90,8 @@ Now we're ready to put the camera to work.
 
 # Configuring the camera
 
-As I said before, check that you have the camera enabled on
-Preferences > Raspberry Pi configuration > Interfaces. If not, enable it and reboot
+Again in Preferences > Raspberry Pi configuration > Interfaces,
+check that you have the camera enabled. If not, enable it and reboot
 your Raspberry Pi.
 
 
