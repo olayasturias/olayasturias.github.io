@@ -126,12 +126,44 @@ Now it might have given you an error like this:
 > ERROR: The following packages/stacks could not have their rosdep keys resolved to system dependencies:
 > raspicam_node: No definition of [camera_info_manager] for OS version [buster]
 
-I solved it by manually cloning the package `image_common` into `src`, and then
-compiling everything:
+That's because there are some missing packages, but you can install them with the `rosinstall` tool:
 
 ```ini
-sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
+
+rosinstall_generator compressed_image_transport --rosdistro melodic --deps --wet-only --tar > melodic-compressed_image_transport-wet.rosinstall
+
+rosinstall_generator camera_info_manager --rosdistro melodic --deps --wet-only --tar > melodic-camera_info_manager-wet.rosinstall
+
+rosinstall_generator dynamic_reconfigure --rosdistro melodic --deps --wet-only --tar > melodic-dynamic_reconfigure-wet.rosinstall
 ```
+
+And now, from the `catkin_ws` folder:
+
+```ini
+wstool merge -t src melodic-compressed_image_transport-wet.rosinstall
+
+wstool merge -t src melodic-camera_info_manager-wet.rosinstall
+
+wstool merge -t src melodic-dynamic_reconfigure-wet.rosinstall
+
+wstool update -t src
+```
+
+Fetch again that you have met all the dependencies:
+
+```ini
+rosdep install --from-paths src --ignore-src --rosdistro=melodic -y
+```
+
+Finally, build everything:
+
+```ini
+sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic -j1
+```
+
+This will take around 2 hours. Once it's done, we're ready for the next step!
+
+![](https://media.giphy.com/media/XFqGKrPCrgMAnVs9e5/giphy.gif)
 
 
 
