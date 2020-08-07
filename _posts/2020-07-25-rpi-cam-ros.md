@@ -3,12 +3,12 @@ layout: post
 cover: assets/images/rpi-cam-ros/rpicam.jpg
 title: Streaming video from a Raspberry Pi Cam using a distributed ROS system
 date: 2020-07-25 12:00:00 +0545
-categories: ros raspberry picam phdstuff
+categories: ros Raspberry picam phdstuff
 author: olaya
 featured: true
-
-
 ---
+
+
 In this post I'm streaming the video from a Raspberry Pi (model 3B) cam using ROS
 (Robot Operating System). We will have ROS configured as a distributed system: that is,
 it will be running in both PC (master) and Raspberry Pi (slave).
@@ -34,12 +34,12 @@ connection between Raspberry Pi and PC, followed by the camera setup, then the R
 So, without further ado, let's get into it!
 
 
-# Connecting to your raspberry
-There are two ways that you have of connecting to the raspberry:
+# Connecting to your Raspberry
+There are two ways that you have of connecting to the Raspberry:
 
 1. SSH: by running `ssh pi@{raspberry_ip}` in a terminal window, you will have access to the command line of the
-raspberry pi, without desktop environment.
-2. VNC: in this case, use any VNC Viewer (for example, I use [VNC Viewer](https://www.realvnc.com/es/connect/download/viewer/)) to have the raspberry
+Raspberry pi, without desktop environment.
+2. VNC: in this case, use any VNC Viewer (for example, I use [VNC Viewer](https://www.realvnc.com/es/connect/download/viewer/)) to have the Raspberry
 desktop in your PC as a window. Similarly, you will have to write your Raspberry's IP, and then the viewer will ask
 you for user and password.
 
@@ -51,7 +51,7 @@ Be sure to have SSH and/or VNC enabled on Preferences > Raspberry Pi configurati
 # Configuring the camera
 
 As I mentioned before, I'm assuming that you have a full install of ROS Melodic
-in your raspberry. However, getting the ROS camera node to work on the raspberry
+in your Raspberry. However, getting the ROS camera node to work on the Raspberry
 wasn't straightforward for me, so here I'm showing you how I did it.
 
 First of all, in Preferences > Raspberry Pi configuration > Interfaces,
@@ -183,12 +183,12 @@ echo'export ROS_IP="192.168.8.110"' >> ~/.bashrc
 echo'export ROS_MASTER_URI="http://192.168.8.110:11311"' >> ~/.bashrc
 ```
 
-### On the raspberry
+### On the Raspberry
 
-open a terminal and ssh into your raspberry pi.
+open a terminal and ssh into your Raspberry pi.
 
 
-Now, the `ROS_IP` of the RPi is the raspberry's IP, and the `ROS_MASTER_URI` is the
+Now, the `ROS_IP` of the RPi is the Raspberry's IP, and the `ROS_MASTER_URI` is the
 same PC IP that you specified before:
 ```ini
 export ROS_IP="192.168.8.106"
@@ -205,3 +205,17 @@ Now we're ready to run the stream between the devices.
 # Running the image stream
 
 With everything configured as we just did before, now running the stream is straightforward.
+
+1. Check that you have both devices connected to the same WiFi network
+2. Launch the raspicam node in the Raspberry:
+```ini
+roslaunch raspicam_node camerav2_1280x960.launch
+```
+3. Launch the roscore session in your PC:
+```ini
+roscore
+```
+4. Finally, you can see the stream in your PC by running the image viewer as:
+```ini
+rosrun image_view image_view image:=/image/compressed
+```
