@@ -7,9 +7,9 @@ categories: flysky fs-i6x phdstuff
 author: olaya
 featured: true
 summary: Using the flysky fs-i6x as a joystick in Ubuntu
- comment_issue_id: 2
-
+comment_issue_id: 2
 ---
+
 Hello all! First of all, I want to note the new `phdstuff` label that I'm introducing in this post. The point
 is to show you which of these publications are contributing to my PhD, even if they're trivial, because there's much
 work behind a PhD than just the "journal-worthy" work. I feel like this kind of work is normally invisible,
