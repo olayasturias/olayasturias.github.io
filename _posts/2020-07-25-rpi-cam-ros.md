@@ -6,6 +6,7 @@ date: 2020-07-25 12:00:00 +0545
 categories: ros Raspberry picam phdstuff
 author: olaya
 featured: true
+comment_issue_id: 2
 ---
 
 

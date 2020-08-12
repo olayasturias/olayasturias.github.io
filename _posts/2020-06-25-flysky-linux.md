@@ -7,6 +7,7 @@ categories: flysky fs-i6x phdstuff
 author: olaya
 featured: true
 summary: Using the flysky fs-i6x as a joystick in Ubuntu
+ comment_issue_id: 2
 
 ---
 Hello all! First of all, I want to note the new `phdstuff` label that I'm introducing in this post. The point
@@ -53,7 +54,9 @@ You can download the firmware with the software updater from [here](https://gith
 
 Some notes on this from my experience:
 
- - You don't need a data cable, you can make your own with a USB-TTL adapter. And you don't need to weld anything! I've seen some videos of people welding the trainer connector of the controller, but you can use a DuPont cable by inserting it and making sure it is making a good contact (careful with the Ground cable). You have to connect the TX in the controller to the RX in the adapter, the RX in the controller to the TX in the adapter, and finally the Grounds between them. Another note is that my adapter had two Ground pins, one next to a 3V3 pin, and the other one next to the 5V pin (unused here). The connection only worked when connecting to the 5V ground. I guess, because the USB connection provides 5V.
+ - You don't need a data cable, you can make your own with a USB-TTL adapter. And you don't need to weld anything! I've seen some videos of people welding the trainer connector of the controller, but you can use a DuPont cable by inserting it and making sure it is making a good contact (careful with the Ground cable). You have to connect the TX in the controller to the RX in the adapter, the RX in the controller to the TX in the adapter, and finally the Grounds between them.
+
+ - Another note is that my adapter had two Ground pins, one next to a 3V3 pin, and the other one next to the 5V pin (unused here). The connection only worked when connecting to the 5V ground. I guess, because the USB connection provides 5V.
 
 ![](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/flysky/datacable.jpg)
 
