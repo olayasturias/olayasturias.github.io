@@ -7,7 +7,6 @@ categories: hassio home automation raspberry
 author: olaya
 featured: true
 summary: Automating you home with a low budget and using open-source tools
-comment_issue_id: 2
 
 ---
 # Network configuration
