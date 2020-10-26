@@ -2,7 +2,7 @@
 layout: post
 cover: assets/images/underwater-enhancement/helo.PNG
 title: To enhance or not to enhance? Computer Vision in challenging imaging conditions
-date: 2020-05-28 12:00:00 +0545
+date: 2020-09-15 12:00:00 +0545
 categories: deep learning dataset database
 author: olaya
 featured: true
@@ -27,3 +27,18 @@ Again, I avoided the use of Deep Learning, because I wanted to get to know very 
 
 
 Anyway, after all this research, and taking now into consideration Deep Learning techniques, a new question arises in my head: What's better now, processing the image first and then extracting the information (both with DL algorithms), or just directly training a Deep Learning algorithm to extract the information from a raw underwater picture?
+
+There are some works which perform a preprocessing of the image prior to extracting information from it.
+The work proposed by [Li Yujie et al.](https://doi.org/10.1016/j.compeleceng.2016.08.008) performs a de-scattering and color correction based on a model on the scattering and the color distortion. They don't use deep learning for the enhancement process itself, but they have tested their preprocessed image altogether with a classification algorithm, to conclude that the performance of the classification had improved slightly.
+
+https://openaccess.thecvf.com/content_CVPRW_2019/papers/UG2+%20Prize%20Challenge/Uplavikar_All-in-One_Underwater_Image_Enhancement_Using_Domain-Adversarial_Learning_CVPRW_2019_paper.pdf
+https://www.sciencedirect.com/science/article/pii/S0031320319303401?casa_token=Wp4-QfWwk3EAAAAA:-xX1kd9LphRm4tXn1JJ3AiWKMp8K9LJmuXwUtVc4iHc_sSaAGsLWlU1fKOGxcrjImSunGsfiwQ
+https://ieeexplore.ieee.org/abstract/document/8296508?casa_token=dvk3hwg__LQAAAAA:ghB8AxFo0wxdOcmP3sIM5kVXQwNuNOB0Dz-7oF1KdnwVxqsMrFW1txGwbK-Vl5Yzfc7azXg-iQ
+https://www.sciencedirect.com/science/article/pii/S0923596520301478?casa_token=rlj7oV6Ml7cAAAAA:U6rX3yuX3FniElb25ZpVN0MEMZIzCS6lDQUkPRUhf1QKLhu0vpaqwzArwGeel1G0-OLZv0CHEQ
+
+What my intuition first told me is that deep learning algorithms such as image classification, if trained with underwater images, would perform the required enhancement (or preprocessing in general) themselves. Kind of like an underwater black box for image classification.
+However, it turns out that doing that preprocessing separately improves the performance of the classification algorithm. This makes me think of some advantages that doing those two steps separately could imply:
+
+  - More modular algorithms: that means, if you want to take only the enhancement part, or just the image classification part, you can separate them easily as they don't directly depend on each other. That is, it's easier to recycle the code. Maybe this advantage is not such a big deal for developers who have high computing resources, as they can just quickly train a new deep net. But for you, it might be something to take into consideration.
+
+  - Recycle code: maybe you have a better (or specific to your use-case) database for image enhancement. Or maybe you don't have an image enhancement database, but want to train your neural net in your specific object-scene-whatever recognition database. If you're focused in a very specific part of your algorithm, it seems like a good idea to rely in a previous work from someone more experienced than you (or with better data than yours) to do that other part. That third-party software will probably work better than yours... and if you save that time, you'll be able to focus better in your field of expertise!
