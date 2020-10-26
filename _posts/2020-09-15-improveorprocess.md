@@ -17,7 +17,7 @@ It was my Bachelor Thesis, which means that I implemented the whole thing (looki
 
 After that I started working with an underwater robot in the European project STAMS, which made me find out that: 1. there's very little work in underwater computer vision, and 2. there's a very good reason for that: the imaging conditions make it very difficult to extract any kind of information from the pictures.
 
-![](https://tenor.com/t9kx.gif)
+![](https://media1.tenor.com/images/bba8fcb26bf3ff32fd1125c175b8268d/tenor.gif)
 
 For my Master Thesis I decided then to implement a Visual Odometry algorithm again... But let's make it underwater now!
 However, I found out that I could not extract information the traditional way (i.e., keypoints) with the picture as it is. So, the next step I took was to process the image in order to improve the saliency of those keypoints, and remove all the noise that came from the underwater image formation.
