@@ -63,10 +63,12 @@ According to the returned value, we could have:
 The value of the threshold depends on the metric. MS COCO and PASCAL VOC use an IOU of 0.5, the minimum threshold, but also 0.75 or 0.95 are often used.
 
 ### Precision and recall
-These two are common Machine Learning concepts.
-Precision measures the percentage of correct positive predictions:
+These two are well known Machine Learning concepts.
+
+Precision measures the percentage of correct positive predictions. It is the answer to the question: " of all the positive predictions, how many are actually positive?". It is useful when we want our model to only identify relevant objects.
 ![precision](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFP%7D&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0)
-Recall is the percentage of  true positives among all ground truths:
+
+Recall is the percentage of  true positives among all ground truths. It is useful when we want to find all the relevant objects.
 ![recall](http://www.sciweavers.org/tex2img.php?eq=Recall%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFN%7D&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0)
 
 
