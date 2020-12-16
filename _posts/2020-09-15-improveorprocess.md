@@ -65,9 +65,9 @@ The value of the threshold depends on the metric. MS COCO and PASCAL VOC use an 
 ### Precision and recall
 These two are common Machine Learning concepts.
 Precision measures the percentage of correct positive predictions:
-![precision](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFP%7D&bc=Transparent&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![precision](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFP%7D&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0)
 Recall is the percentage of  true positives among all ground truths:
-![recall](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFN%7D&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0)
+![recall](http://www.sciweavers.org/tex2img.php?eq=Recall%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFN%7D&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0)
 
 
 # PASCAL VOC Metrics
