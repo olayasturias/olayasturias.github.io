@@ -52,7 +52,7 @@ But first of all, let's think about which metrics we could use:
 Intersection Over Union (IOU) evaluates the overlap between two bounding boxes, that is, between the ground truth ($B_{gt}$) and the predicted ($B_{p}$) bounding boxes.
 It basically divides the area of the overlapping between the area of the union, i.e.:
 
-![IOU](http://www.sciweavers.org/tex2img.php?eq=IOU%20%3D%20%5Cfrac%7Barea%28B_%7Bgt%7D%20%5Cbigcap%20B_%7Bp%7D%29%7D%7Barea%28B_%7Bgt%7D%20%5Cbigcup%20B_%7Bp%7D%29%7D%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![IOU](http://www.sciweavers.org/tex2img.php?eq=IOU%20%3D%20%5Cfrac%7Barea%28B_%7Bgt%7D%20%5Cbigcap%20B_%7Bp%7D%29%7D%7Barea%28B_%7Bgt%7D%20%5Cbigcup%20B_%7Bp%7D%29%7D%20&bc=Transparent&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
 
 According to the returned value, we could have:
 
@@ -65,9 +65,9 @@ The value of the threshold depends on the metric. MS COCO and PASCAL VOC use an 
 ### Precision and recall
 These two are common Machine Learning concepts.
 Precision measures the percentage of correct positive predictions:
-![precision](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFP%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![precision](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFP%7D&bc=Transparent&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
 Recall is the percentage of  true positives among all ground truths:
-![recall]http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFN%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0
+![recall](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFN%7D&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0)
 
 
 # PASCAL VOC Metrics
