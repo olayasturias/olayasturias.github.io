@@ -65,16 +65,17 @@ The value of the threshold depends on the metric. MS COCO and PASCAL VOC use an 
 ### Precision and recall
 These two are well known Machine Learning concepts.
 
-Precision measures the percentage of correct positive predictions. It is the answer to the question: " of all the positive predictions, how many are actually positive?". It is useful when we want our model to only identify relevant objects.
+Precision measures the percentage of correct positive predictions. It is the answer to the question: " of all the positive predictions, how many are actually positive?". It is useful when we want our model to **only** identify relevant objects.
 ![precision](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFP%7D&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0)
 
-Recall is the percentage of  true positives among all ground truths. It is useful when we want to find all the relevant objects.
+Recall is the percentage of  true positives among all ground truths. It is useful when we want to find **all** the relevant objects.
 ![recall](http://www.sciweavers.org/tex2img.php?eq=Recall%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFN%7D&bc=Transparent&fc=Black&im=png&fs=12&ff=arev&edit=0)
 
 
-# PASCAL VOC Metrics
+### Average precision
 
-Used, of course, in the [PASCAL VOC project](http://host.robots.ox.ac.uk:8080/pascal/VOC/index.html),
+This concept is considered in the [PASCAL VOC project](http://host.robots.ox.ac.uk:8080/pascal/VOC/index.html). Here we consider any IOU higher than 0.5 as a true positive. After that, we obtain the Precision vs. Recall curve and obtain the Average Precision (AP) as the area under the curve.
+It is called "Average precision" because in order to simplify the calculation, the precision is averaged across all the recall values.
 
 
 
