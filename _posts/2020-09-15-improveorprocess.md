@@ -44,7 +44,7 @@ However, it turns out that doing that preprocessing separately improves the perf
   - Recycle code: maybe you have a better (or specific to your use-case) database for image enhancement. Or maybe you don't have an image enhancement database, but want to train your neural net in your specific object-scene-whatever recognition database. If you're focused in a very specific part of your algorithm, it seems like a good idea to rely in a previous work from someone more experienced than you (or with better data than yours) to do that other part. That third-party software will probably work better than yours... and if you save that time, you'll be able to focus better in your field of expertise!
 
 Anyway, let's evaluate it from the object detection perspective. I want to do a comparative between the two approaches, with and without a prior image enhancement, and see which performs better for object detection. I will be using State of the Art algorithms for such comparative.
-But first of all, let's think about what metrics we could use:
+But first of all, let's think about which metrics we could use:
 
 # Metrics for object detection
 
@@ -52,7 +52,7 @@ But first of all, let's think about what metrics we could use:
 Intersection Over Union (IOU) evaluates the overlap between two bounding boxes, that is, between the ground truth ($B_{gt}$) and the predicted ($B_{p}$) bounding boxes.
 It basically divides the area of the overlapping between the area of the union, i.e.:
 
-$IOU = \frac{area(B_{gt} \bigcap B_{p})}{area(B_{gt} \bigcup B_{p})}$
+![IOU](http://www.sciweavers.org/tex2img.php?eq=IOU%20%3D%20%5Cfrac%7Barea%28B_%7Bgt%7D%20%5Cbigcap%20B_%7Bp%7D%29%7D%7Barea%28B_%7Bgt%7D%20%5Cbigcup%20B_%7Bp%7D%29%7D%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
 
 According to the returned value, we could have:
 
@@ -63,12 +63,12 @@ According to the returned value, we could have:
 The value of the threshold depends on the metric. MS COCO and PASCAL VOC use an IOU of 0.5, the minimum threshold, but also 0.75 or 0.95 are often used.
 
 ### Precision and recall
-Precision measures the percentage of correct positive predictions
-$Precision = \frac{TP}{TP+FP}$
-Recall is the percentage of  true positives among all ground truths.
-$Precision = \frac{TP}{TP+FN}$
-### Average Precision
-### Recall
+These two are common Machine Learning concepts.
+Precision measures the percentage of correct positive predictions:
+![precision](http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFP%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+Recall is the percentage of  true positives among all ground truths:
+![recall]http://www.sciweavers.org/tex2img.php?eq=Precision%20%3D%20%5Cfrac%7BTP%7D%7BTP%2BFN%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0
+
 
 # PASCAL VOC Metrics
 
