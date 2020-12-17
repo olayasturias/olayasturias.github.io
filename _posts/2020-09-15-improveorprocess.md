@@ -3,7 +3,7 @@ layout: post
 cover: assets/images/underwater-enhancement/helo.PNG
 title: To enhance or not to enhance? Computer Vision in challenging imaging conditions
 date: 2020-09-15 12:00:00 +0545
-categories: deep learning dataset database
+categories: deeplearning dataset database
 author: olaya
 featured: true
 summary: comparative.
