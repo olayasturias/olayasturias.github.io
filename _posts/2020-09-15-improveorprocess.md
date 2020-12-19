@@ -43,7 +43,7 @@ However, it turns out that doing that preprocessing separately improves the perf
   [Pritish Uplavikar et al.](https://openaccess.thecvf.com/content_CVPRW_2019/papers/UG2+%20Prize%20Challenge/Uplavikar_All-in-One_Underwater_Image_Enhancement_Using_Domain-Adversarial_Learning_CVPRW_2019_paper.pdf) use a encoder-decoder network to disentangle the unwanted nuisances corresponding to the Jerlov water types. They used a synthesized dataset to train it. When performing a YOLO object detection over the synthetic images, the object detection is better. However, they say the improvement is not so clear over a [this real dataset](https://li-chongyi.github.io/proj_benchmark.html). They didn't give any conclusion on why this might be. I think it maybe is because the object detection itself over underwater images isn't as good, since there isn't much training data on objects in underwater contexts. They use [YOLO](https://pjreddie.com/darknet/yolo/), which is trained with the [COCO](https://cocodataset.org/#home) dataset, which, for example, has 6808 images of persons...but probably very few of them, if any, are scuba diving.
 
 
-  ![google cat](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/persons.PNG)
+  ![person](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/persons.PNG)
   <sub><sup>*Left: person in the COCO dataset. Right: person in the UIEB dataset.*</sup></sub>
 
 Anyhow, I don't really reach any conclusion with this. So let's reach our own conclusions! I want to do a comparative between the two approaches, with and without a prior image enhancement, and see which performs better for object detection. I will be using State of the Art algorithms for such comparative.
@@ -57,11 +57,12 @@ It basically divides the area of the overlapping between the area of the union, 
 
 ![iou](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/iou.png)
 
+
 According to the returned value, we could have:
 
 - True positive  (TP): IOU > threshold. There is a ground truth object and we fairly detected it.
 - False negative (FP): a ground truth object not detected.
-- False positive (FN): IOU< threshold. The object was detected, but missclassified.
+- False positive (FN): IOU < threshold. The object was detected, but missclassified.
 
 The value of the threshold depends on the metric. MS COCO and PASCAL VOC use an IOU of 0.5, the minimum threshold, but also 0.75 or 0.95 are often used.
 
