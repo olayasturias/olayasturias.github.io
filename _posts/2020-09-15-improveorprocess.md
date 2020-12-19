@@ -48,10 +48,10 @@ But first of all, let's think about which metrics we could use:
 # Metrics for object detection
 
 ### Intersection Over Union
-Intersection Over Union (IOU) evaluates the overlap between two bounding boxes, that is, between the ground truth (![bgt](http://www.sciweavers.org/tex2img.php?eq=B_%7Bgt%7D&bc=Transparent&fc=Black&im=jpg&fs=12&ff=arev&edit=0)) and the predicted (![Bp](http://www.sciweavers.org/tex2img.php?eq=B_%7Bp%7D&bc=Transparent&fc=Black&im=jpg&fs=12&ff=arev&edit=0)) bounding boxes.
+Intersection Over Union (IOU) evaluates the overlap between two bounding boxes, that is, between the ground truth (Bgt) and the predicted (Bp) bounding boxes.
 It basically divides the area of the overlapping between the area of the union, i.e.:
 
-![IOU](http://www.sciweavers.org/tex2img.php?eq=IOU%20%3D%20%5Cfrac%7Barea%28B_%7Bgt%7D%20%5Cbigcap%20B_%7Bp%7D%29%7D%7Barea%28B_%7Bgt%7D%20%5Cbigcup%20B_%7Bp%7D%29%7D%20&bc=Transparent&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![iou](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/iou.svg)
 
 According to the returned value, we could have:
 
