@@ -51,7 +51,7 @@ But first of all, let's think about which metrics we could use:
 Intersection Over Union (IOU) evaluates the overlap between two bounding boxes, that is, between the ground truth (Bgt) and the predicted (Bp) bounding boxes.
 It basically divides the area of the overlapping between the area of the union, i.e.:
 
-![iou](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/iou.svg)
+![iou](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/iou.png)
 
 According to the returned value, we could have:
 
