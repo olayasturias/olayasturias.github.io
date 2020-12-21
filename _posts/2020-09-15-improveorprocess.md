@@ -75,6 +75,7 @@ Precision measures the percentage of correct positive predictions. It is the ans
 Recall is the percentage of  true positives among all ground truths. It is useful when we want to find **all** the relevant objects.
 ![recall](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/recall.png)
 
+From these two values we can obtain the PrecisionxRecall curve. There is one curve for each object class. If the prediction stays high as the recall increases, we can consider that we have a good detector.
 
 ![pxr](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/pxr.png)
 
