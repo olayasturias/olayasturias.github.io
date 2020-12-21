@@ -76,7 +76,7 @@ Recall is the percentage of  true positives among all ground truths. It is usefu
 ![recall](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/recall.png)
 
 
-![pxr](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/pxr.jpg)
+![pxr](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/pxr.png)
 
 
 ### Average precision
