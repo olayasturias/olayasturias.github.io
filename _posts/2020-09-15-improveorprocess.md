@@ -76,6 +76,9 @@ Recall is the percentage of  true positives among all ground truths. It is usefu
 ![recall](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/recall.png)
 
 
+![pxr](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/pxr.jpg)
+
+
 ### Average precision
 
 This concept is considered in the [PASCAL VOC project](http://host.robots.ox.ac.uk:8080/pascal/VOC/index.html). Here we consider any IOU higher than 0.5 as a true positive. After that, we obtain the Precision vs. Recall curve and obtain the Average Precision (AP) as the area under the curve.
