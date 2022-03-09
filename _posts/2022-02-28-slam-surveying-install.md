@@ -88,6 +88,30 @@ If everything is working correctly, you should be seeing something like this:
         sudo apt install ros-melodic-cv-bridge ros-melodic-tf ros-melodic-message-filters ros-melodic-image-transport
     ```
 - Build VINS-Mono by running `catkin build vins`. If it gives you an error, try removing your build, devel and logs folders and rebuild it again.-->
+
+# 2. DSO
+
+## 2.1 Installation
+
+DSO has a ROS wrapper, but it first requires that you install DSO:
+
+- Install DSO. Follow the instructions from [the readme in DSO's repository](https://github.com/JakobEngel/dso).
+    - If you get an OpenCV error, modify the CMakeLists to point to your version (mine is 3.2) `find_package(OpenCV 3 QUIET)`
+    - This will compile a library libdso.a, which can be linked from external projects. It will also build a binary dso_dataset, to run DSO on datasets. It is stored in /build/lib.
+- Install ROS wrapper. Download [the source code](https://github.com/olayasturias/dso_ros).
+    - It will look for your lib file in ${DSO_PATH}/build/lib. We need to specify our DSO_PATH, which is the path to your dso repository folder:
+        ```
+            export DSO_PATH=YOUR_PATH/dso
+        ```    
+    you chan check if it was correctly set with
+        ```
+            echo $DSO_PATH
+        ``` 
+    - build it with:
+        ```
+            catkin build dso_ros
+        ``` 
+
 [under construction]
 
 
