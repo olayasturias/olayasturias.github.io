@@ -70,7 +70,7 @@ We will test that the ORB-SLAM scripts work for us with our webcam.
     ```
 - Run the webcam publisher. Note that we need to remap the default topic from usb_cam because ORB-SLAM3 reads from `/camera/image_raw`, but usb_cam is publishing in `/usb_cam/image_raw`.
     ```
-    rosrun usb_cam usb_cam_node /usb_cam/image_raw:=/camera/image_raw
+    rosrun usb_cam usb_cam_node /usb_cam/image_raw:=/camera/image_raw _pixel_format:="yuyv"
     ```
 - Run the monocular version of ORB-SLAM3 as:
     ```
@@ -111,6 +111,61 @@ DSO has a ROS wrapper, but it first requires that you install DSO:
         ```
             catkin build dso_ros
         ``` 
+## 2.2 Testing
+
+We will test that the dso_live scripts work for us with our webcam. 
+- If you didn't do it before, install the required package to publish the webcam image as ROS messages:
+    ```
+    sudo apt install ros-melodic-usb-cam
+    ```
+- Start a roscore session:
+    ```
+    roscore
+    ```
+- Run the webcam publisher. Note that we need to remap the default topic from usb_cam because ORB-SLAM3 reads from `/camera/image_raw`, but usb_cam is publishing in `/usb_cam/image_raw`.
+    ```
+    rosrun usb_cam usb_cam_node /usb_cam/image_raw:=/camera/image_raw _pixel_format:="yuyv"
+    ```
+- Run dso:
+    ```
+    rosrun dso_ros dso_live image:=image_raw \
+		calib=XXXXX/camera.txt \
+		gamma=XXXXX/pcalib.txt \
+		vignette=XXXXX/vignette.png \
+
+    ```
+
+
+# 3. RDS-SLAM
+## 3.1 Installation
+- You will need to install some requirements:
+    - Caffe. Follow the instructions [here](https://atinesh.medium.com/caffe-installation-on-ubuntu-18-04-lts-python-2-7-8e8c388ce51f)
+    
+        - If you get errors with hdf5
+            ```
+            cd /usr/lib/x86_64-linux-gnu
+            sudo ln -s libhdf5_serial.so.100.0.1 libhdf5.so # or whichever version you have
+            sudo ln -s libhdf5_serial_hl.so.100.0.0 libhdf5_hl.so # same applies here
+            ```
+        - If you get errors with Opencv
+- Clone the RDS-SLAM repository in your `/catkin_ws/src`
+    ```
+    git clone https://github.com/yubaoliu/RDS-SLAM
+
+    ```
+- cd into the SLAM folder and build with the following script:
+    ```
+    cd SLAM/
+    ./build_thridparty.sh
+    ```
+- go back to your `/catkin_ws/src` and build rds_slam:
+    ```
+    cd ~/catkin_ws
+    catkin build rds_slam
+    ```
+## 3.2 Testing
+
+If everything is working correctly, you should be seeing something like this:
 
 [under construction]
 
