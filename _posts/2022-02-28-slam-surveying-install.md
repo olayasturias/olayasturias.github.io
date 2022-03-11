@@ -124,13 +124,13 @@ We will test that the dso_live scripts work for us with our webcam.
     ```
     roscore
     ```
-- Run the webcam publisher. Note that we need to remap the default topic from usb_cam because ORB-SLAM3 reads from `/camera/image_raw`, but usb_cam is publishing in `/usb_cam/image_raw`.
+- Run the webcam publisher. Note that usb_cam is publishing in `/usb_cam/image_raw`.
     ```
     rosrun usb_cam usb_cam_node /usb_cam/image_raw:=/camera/image_raw _pixel_format:="yuyv"
     ```
 - Run dso:
     ```
-    rosrun dso_ros dso_live image:=image_raw \
+    rosrun dso_ros dso_live image:=/usb_cam/image_raw \
 		calib=XXXXX/camera.txt \
 		gamma=XXXXX/pcalib.txt \
 		vignette=XXXXX/vignette.png \
@@ -184,7 +184,7 @@ Now if everything works as it should, you should be seeing something like this:
     cd ~/catkin_ws
     catkin build rds_slam
     ```
-    
+
 ## 3.2 Testing
 
 If everything is working correctly, you should be seeing something like this:
