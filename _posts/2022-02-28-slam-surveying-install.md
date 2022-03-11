@@ -111,6 +111,8 @@ DSO has a ROS wrapper, but it first requires that you install DSO:
         ```
             catkin build dso_ros
         ``` 
+
+
 ## 2.2 Testing
 
 We will test that the dso_live scripts work for us with our webcam. 
@@ -182,6 +184,7 @@ Now if everything works as it should, you should be seeing something like this:
     cd ~/catkin_ws
     catkin build rds_slam
     ```
+    
 ## 3.2 Testing
 
 If everything is working correctly, you should be seeing something like this:
