@@ -135,6 +135,25 @@ We will test that the dso_live scripts work for us with our webcam.
 
     ```
 
+    - Note that you need to provide **at least** a camera.txt file. It has the format:
+
+            fx fy cx cy k1 k2 r1 r2
+            in_width in_height
+            "crop"/"full"/"fx fy cx cy 0"
+            out_width out_height
+    
+    - An example of a camera.txt could be like this:
+
+            Pinhole 458.654 457.296 367.215 248.375 0
+            640 480
+            crop
+            640 480
+            0.110074
+
+
+Now if everything works as it should, you should be seeing something like this:
+
+![](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/survey-slam-install/dso_ros.png)
 
 # 3. RDS-SLAM
 ## 3.1 Installation
