@@ -19,7 +19,7 @@ ORB-SLAM3 is the first real-time SLAM library able to perform **Visual, Visual-I
 
 ## 1.1 Installation
 
-- Download [this fork](https://github.com/olayasturias/ORB_SLAM3) of ORB-SLAM3 in your preferred folder. Install the dependencies indicated in the README. Some notes in the dependencies:
+- Some notes in the dependencies:
     - If OpenCV gives you a version error, modify the CMakeLists to look for the opencv version that you have installed. For example, if you are using ROS Melodic you will have OpenCV 3.2: `find_package(OpenCV 3.2)`
     - ROS packages for ORB-SLAM3 need rospkg: 
         ```
@@ -54,7 +54,70 @@ ORB-SLAM3 is the first real-time SLAM library able to perform **Visual, Visual-I
             ```
             pkg-config --modversion eigen3
             ```
-    - The rest worked just fine for me by following the readme :hugs:
+    - Install Pangolin
+        - Install pangolin dependencies
+        ```
+        sudo apt-get install -y  libglew-dev libboost-dev libboost-thread-dev  
+        libboost-filesystem-dev ffmpeg libavutil-dev libpng-dev && \
+        ```
+        Install Pangolin last version in your preferred directory
+        ```
+        git clone https://github.com/stevenlovegrove/Pangolin.git Pangolin && cd Pangolin
+        mkdir build
+        cd build/
+        cmake -D CMAKE_BUILD_TYPE=RELEASE \
+        -DCPP11_NO_BOOST=1 \
+        ../ && \
+        make -j4 && \
+        sudo make install
+        ```
+    - Install OpenCV
+    
+        - Install OpenCV dependencies
+
+                sudo apt-get install -y libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev software-properties-common
+
+        - Clone and install opencv
+
+                git clone https://github.com/Itseez/opencv.git opencv && \
+                git clone https://github.com/Itseez/opencv_contrib.git opencv_contrib
+
+                cd opencv
+                mkdir build && \
+                cd build/ && \
+                cmake -D CMAKE_BUILD_TYPE=RELEASE \
+                -D BUILD_TIFF=ON \
+                -D WITH_CUDA=OFF \
+                -D ENABLE_AVX=OFF \
+                -D WITH_OPENGL=OFF \
+                -D WITH_OPENCL=OFF \
+                -D WITH_IPP=OFF \
+                -D WITH_TBB=ON \
+                -D BUILD_TBB=ON \
+                -D WITH_EIGEN=ON \
+                -D WITH_V4L=OFF \
+                -D WITH_VTK=OFF \
+                -D BUILD_TESTS=OFF \
+                -D BUILD_PERF_TESTS=OFF \
+                -D OPENCV_GENERATE_PKGCONFIG=ON \
+                -D OPENCV_EXTRA_MODULES_PATH=<your-path>/opencv_contrib/modules \
+                /<your-path>/opencv/ && \
+                make -j4 && \
+                sudo make install 
+
+    - Install ORB-SLAM third-party modules
+
+            git clone https://github.com/UZ-SLAMLab/ORB_SLAM3.git ORB_SLAM3
+
+            cd /<your-dir>/ORB_SLAM3/ && \
+            chmod +x build.sh && \
+            ./build.sh
+
+    - Build for ROS usage
+
+            cd /<your-dir>/ORB_SLAM3 && \
+            chmod +x build_ros.sh && \
+            ./build_ros.sh
 
 
 ## 1.2 Testing
