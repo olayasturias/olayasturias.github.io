@@ -18,6 +18,7 @@ ORB-SLAM3 is the first real-time SLAM library able to perform **Visual, Visual-I
 
 
 ## 1.1 Installation
+Install from [this fork](https://github.com/olayasturias/ORB_SLAM3) on ORB-SLAM3's repository.
 
 - Some notes in the dependencies:
     - If OpenCV gives you a version error, modify the CMakeLists to look for the opencv version that you have installed. For example, if you are using ROS Melodic you will have OpenCV 3.2: `find_package(OpenCV 3.2)`
