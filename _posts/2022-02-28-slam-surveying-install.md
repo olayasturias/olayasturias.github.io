@@ -72,6 +72,20 @@ Install from [this fork](https://github.com/olayasturias/ORB_SLAM3) on ORB-SLAM3
         make -j4 && \
         sudo make install
         ```
+		if you experience errors installing Pangolin (may happen in lasts Ubuntu's distros) try installing it with [vcpkg](https://vcpkg.io/en/getting-started.html).In that case:
+
+			```
+			git clone https://github.com/stevenlovegrove/Pangolin.git Pangolin && cd Pangolin
+			mkdir build
+			cd build/
+			cmake -S . -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake \
+			../ && \
+			make -j4 && \
+			sudo make install
+			```
+	
+		If ORB-SLAM is giving you trouble with Pangolin, try installing Pangolin v.06.
+
     - Install OpenCV
     
         - Install OpenCV dependencies
@@ -113,6 +127,11 @@ Install from [this fork](https://github.com/olayasturias/ORB_SLAM3) on ORB-SLAM3
             cd /<your-dir>/ORB_SLAM3/ && \
             chmod +x build.sh && \
             ./build.sh
+	    
+	Some recent distros for Ubuntu (20 and 22) give compilation errors. Try using C++14 instead of 11 for the compilation by replacing it on the CMakeLists as follows:
+		```
+		sed -i 's/++11/++14/g' CMakeLists.txt
+		```
 
     - Build for ROS usage
 
