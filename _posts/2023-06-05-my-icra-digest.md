@@ -61,10 +61,23 @@ More [code examples](https://gtbook.github.io/gtsam-examples/GaussianMRFExample_
 I only attended one talk in this workshop. It seemed to be about using unconventional sensors for perception tasks in general, for what I could see on the posters. Unfortunately, the posters are not available online and I didn't take photos of them.
 #### W.2.A. Understanding and Representing the Sea environment for Autonomous Ship Navigation
 ##### by Hyun-Taek Choi
-As a professor in the Korea Research Institute of Ships and Ocean Engineering, he presented quite some interesting field words in that context. I noted down this one:
+As a professor in the Korea Research Institute of Ships and Ocean Engineering, he presented quite some interesting field words in that context. I noted down this one, available as a paper [here](https://doi.org/10.1109/JSEN.2023.3259471):
 >"Marine Object Segmentation and Tracking by Learning Marine Radar Images for Autonomous Surface Vehicles". The title is self-explanatory. Some capabilities they claim for they network are
 > - Noise reduction (because radar is extremely noisy)
 > - Detecting Small object and fast moving objects.
 
-
 ![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/dpsenet.jpg?raw=true)
+
+### W.3. Workshop on effective Representations, Abstractions, and Priors for Robot Learning (RAP4Robots)
+
+When I joined this workshop there was a Pannel session taking part, with professors discussing around the question: *"Do better representation lead to better generalization?"*. E.g., about the possibility of using an alternative to Euclidean maps and object poses, and about applying representation learning. There was no clear conclusion on the question, which I think is a good sign for this being an open research question.
+
+#### W.3.A. A trilogy of priors: the vision the design and the data
+##### by Edward Johns
+Edward introduced to us a series of very works within his field of research, which is robot manipulation. [This one](https://www.robot-learning.uk/dall-e-bot) called my attention, since they use generative models (more concretely, DALL-E) to generate different arrangements for the objects in the image. 
+
+### W.4. Pretraining for Robotics (PT4R)
+#### W.4.A. Where are we in the search for an Artificial Visual Cortex for Embodied Intelligence?
+##### by Franziska Meier
+
+From the paper under the same title which can be found [here](https://openreview.net/pdf?id=MhTRXNv7Pc)
