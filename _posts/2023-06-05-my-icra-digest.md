@@ -14,7 +14,7 @@ summary: a digest of all things I saw in the conference.
 # Day 1. Workshops and Tutorials
 
 ## W.1. Distributed graphs workshop
-[Link to the workshop site](https://sites.google.com/view/distributedgraphs/schedule)
+![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/wsgraph.PNG?raw=true)
 
 The chair for this workshop was [Andrew Davison](https://www.doc.ic.ac.uk/~ajd/), who did a very short but interesting presentation as introduction to the workshop. He definitely left me with the wish of listening more from him, but two things he mentioned particularly catched my interest:
 
@@ -58,6 +58,8 @@ More [code examples](https://gtbook.github.io/gtsam-examples/GaussianMRFExample_
 > Identify clusters and for a variational approximation at the cluster level – rather than individual belief factors, have Bayes nets/trees as variational components. Basically cluster the graph. Uses all sparsity available in the system. Converges much faster because explores inherent structure of the domain.
 
 ### W.2. ICRA 2023 Workshop on Unconventional spatial representations: Opportunities for robotics 
+![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/usr.PNG?raw=true)
+
 I only attended one talk in this workshop. It seemed to be about using unconventional sensors for perception tasks in general, for what I could see on the posters. Unfortunately, the posters are not available online and I didn't take photos of them.
 #### W.2.A. Understanding and Representing the Sea environment for Autonomous Ship Navigation
 ##### by Hyun-Taek Choi
@@ -69,7 +71,7 @@ As a professor in the Korea Research Institute of Ships and Ocean Engineering, h
 ![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/dpsenet.jpg?raw=true)
 
 ### W.3. Workshop on effective Representations, Abstractions, and Priors for Robot Learning (RAP4Robots)
-
+![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/rap4robots.PNG?raw=true)
 When I joined this workshop there was a Pannel session taking part, with professors discussing around the question: *"Do better representation lead to better generalization?"*. E.g., about the possibility of using an alternative to Euclidean maps and object poses, and about applying representation learning. There was no clear conclusion on the question, which I think is a good sign for this being an open research question.
 
 #### W.3.A. A trilogy of priors: the vision the design and the data
@@ -77,6 +79,7 @@ When I joined this workshop there was a Pannel session taking part, with profess
 Edward introduced to us a series of very works within his field of research, which is robot manipulation. [This one](https://www.robot-learning.uk/dall-e-bot) called my attention, since they use generative models (more concretely, DALL-E) to generate different arrangements for the objects in the image. 
 
 ### W.4. Pretraining for Robotics (PT4R)
+![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/pt4r.PNG?raw=true)
 #### W.4.A. Where are we in the search for an Artificial Visual Cortex for Embodied Intelligence?
 ##### by Franziska Meier
 
