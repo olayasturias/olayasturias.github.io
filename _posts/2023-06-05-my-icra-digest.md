@@ -1,9 +1,9 @@
 ---
 layout: post
-cover: assets/images/survey-slam-install/2723025827_a96dcce288_4k.jpg
+cover: assets/images/icra23/meaticra.jpeg
 title: My ICRA 2023 digest
 date: 2023-06-05 12:00:00 +0545
-categories: phdptuff conference icra
+categories: phdstuff conference icra
 author: olaya
 featured: true
 summary: a digest of all things I saw in the conference.
@@ -57,4 +57,14 @@ Opposite to Gibbs Sampling: eliminate separator last.
 More [code examples](https://gtbook.github.io/gtsam-examples/GaussianMRFExample_cbp.html).
 > Identify clusters and for a variational approximation at the cluster level – rather than individual belief factors, have Bayes nets/trees as variational components. Basically cluster the graph. Uses all sparsity available in the system. Converges much faster because explores inherent structure of the domain.
 
-### W.1.B. Robotic perception: in search for effective representations 
+### W.2. ICRA 2023 Workshop on Unconventional spatial representations: Opportunities for robotics 
+I only attended one talk in this workshop. It seemed to be about using unconventional sensors for perception tasks in general, for what I could see on the posters. Unfortunately, the posters are not available online and I didn't take photos of them.
+#### W.2.A. Understanding and Representing the Sea environment for Autonomous Ship Navigation
+##### by Hyun-Taek Choi
+As a professor in the Korea Research Institute of Ships and Ocean Engineering, he presented quite some interesting field words in that context. I noted down this one:
+>"Marine Object Segmentation and Tracking by Learning Marine Radar Images for Autonomous Surface Vehicles". The title is self-explanatory. Some capabilities they claim for they network are
+> - Noise reduction (because radar is extremely noisy)
+> - Detecting Small object and fast moving objects.
+
+
+![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/dpsenet.jpg?raw=true)
