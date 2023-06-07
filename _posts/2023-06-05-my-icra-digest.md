@@ -84,3 +84,14 @@ Edward introduced to us a series of very works within his field of research, whi
 ##### by Franziska Meier
 
 From the paper under the same title which can be found [here](https://openreview.net/pdf?id=MhTRXNv7Pc)
+
+# Day 3. Orals and Posters
+
+## O.1. Award Finalists
+### O.1.1. Graph Neural Networks for Multi-Robot Active Information Acquisition
+##### by Mariliza Tzes
+
+<object data="../assets/images/icra23/gnn-award1.pdf" width="1000" height="1000" type='application/pdf'></object>
+
+
+# This post is a work in progress...
