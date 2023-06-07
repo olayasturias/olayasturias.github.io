@@ -91,7 +91,22 @@ From the paper under the same title which can be found [here](https://openreview
 ### O.1.1. Graph Neural Networks for Multi-Robot Active Information Acquisition
 ##### by Mariliza Tzes
 
-<object data="../assets/images/icra23/gnn-award1.pdf" width="1000" height="1000" type='application/pdf'></object>
+<object data="assets/images/icra23/gnn-award1.pdf" width="1000" height="1000" type='application/pdf'></object>
+> - Active information acquisition
+> - Team of drones – no dinamics – they have sensors. The dynamics are the hidden state.
+> - Planning horizon – informative path
+> - They try to reach scalability, computational efficiency and optimality with I-GBNet.
+> - Robots exchange info with neighbors, forming a communications graph. Network graph contains info about robot state – fed into I-GBNet to be updated. For each node, predict control input for robot.
+> - Message passing layer:
+>   -	Robot grid map.
+>   -	Message passing aggregates robots position.
+>   -	Each robot has its own estimate about hidden state that is propagated through graph.
+>   -	Bayes filter to fuse measurements.
+>   -	Obtain occupancy grid of environment.
+>   -	ResNet blocks to encode the paths within the grid representation.
+>   -	Then predict control input.
+
+
 
 
 # This post is a work in progress...
