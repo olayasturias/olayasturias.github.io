@@ -9,7 +9,11 @@ featured: true
 summary: a digest of all things I saw in the conference.
 ---
 
-
+# Mucho texto: Table of contents
+- [Day 1. Workshops and Tutorials](#day-1-workshops-and-tutorials)  
+    - [W.1. Distributed graphs workshop](#w1-distributed-graphs-workshop)
+    - [W.2. ICRA 2023 Workshop on Unconventional spatial representations: Opportunities for robotics](#w2-icra-2023-workshop-on-unconventional-spatial-representations-opportunities-for-robotics)
+- [Day 3. Orals and Posters](#day-3-orals-and-posters)
 
 # Day 1. Workshops and Tutorials
 
