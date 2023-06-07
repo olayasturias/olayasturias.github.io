@@ -91,7 +91,7 @@ From the paper under the same title which can be found [here](https://openreview
 ### O.1.1. Graph Neural Networks for Multi-Robot Active Information Acquisition
 ##### by Mariliza Tzes
 
-<object data="assets/images/icra23/gnn-award1.pdf" width="1000" height="1000" type='application/pdf'></object>
+<object data="assets/images/icra23/gnn-award1.pdf" width="600" height="600" type='application/pdf'></object>
 > - Active information acquisition
 > - Team of drones – no dinamics – they have sensors. The dynamics are the hidden state.
 > - Planning horizon – informative path
@@ -107,6 +107,35 @@ From the paper under the same title which can be found [here](https://openreview
 >   -	Then predict control input.
 
 
+## O.2. Localization I
+### O.2.1. Robust Visual Localization of a UAV Over a Pipe-Rack Based on the Lie Group SE(3)
+#### by Jonathan Cacace
 
+
+> They fed the CAD model of the pipe rack to estimate the scale. Feature points are projected onto the CAD.
+
+The code (MATLAB, simulated)  for this work is available [here](https://github.com/prisma-lab/vs-pipe-rack)
+
+## O.3. Deep Learning for Visual Perception
+
+### O.3.1. Object-Aware Monocular Depth Prediction with Instance Convolutions
+#### by Enis Simsar and Evin Pinar
+<object data="assets/images/icra23/convdepth.pdf" width="600" height="600" type='application/pdf'></object>
+
+> - InstanceConv takes segmentation mask into account. 
+> - Aggregates features coming from same segment. They use superpixels segmentation mask as input. 
+> - Superpixels can oversegment depending on light intensity, but they can used in “any” scence as opposed to trained methods. MaskCNN etc don’t have guarantee over occlusion boundaries.
+Superpixels are off-the-shelf, don’t require training.
+
+
+The code is available [here](https://github.com/enisimsar/instance-conv)
+
+### O.3.2. Uncertainty guided policy for active robotic 3D reconstruction using Neural Radiance Fields
+#### by Soomin Lee
+
+> - Instead of voxels n stuff, using NERF
+> - They suggest new paradigm: Ray-based volumentric uncertainty. Uncertainty in ray space.
+>   - Weighted combination of colors, weight distribution of colors to measure how certain – a color has to have a clear peak?
+>   - Entropy metric – low entropy clear distribution peak
 
 # This post is a work in progress...
