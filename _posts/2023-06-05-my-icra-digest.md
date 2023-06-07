@@ -116,6 +116,18 @@ From the paper under the same title which can be found [here](https://openreview
 
 The code (MATLAB, simulated)  for this work is available [here](https://github.com/prisma-lab/vs-pipe-rack)
 
+
+### O.2.2. Homography-Based Loss Function for Camera Pose Regression
+#### by Clémentin Boittiaux
+
+![Convergence of the proposed Homography loss](https://github.com/clementinboittiaux/homography-loss-function/raw/main/assets/animation.gif)
+Image: Convergence of the proposed Homography loss. From the original repo available [here](https://github.com/clementinboittiaux/homography-loss-function).
+
+> - SOA: Inertial measuruement based catenary […] underwater vehicles.
+> - Same metric as structure from motion
+> - Projected to infinity function no differentiable
+> - Reprojection loss doesn’t have these problems.
+
 ## O.3. Deep Learning for Visual Perception
 
 ### O.3.1. Object-Aware Monocular Depth Prediction with Instance Convolutions
@@ -132,10 +144,27 @@ The code is available [here](https://github.com/enisimsar/instance-conv)
 
 ### O.3.2. Uncertainty guided policy for active robotic 3D reconstruction using Neural Radiance Fields
 #### by Soomin Lee
+![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/nerf-uncertainty.PNG?raw=true)
 
-> - Instead of voxels n stuff, using NERF
+> - Instead of voxels n stuff, using NERFs.
 > - They suggest new paradigm: Ray-based volumentric uncertainty. Uncertainty in ray space.
 >   - Weighted combination of colors, weight distribution of colors to measure how certain – a color has to have a clear peak?
 >   - Entropy metric – low entropy clear distribution peak
+
+This work's website (not code though) is [here](https://www.vis.xyz/pub/robotic-3d-scan-with-nerf/).
+
+
+### O.3.3 Detaching and Boosting: Dual Engine for Scale-Invariant Self-Supervised Monocular Depth Estimation
+#### by Peizhe Jiang
+
+![](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/icra23/scale-invariant-monodepth.PNG?raw=true)
+
+> - Zooming and moving similar effects – they use zooming for data augmentation (extrinsics need to be adapted). Predict same depth for zoomed and unzoomed images (if they are the same).
+> - Cross attention to get relationship between objects.
+
+
+
+
+
 
 # This post is a work in progress...
