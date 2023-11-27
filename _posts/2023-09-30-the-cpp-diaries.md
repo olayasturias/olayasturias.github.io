@@ -66,7 +66,7 @@ Let's start by checking which library version the board has by default:
     And then open your .bashrc file and add the CUDA installation directory to your path as:
     ```
     export PATH=/usr/local/cuda-11.4/bin${PATH:+:${PATH}}
-    export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64\{LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64{LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
     ```
 - **OpenCV (GPU accelerated)**. Actually, the nvidia-jetpack already installs openCV, although not with CUDA. You can check so with the following command:
     ```
