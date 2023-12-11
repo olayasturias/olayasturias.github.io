@@ -1,7 +1,7 @@
 ---
 layout: post
 # cover: assets/images/icra23/meaticra.jpeg
-title: The CPP diares I
+title: Setting a Jetson AGX Orin for robotics development (I) - building the basis
 date: 2023-06-05 12:00:00 +0545
 categories: phdstuff cpp
 author: olaya
@@ -56,8 +56,8 @@ Let's start by checking which library version the board has by default:
     sudo apt install build-essential gdb
     ```
 - **Visual Studio Code**: I will install whichever last version they have (not so important), but taking into account that the binary should be for a arm64 architecture. I followed the setup instructions [here](https://code.visualstudio.com/docs/cpp/config-linux#_prerequisites).
-- **ROS version**: it is not installed, but it is important to note that only ROS Foxy is supported, which is compatible with C++14.
 - **Follow NVIDIA's quickstart** under [this link](https://developer.nvidia.com/embedded/learn/get-started-jetson-agx-orin-devkit).
+- **ROS version**: it is not installed, but it is important to note that only ROS Foxy is supported, which is compatible with C++14. You can follow the official installation instructions [here](https://docs.ros.org/en/foxy/Installation.html).
 - **CUDA**. The latest CUDA version compatible with the Jetson Orin must be 11.4, as pointed out in [this forum](https://forums.developer.nvidia.com/t/cuda-is-not-installed-on-jetson-orin/220661). If you installed the nvidia-jetpack it should be as simple as:
     ```
     sudo apt update
@@ -78,3 +78,5 @@ Let's start by checking which library version the board has by default:
     - `-D CUDNN_VERSION='8.0'` for the CUDA version used here. Funnily enough, OpenCV would not find my CuDNN, which should have been automatically installed with the nvidia-jetpack. I ran again `sudo apt install nvidia-jetpack`, and now it installed some remaining packages (including CuDNN). 
     - `-D BUILD_opencv_python2=OFF` because I'm not interested in using python 2.
 
+
+**Next:** setting up the driver for the event-camera DVXplorer Mini!
