@@ -1,7 +1,7 @@
 ---
 layout: post
 # cover: assets/images/icra23/meaticra.jpeg
-title: Setting a Jetson AGX Orin for robotics development (I) - Inivation's event camera
+title: Setting a Jetson AGX Orin for robotics development (II) - Inivation's event camera
 date: 2023-12-11 12:00:00 +0545
 categories: phdstuff cpp
 author: olaya
@@ -17,6 +17,8 @@ summary: notebook for cpp project I.
 
 For this project I will be using the **JETSON AGX ORIN DEVELOPER KIT**. Some things to take into account about this board:
 - It is an ARM64 architecture.
+- It has Ubuntu 20.04 installed
+- It comes with the Nvidia Jetpack 5.1.2
 
 # 1. Setting up the driver
 Inivation provides instructions for the Ubuntu packages (for Ubuntu 20.04 in my case) [in their official website](https://inivation.gitlab.io/dv/dv-docs/docs/getting-started.html). However, the apt installation did not work: The Orin comes with CuDNN 8.0, which requires OpenCV >= 4.4, and the apt dv-runtime-dev installation is looking for OpenCV 4.2. Therefore, we've installed the libraries from source. For that, we will need to download the DV repos in our favourite folder (for me, `$HOME/dev`). Let's go one by one:
