@@ -1,6 +1,6 @@
 ---
 layout: post
-# cover: assets/images/icra23/meaticra.jpeg
+# cover: assets/images/cpp/cpp1.png
 title: Setting a Jetson AGX Orin for robotics development (I) - building the basis
 date: 2023-06-05 12:00:00 +0545
 categories: phdstuff cpp
@@ -77,6 +77,8 @@ Let's start by checking which library version the board has by default:
     - `-D CUDA_ARCH_BIN=8.7` for Orin.
     - `-D CUDNN_VERSION='8.0'` for the CUDA version used here. Funnily enough, OpenCV would not find my CuDNN, which should have been automatically installed with the nvidia-jetpack. I ran again `sudo apt install nvidia-jetpack`, and now it installed some remaining packages (including CuDNN). 
     - `-D BUILD_opencv_python2=OFF` because I'm not interested in using python 2.
+    
+    Once you've set up everything you can install OpenCV automatically as `./build_opencv.sh 4.5.4`.
 
 
 **Next:** setting up the driver for the event-camera DVXplorer Mini!
