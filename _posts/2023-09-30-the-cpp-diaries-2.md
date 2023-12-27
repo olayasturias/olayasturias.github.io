@@ -22,7 +22,7 @@ For this project I will be using the **JETSON AGX ORIN DEVELOPER KIT**. Some thi
 
 # 1. Prerequisites
 ```
-sudo apt install liblz4-dev libzstd-dev
+sudo apt install liblz4-dev libzstd-dev libgoogle-perftools-dev meson ninja-build python3-pip
 ```
 - **Compilers**
     - **GCC and G++ compiler** should be version 10.0 as required by the inivation driver. Check which version you have set up by default as:
@@ -69,10 +69,20 @@ sudo apt install liblz4-dev libzstd-dev
     unzip fmt-10.1.0.zip
     cd fmt-10.1.0
     mkdir build && cd build
-    cmake ..
+    cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
     make
     sudo make install
     ```
+- **(Optional) SDL**, with installation instructions [here](https://wiki.libsdl.org/SDL2/Installation).
+- **(Optional) Aravis**, with installation instructions [here](https://aravisproject.github.io/aravis/building.html).
+    - In Ubuntu 20.04, the meson version installed by the apt is too old for this build. Therefore, you need to install it manually:
+        ```
+        git clone https://github.com/mesonbuild/meson
+        cd meson
+        python3 -m pip install -I meson
+        python3 -m pip install ninja
+        ```
+
 - **OpenCV additional modules**. The default installation is missing some OpenCV modules. You can follow the instructions from [my previous post](https://olayasturias.github.io/phdstuff/cpp/2023/06/05/the-cpp-diaries.html) to install all required modules.
 
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-# cover: assets/images/cpp/cpp1.png
+cover: assets/images/cpp/cpp1.png
 title: Setting a Jetson AGX Orin for robotics development (I) - building the basis
 date: 2023-06-05 12:00:00 +0545
 categories: phdstuff cpp
