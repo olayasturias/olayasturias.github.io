@@ -69,6 +69,7 @@ sudo apt install liblz4-dev libzstd-dev libgoogle-perftools-dev ninja-build pyth
     ```
     sudo apt install libboost1.83-all-dev
     ```
+    However, before deciding which version to install, I recommend you to read section [3.1 Installing bootstrap dependencies](#31-installing-bootstrap-dependencies) in this post.
 - **OpenSSL**
     ```
     sudo apt install libssl-dev
