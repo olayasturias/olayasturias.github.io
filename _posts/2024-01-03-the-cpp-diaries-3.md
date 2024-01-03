@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: assets/images/cpp/cpp2.png
+cover: assets/images/cpp/robot_pc_environment.png
 title: Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM
 date: 2024-01-03 12:00:00 +0545
 categories: phdstuff cpp
