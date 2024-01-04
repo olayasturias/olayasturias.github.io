@@ -24,9 +24,12 @@ Welcome to the third post on setting up a Jetson AGX Orin for robotics developme
 
 # 1. ESVO-Extension
 
+This installation has been successfully tested in Ubuntu 20.04 with ROS Noetic, OpenCV 4.5.4 and Eigen 3.4.
+
 ## 1.1 Prerequisites
 ```
-sudo apt-get install libqhull-dev
+sudo apt-get install libqhull-dev python3-pycryptodome
+pip3 install python-gnupg
 ```
 - **FLANN library** == 1.7.0. Clone and compile it in your favourite folder:
     ```
@@ -96,5 +99,7 @@ sudo apt-get install libqhull-dev
 ```
 cd catkin_ws/src
 git clone https://github.com/olayasturias/ESVO_extension.git
+cd ..
+catkin build esvo_time_surface esvo_core
 ```
 For installing it and other dependencies, follow the installation instructions [in the repo](https://github.com/olayasturias/ESVO_extension).
