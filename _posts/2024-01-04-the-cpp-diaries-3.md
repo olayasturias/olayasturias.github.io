@@ -14,6 +14,9 @@ Welcome to the third post on setting up a Jetson AGX Orin for robotics developme
 - [1. ESVO-Extension](#1-esvo-extension)
   - [1.1 Prerequisites](#11-prerequisites)
   - [1.2 Installation](#12-installation)
+- [2. EventEMin](#2-eventemin)
+  - [2.1 Dependencies](#21-dependencies)
+  - [2.2 Installation](#22-installation)
 
 
 > **Reminder:** For this project I will be using the **JETSON AGX ORIN DEVELOPER KIT**. Some things to take into account about this board:
@@ -35,17 +38,6 @@ pip3 install python-gnupg
     ```
     git clone https://github.com/flann-lib/flann.git
     cd flann
-    mkdir build && cd build
-    cmake ..
-    make -j$(nproc)
-    sudo make install
-    ```
-- **VTK** v.9.3.0 (latest). Clone and compile it in your favourite folder:
-    ```
-    sudo apt install build-essential cmake cmake-curses-gui mesa-common-dev mesa-utils freeglut3-dev ninja-build
-    wget https://www.vtk.org/files/release/9.3/VTK-9.3.0.tar.gz
-    tar xvf VTK-9.3.0.tar.gz 
-    cd VTK-9.3.0
     mkdir build && cd build
     cmake ..
     make -j$(nproc)
@@ -103,3 +95,40 @@ cd ..
 catkin build esvo_time_surface esvo_core
 ```
 For installing it and other dependencies, follow the installation instructions [in the repo](https://github.com/olayasturias/ESVO_extension).
+
+# 2. EventEMin
+## 2.1 Dependencies
+```
+sudo apt install libomp-dev
+sudo apt-get install libgsl-dev
+```
+## 2.2 Installation
+This worked straight away. The repo claims that it needs an Eigen3 version lower (but not including) 3.4. However, I haven't had any trouble with Eigen 3.4 so far!
+```
+cd ~/catkin_ws/src
+git clone --recurse-submodules https://github.com/ImperialCollegeLondon/event_emin_ros.git
+cd ..
+catkin build event_emin_ros
+
+```
+
+# 3. EVO
+
+# 3.1 Dependencies
+
+The command ./rpg_dvs_evo_open/install.sh install the dependencies. However, some need to be installed manually (only applicable for ARM architectures though):
+
+```
+sudo apt-get install libfftw3-dev
+
+cd ~/catkin_ws/src
+git clone https://github.com/uzh-rpg/fast_neon.git
+git checkout test/aarch64-compilation 
+cd ../..
+catkin build fast
+```
+
+# 3.2 Installation
+
+cd src/ && https://github.com/uzh-rpg/rpg_dvs_evo_open.git
+ 
