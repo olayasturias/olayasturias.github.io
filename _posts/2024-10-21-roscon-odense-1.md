@@ -35,3 +35,24 @@ Some (quick) interesting notes about this project:
 - In Windows, the deployment is quite off-the-shell. You just need to download and execute the binaries, without any installation process.
 - It has been developed with the pure objective of collecting ground-truth datasets. To that aim, it allows both manual drift correction, but also algorithmic-based loop closing for data optimization.
 
+
+# BoF: Accelerating roboyt learning at scale in simulation :hatched_chick:
+![alt text](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/bof_nvidia.png)
+
+Aside from the workshops, day 1 also featured a series of "Bird of feather" sessions. Birds of a Feather (BoF) sessions are informal gatherings at a pre-arranged time and place by individuals with a common interest in a topic. 
+This session was hosted by Markus Wuensch, head of Robotics Ecosystem in NVIDIA, who proposed the following bullet points:
+- Intro
+- State of your development
+- Products/use cases
+- ROS in robot learning
+- Tools
+- Challenges
+- Wishlist
+- Future
+
+This, all things said, clearly oriented to get ideas and feedback from the attendants around the usage of NVIDIA hardware and NVIDIA's simulator Isaac Sim. 
+
+![alt text]([image.png](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/bof_nvidia_1.png))
+
+The BoF session was joined by people with very different backgrounds (manipulation, planning, navigation...) with a vast majority of us applying computer vision to these problems. Therefore, most of use use simulators with realistic renderings: Unreal Engine, Unity, or Open3D (more on this one later), were the most mentioned. Gazebo is the primary ROS simulator, which, despite its outstanding capabilities for robot simulation, falls short when it comes to visual renderings. Surprisingly, very few people in the room were using Isaac Sim.
+Moreover, most of 
