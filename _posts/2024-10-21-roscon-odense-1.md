@@ -58,6 +58,8 @@ The BoF session was joined by people with very different backgrounds (manipulati
 
 Most people utilize simulators for training models that will be deployed in real robots later. Markus concurred on this and mentioned that NVIDIA aims for what they call the "three body computation", divided into train, simulation, and run. Their aimed solution consists of training in simulation and deploying the trained models at runtime, which is the aim for most of the attendees. 
 
+We discussed **limitations in simulators**. Beyond the limitations that I mentions earlier, when it comes to computer vision, **the repetition of texture patterns** can be troublesome. If, for example, you're using those texture renderings in a visual localization algorithms, the detection of those repeated patterns can mislead the localization estimate. One of the attendees mentioned the use of **procedural generation of textures** to address this problem.
+
 My main take-home message from this discussion is a confirmation of the lack of consensus regarding simulation. Most of us take whichever simulation in the literature looks more convenient and adapt it to our specific needs. For this purpose, the preferred simulators are open-source and have a relatively simple API (which is not the case for Isaac Sim).
 
 This raises a few questions: does having a simulator that fulfills everyone's needs make sense? If so, how could that be possible? Is there any billionaire in the room willing to fund such an open-source initiative?

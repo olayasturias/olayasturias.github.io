@@ -1,0 +1,37 @@
+---
+layout: post
+cover: assets/images/workshop-roscon.png
+title: My ROSCON 2024 digest - Days 2 and 3
+date: 2024-10-24 12:00:00 +0545
+categories: ROS conference roscon
+author: olaya
+featured: true
+summary: My roscon digest on the second and third day
+---
+
+## Stands
+
+### Robotec.ai: Simulation and AI tools
+<!-- Michal Pelka -->
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/robotec_ai.png?raw=true)
+Physx engine by envidia + o3de rendering
+
+### Zenoh
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/zenoh.png?raw=true)
+Zenoh bridge ros2 dds: To add zenoh capabilities to dds without getting rid of dds.
+
+## Talks
+
+### A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction
+
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/dynamic_collision_avoidance.png?raw=true)
+
+### GSplines: Generalized Splines for Motion Optimization and Smoot Collision Avoidance
+#### Rafael A. Rojas
+![logo](https://github.com/rafaelrojasmiliani/gsplines_cpp/raw/master/img/logo.svg)
+
+Motion planners have waypoints as output. These points must be joined
+
+## Other stuff
+
+https://github.com/rwth-irt/USBL-Simulator
