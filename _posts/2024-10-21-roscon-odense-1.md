@@ -3,7 +3,7 @@ layout: post
 cover: assets/images/workshop-roscon.png
 title: My ROSCON 2024 digest - Day 1
 date: 2024-10-21 12:00:00 +0545
-categories: cpp lidar ROS
+categories: cpp lidar ROS conference roscon
 author: olaya
 featured: true
 summary: My roscon digest on the first day
@@ -37,7 +37,7 @@ Some (quick) interesting notes about this project:
 
 
 # BoF: Accelerating roboyt learning at scale in simulation :hatched_chick:
-![alt text](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/bof_nvidia.png)
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/bof_nvidia.png?raw=true)
 
 Aside from the workshops, day 1 also featured a series of "Bird of feather" sessions. Birds of a Feather (BoF) sessions are informal gatherings at a pre-arranged time and place by individuals with a common interest in a topic. 
 This session was hosted by Markus Wuensch, head of Robotics Ecosystem in NVIDIA, who proposed the following bullet points:
@@ -50,9 +50,9 @@ This session was hosted by Markus Wuensch, head of Robotics Ecosystem in NVIDIA,
 - Wishlist
 - Future
 
-This, all things said, clearly oriented to get ideas and feedback from the attendants around the usage of NVIDIA hardware and NVIDIA's simulator Isaac Sim. 
+This, all things said, clearly oriented to get ideas and feedback from the attendants around the usage of NVIDIA hardware for simulators in general, and NVIDIA's simulator Isaac Sim in particular.
 
-![alt text]([image.png](https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/bof_nvidia_1.png))
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/bof_nvidia_1.png?raw=true)
 
-The BoF session was joined by people with very different backgrounds (manipulation, planning, navigation...) with a vast majority of us applying computer vision to these problems. Therefore, most of use use simulators with realistic renderings: Unreal Engine, Unity, or Open3D (more on this one later), were the most mentioned. Gazebo is the primary ROS simulator, which, despite its outstanding capabilities for robot simulation, falls short when it comes to visual renderings. Surprisingly, very few people in the room were using Isaac Sim.
-Moreover, most of 
+The BoF session was joined by people with very different backgrounds (manipulation, planning, navigation...) with a vast majority of us applying computer vision to these problems. Therefore, most of use use simulators with realistic renderings: Unreal Engine, Unity, or Open3D (more on this one later), were the most mentioned. Gazebo is the primary ROS simulator, which, despite its outstanding capabilities for robot simulation, falls short when it comes to visual renderings. Surprisingly, very few people in the room were using Isaac Sim. People commented on the high computational requirements and the difficulty to deploy it. People in underwater robotics commented on the need for underwater simulation :wink:
+
