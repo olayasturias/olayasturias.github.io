@@ -19,7 +19,9 @@ summary: My roscon digest on the second and third day
 - [Talks](#talks)
     - [A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction](#a-ros2-package-for-dynamic-collision-avoidance-based-on-on-board-proximity-sensors-for-human-robot-close-interaction)
   - [GSplines: Generalized Splines for Motion Optimization and Smoot Collision Avoidance](#gsplines-generalized-splines-for-motion-optimization-and-smoot-collision-avoidance)
+  - [Nav2 Docking](#nav2-docking)
 - [Other stuff](#other-stuff)
+  - [Happypose](#happypose)
 
 
 # Stands
@@ -146,8 +148,34 @@ By implementing the polynomial basis solution of the trajectory, the GSpline cla
 For more info visit [the repositorie's Github,](https://github.com/rafaelrojasmiliani/gsplines_cpp?tab=readme-ov-file) which includes the code, theoretical explanations, and link to the associated publications.
 
 
+## Nav2 Docking
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/nav2.png?raw=true)
+
+Nav2 Docking Server is part of the [Nav2 library](https://github.com/ros-navigation/navigation2), and it has its own [dedicated repo](https://github.com/open-navigation/opennav_docking).
+The Nav2 Docking Server can be used with arbitrary robots and docks for auto-docking. The plugins *ChargingDock* and *NonChargingDock* allows to implement parameters specific to your docking station on how to detect if the docking was succesful. The docking procedure seemed to be wrapped around a behavior tree. It can be set up to work within your own behavior tree. The docking steps are:
+1. Retrieve dock pose.
+2. Navigate to dock (if not within range).
+3. Use the docking pluging to detect the dock.
+4. Enter a vision-control loop to reach the docking pose.
+5. Exit the vision-control loop once the contact has been detected.
+6. Wait until chargin starts (if applicable) and return success.
+
+Further details on the docking API and dock configurations can be found on the [server's documentation](https://docs.nav2.org/tutorials/docs/using_docking.html).
+
 # Other stuff
 
 http://www.ieee-ras.org/publications/ra-p
 
 https://github.com/rwth-irt/USBL-Simulator
+
+https://torydebra.github.io/AwesomeRoboticsConferencesAndSchoolsList/
+
+## Happypose
+![happypose](https://agimus-project.github.io/happypose/cosypose/images/example_predictions.png)
+
+Krzysztof Wojciechowski presented [happypose_ros](https://github.com/agimus-project/happypose_ros), a ROS 2 wrapper of [Happypose](https://agimus-project.github.io/happypose/) for 6D object pose estimation. Given an RGB image and a 2D bounding box of an object with known 3D model, the 6D pose estimator predicts the full 6D pose of the object with respect to the camera. As a sum up, Happypose introduces a library for:
+- Single camera pose estimation.
+- Multi camera pose estimation.
+- 6D pose estimation of objects in the scene (for the pretrained objects). Easy Fine-tuning with different objects is currently a future work.
+- ROS API.
+The slides on how the method works can be found [here](https://docs.google.com/presentation/d/1jZDu4mw-uNcwzr5jMFlqEddZsb7SjQozXVG3dT6-1M0/edit#slide=id.g9145acbbc5_0_0)
