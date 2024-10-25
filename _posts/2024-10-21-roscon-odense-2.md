@@ -8,7 +8,6 @@ author: olaya
 featured: true
 summary: My roscon digest on the second and third day
 ---
-![alt text](image.png)
 - [Stands](#stands)
   - [Robotec.ai: Simulation and AI tools](#robotecai-simulation-and-ai-tools)
   - [Zenoh](#zenoh)
