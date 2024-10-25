@@ -167,6 +167,7 @@ Further details on the docking API and dock configurations can be found on the [
 ## Radar Tracks for Path Pllanning in the presence of Dynamic Obstacles
 <!-- Alexander Yuan -->
 ![radar](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/radarobstacle.png?raw=true)
+
 Obstacles in ROS 2 are typically represented by a stationary point in an occupancy grid, usually inflated by a user-defined radius and cost scaling factor. These points are updated frame-to-frame via ray tracing. A limitation on this approach is the difficulty on using obstacle dynamics.
 
 
