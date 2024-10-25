@@ -160,6 +160,7 @@ The Nav2 Docking Server can be used with arbitrary robots and docks for auto-doc
 5. Exit the vision-control loop once the contact has been detected.
 6. Wait until chargin starts (if applicable) and return success.
 
+The dock database is an external yaml in server config or in action request. The controller is [nav2_graceful_controller](https://docs.nav2.org/configuration/packages/configuring-graceful-motion-controller.html).
 Further details on the docking API and dock configurations can be found on the [server's documentation](https://docs.nav2.org/tutorials/docs/using_docking.html).
 
 # Other stuff
