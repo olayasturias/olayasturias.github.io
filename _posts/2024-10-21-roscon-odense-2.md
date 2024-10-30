@@ -22,7 +22,10 @@ summary: My roscon digest on the second and third day
   - [Nav2 Docking](#nav2-docking)
   - [Radar Tracks for Path Pllanning in the presence of Dynamic Obstacles](#radar-tracks-for-path-pllanning-in-the-presence-of-dynamic-obstacles)
 - [Other stuff](#other-stuff)
+  - [USBL Simulator](#usbl-simulator)
   - [Happypose](#happypose)
+  - [IEEE Robotics and Automation Practice (RA-P)](#ieee-robotics-and-automation-practice-ra-p)
+  - [Awesome conferences and schools list](#awesome-conferences-and-schools-list)
 
 
 # Stands
@@ -173,11 +176,19 @@ Obstacles in ROS 2 are typically represented by a stationary point in an occupan
 
 # Other stuff
 
-http://www.ieee-ras.org/publications/ra-p
 
-https://github.com/rwth-irt/USBL-Simulator
 
-https://torydebra.github.io/AwesomeRoboticsConferencesAndSchoolsList/
+## USBL Simulator
+
+![USBL sim](https://github.com/rwth-irt/USBL-Simulator/raw/main/data/icon.svg)
+
+One of my quick notes includes [this repo](https://github.com/rwth-irt/USBL-Simulator) to an USBL simulator. The simulator is written in C++, with a ROS 2 node acting as wrapper for it.
+
+The simulator promisis a high-fidelity simulation, with features including (but not limited to) Round-trip-time (RTT) and Time-Difference-of-Arrival (TDOA) noise and quantization simulation.
+
+The parameters are configured in a YAML file, and the repository includes an example config file for an [OEM USBL by Evologics](https://www.evologics.com/usbl-oem).
+![](https://www.evologics.com/web/image/15614/EvoLogics-USBL-OEM-2-600.jpg)
+
 
 ## Happypose
 ![happypose](https://agimus-project.github.io/happypose/cosypose/images/example_predictions.png)
@@ -188,3 +199,13 @@ Krzysztof Wojciechowski presented [happypose_ros](https://github.com/agimus-proj
 - 6D pose estimation of objects in the scene (for the pretrained objects). Easy Fine-tuning with different objects is currently a future work.
 - ROS API.
 The slides on how the method works can be found [here](https://docs.google.com/presentation/d/1jZDu4mw-uNcwzr5jMFlqEddZsb7SjQozXVG3dT6-1M0/edit#slide=id.g9145acbbc5_0_0)
+
+## IEEE Robotics and Automation Practice (RA-P)
+![ieee](https://www.ieee-ras.org/images/publications/RA-P/24-TA-2-001-FP_IEEE_RAP_web_image_996x479_no_button.jpg)
+
+A new IEEE journal with less focus on theoretical contributions and more on applied research. Link to the journal [here](http://www.ieee-ras.org/publications/ra-p)
+
+
+## Awesome conferences and schools list
+
+A very much needed repository with links to interesting robotics conferences and schools, with a list going as far as 2028! Follow the link [here](https://torydebra.github.io/AwesomeRoboticsConferencesAndSchoolsList/).
