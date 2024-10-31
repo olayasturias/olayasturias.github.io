@@ -20,7 +20,7 @@ summary: My roscon digest on the second and third day
     - [A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction](#a-ros2-package-for-dynamic-collision-avoidance-based-on-on-board-proximity-sensors-for-human-robot-close-interaction)
   - [GSplines: Generalized Splines for Motion Optimization and Smoot Collision Avoidance](#gsplines-generalized-splines-for-motion-optimization-and-smoot-collision-avoidance)
   - [Nav2 Docking](#nav2-docking)
-  - [Radar Tracks for Path Pllanning in the presence of Dynamic Obstacles](#radar-tracks-for-path-pllanning-in-the-presence-of-dynamic-obstacles)
+  - [Radar Tracks for Path Planning in the presence of Dynamic Obstacles](#radar-tracks-for-path-planning-in-the-presence-of-dynamic-obstacles)
 - [Other stuff](#other-stuff)
   - [USBL Simulator](#usbl-simulator)
   - [Happypose](#happypose)
@@ -167,7 +167,7 @@ The Nav2 Docking Server can be used with arbitrary robots and docks for auto-doc
 The dock database is an external yaml in server config or in action request. The controller is [nav2_graceful_controller](https://docs.nav2.org/configuration/packages/configuring-graceful-motion-controller.html).
 Further details on the docking API and dock configurations can be found on the [server's documentation](https://docs.nav2.org/tutorials/docs/using_docking.html).
 
-## Radar Tracks for Path Pllanning in the presence of Dynamic Obstacles
+## Radar Tracks for Path Planning in the presence of Dynamic Obstacles
 <!-- Alexander Yuan -->
 ![radar](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/radarobstacle.png?raw=true)
 
@@ -175,7 +175,6 @@ Obstacles in ROS 2 are typically represented by a stationary point in an occupan
 
 
 # Other stuff
-
 
 
 ## USBL Simulator
