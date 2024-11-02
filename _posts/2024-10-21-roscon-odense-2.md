@@ -44,6 +44,9 @@ The simulator is **modular**, allowing components like the physics engine to be 
 
 Robotec.ai provides tailored services to set up simulators and simulation environments suited to the customer's specific requirements.
 
+Later in the conference, a talk from Michal Pelka showed us how easy it is to set up O3DE for simulation:
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/o3desetup.png?raw=true)
+
 
 ## Zenoh
 ![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/zenoh.png?raw=true)
