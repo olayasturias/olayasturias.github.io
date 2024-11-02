@@ -21,9 +21,13 @@ summary: My roscon digest on the second and third day
   - [GSplines: Generalized Splines for Motion Optimization and Smoot Collision Avoidance](#gsplines-generalized-splines-for-motion-optimization-and-smoot-collision-avoidance)
   - [Nav2 Docking](#nav2-docking)
   - [Radar Tracks for Path Planning in the presence of Dynamic Obstacles](#radar-tracks-for-path-planning-in-the-presence-of-dynamic-obstacles)
+  - [How is my robot? - On the state of ROS diagnostics](#how-is-my-robot---on-the-state-of-ros-diagnostics)
 - [Other stuff](#other-stuff)
   - [USBL Simulator](#usbl-simulator)
   - [Happypose](#happypose)
+- [CROSS: FreeCAD and ROS](#cross-freecad-and-ros)
+  - [Pixi package manager](#pixi-package-manager)
+  - [Foss Books](#foss-books)
   - [IEEE Robotics and Automation Practice (RA-P)](#ieee-robotics-and-automation-practice-ra-p)
   - [Awesome conferences and schools list](#awesome-conferences-and-schools-list)
 
@@ -173,6 +177,48 @@ Further details on the docking API and dock configurations can be found on the [
 
 Obstacles in ROS 2 are typically represented by a stationary point in an occupancy grid, usually inflated by a user-defined radius and cost scaling factor. These points are updated frame-to-frame via ray tracing. A limitation on this approach is the difficulty on using obstacle dynamics.
 
+## How is my robot? - On the state of ROS diagnostics
+<!-- Christian Henkel -->
+
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/
+diagnosis.jpeg?raw=true)
+
+Christian Henkel introduced to as a series of ROS packages for diagnosis from the [ROS diagnostics](https://github.com/ros/diagnostics) stack. Aside from that, he presented us a series of good practices that his team at Bosch applies for diagnosis:
+- **Diagnosis phylosophy**
+  - Main Purpose: Observe the **current state** of the robot.
+  - Think of it as a control panel where operators **has all the information** they need.
+  - Try to **limit** the metrics to <10, ideally 2-3 per component.
+  - **Warnings** are states that are unusual but allow continued operation.
+  - **Errors** indicate states that do not allow the robot to operate further and shall be immediately addressed.
+  - Think about a logging and diagnostics concept in your team and **document it**.
+- **Comparison to other concepts**
+  - Diagnostics vs:
+    - Logging:
+      - Logging is (a lot) more verbose.
+      - Captures the inner state of a SW component.
+      - Are (usually) for later consumption and analysis.
+    - Bagfiles:
+      - Are useful to record diagnostics in bagfiles.
+      - Will also contain non-critical state info.
+    - Testing:
+      - Diagnostics help to find more quickly causes for failing tests, but don't replace testing.
+      - Crucial diagnostics may be tested themselves.
+- **Antipatterns**
+  - In general, diagnosis are not meant to be used functionally:
+    - The error handling that a robotic system does by itself should not depend on diagnosis.
+    - Diagnostics should help a human observer or technician to understand a problem that was not recovered from.
+  - The "right" amount of red:
+    - Diagnostics must be tuned in a way such that they really mean a problem.
+    - Otherwise, human observers get used to seeing error messages and don't recognize critical ones.
+    - In a similar theme, warnings should not be too frequent to not become meaningless.
+  - Diagnosis must be received:
+    - Diagnostics are meant as a communication method from robot to human.
+    - So, in fully autonomous systems, they must be logged correctly and evaluated retroactively.
+    - It is also worth to difference between roles:
+      - For example, if an end user will see and/or understand diagnostics content or
+      - if it must only be consumed by the trained technician.
+
+![](https://i0.wp.com/warandpeas.com/wp-content/uploads/2017/03/war-and-peas-insult-machine.jpg?resize=580%2C649&ssl=1)
 
 # Other stuff
 
@@ -198,6 +244,23 @@ Krzysztof Wojciechowski presented [happypose_ros](https://github.com/agimus-proj
 - 6D pose estimation of objects in the scene (for the pretrained objects). Easy Fine-tuning with different objects is currently a future work.
 - ROS API.
 The slides on how the method works can be found [here](https://docs.google.com/presentation/d/1jZDu4mw-uNcwzr5jMFlqEddZsb7SjQozXVG3dT6-1M0/edit#slide=id.g9145acbbc5_0_0)
+
+# CROSS: FreeCAD and ROS
+[CROSS](https://github.com/galou/freecad.cross) is a FreeCAD workbench to generate robot description packages (xacro or URDF) for ROS.
+
+## Pixi package manager
+![](https://github.com/prefix-dev/pixi/assets/4995967/e42739c4-4cd9-49bb-9d0a-45f8088494b5)
+Pixi is a package manager that works seamlessly with Ubuntu, MacOS, and Windows. There are examples on setting [Python](https://pixi.sh/latest/tutorials/python/#lets-get-started) (as alternative to conda) and [C++](https://pixi.sh/latest/examples/cpp-sdl/) packages.
+Here's [an example package on how to use pixi for a ROS2 workspace](https://github.com/ruben-arts/turtlesim-pixi).
+
+## Foss Books
+
+VM (Vicky) Brasseur presented to us her books:
+- [Forge Your Future with Open Source](https://pragprog.com/titles/vbopens/forge-your-future-with-open-source/)
+- [Business Success with Open Source](https://pragprog.com/titles/vbfoss/business-success-with-open-source/). Some of the sections from this books are available, such as:
+  - [Avoid Common FOSS Business Risks](https://media.pragprog.com/titles/vbfoss/risks.pdf?_gl=1*1jiysm4*_ga*MTk5MTQ0NjE0OS4xNzMwNTcxNjM4*_ga_MJ4659LJZC*MTczMDU3MTYzOC4xLjEuMTczMDU3MTg2Mi4wLjAuMA..)
+  - [Role of Inbound FOSS in Digital Transformation](https://media.pragprog.com/titles/vbfoss/strategy.pdf?_gl=1*ru2jaq*_ga*MTk5MTQ0NjE0OS4xNzMwNTcxNjM4*_ga_MJ4659LJZC*MTczMDU3MTYzOC4xLjEuMTczMDU3MTg2Mi4wLjAuMA..)
+  - [Basic License Compliance](https://media.pragprog.com/titles/vbfoss/compliance.pdf?_gl=1*4765k*_ga*MTk5MTQ0NjE0OS4xNzMwNTcxNjM4*_ga_MJ4659LJZC*MTczMDU3MTYzOC4xLjEuMTczMDU3MTg2Mi4wLjAuMA..)
 
 ## IEEE Robotics and Automation Practice (RA-P)
 ![ieee](https://www.ieee-ras.org/images/publications/RA-P/24-TA-2-001-FP_IEEE_RAP_web_image_996x479_no_button.jpg)
