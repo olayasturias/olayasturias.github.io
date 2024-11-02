@@ -11,9 +11,9 @@ summary: My roscon digest on the second and third day
 - [Simulation and AI Tools](#simulation-and-ai-tools)
   - [Robotec.ai: Simulation and AI tools](#robotecai-simulation-and-ai-tools)
   - [USBL Simulator](#usbl-simulator)
+- [Data Management](#data-management)
   - [Segments.ai](#segmentsai)
   - [Roboto.ai](#robotoai)
-- [Data Management](#data-management)
   - [Foxglove](#foxglove)
 - [Communication Protocols and Middleware](#communication-protocols-and-middleware)
   - [Zenoh](#zenoh)
@@ -64,6 +64,10 @@ The simulator promisis a high-fidelity simulation, with features including (but 
 The parameters are configured in a YAML file, and the repository includes an example config file for an [OEM USBL by Evologics](https://www.evologics.com/usbl-oem).
 ![](https://www.evologics.com/web/image/15614/EvoLogics-USBL-OEM-2-600.jpg)
 
+
+# Data Management
+
+
 ## Segments.ai
 
 ![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/segmentsai.png?raw=true)
@@ -79,9 +83,6 @@ Segments.ai offers [free academic licenses and demo datasets](https://segments.a
 ![https://docs.roboto.ai/_images/overview.png](https://docs.roboto.ai/_images/overview.png)
 
 With Roboto.ai, you can extract specific data from large datasets, making it especially useful for working with rosbags. Instead of handling one massive file, you can query only the data you need, optimizing memory usage. The platform also allows you to curate datasets based on events or anomalies detected within the data. Roboto's API includes built-in functions for automatic anomaly detection, streamlining data analysis and cleanup. More info on the concepts and functionality can be found [here](https://docs.roboto.ai/learn/concepts.html), or in the [Github repo](https://github.com/roboto-ai/roboto-python-sdk).
-
-# Data Management
-
 
 ## Foxglove
 [Foxglove](https://foxglove.dev/) is a well-known tool for visuallizing and debugging data. The data can be streamed from the cloud, local files, or in real time from the robot.
