@@ -25,7 +25,7 @@ summary: My roscon digest on the second and third day
 - [Other stuff](#other-stuff)
   - [USBL Simulator](#usbl-simulator)
   - [Happypose](#happypose)
-- [CROSS: FreeCAD and ROS](#cross-freecad-and-ros)
+  - [CROSS: FreeCAD and ROS](#cross-freecad-and-ros)
   - [Pixi package manager](#pixi-package-manager)
   - [Foss Books](#foss-books)
   - [IEEE Robotics and Automation Practice (RA-P)](#ieee-robotics-and-automation-practice-ra-p)
@@ -180,8 +180,7 @@ Obstacles in ROS 2 are typically represented by a stationary point in an occupan
 ## How is my robot? - On the state of ROS diagnostics
 <!-- Christian Henkel -->
 
-![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/
-diagnosis.jpeg?raw=true)
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/diagnosis.jpeg?raw=true)
 
 Christian Henkel introduced to as a series of ROS packages for diagnosis from the [ROS diagnostics](https://github.com/ros/diagnostics) stack. Aside from that, he presented us a series of good practices that his team at Bosch applies for diagnosis:
 - **Diagnosis phylosophy**
@@ -245,7 +244,7 @@ Krzysztof Wojciechowski presented [happypose_ros](https://github.com/agimus-proj
 - ROS API.
 The slides on how the method works can be found [here](https://docs.google.com/presentation/d/1jZDu4mw-uNcwzr5jMFlqEddZsb7SjQozXVG3dT6-1M0/edit#slide=id.g9145acbbc5_0_0)
 
-# CROSS: FreeCAD and ROS
+## CROSS: FreeCAD and ROS
 [CROSS](https://github.com/galou/freecad.cross) is a FreeCAD workbench to generate robot description packages (xacro or URDF) for ROS.
 
 ## Pixi package manager
