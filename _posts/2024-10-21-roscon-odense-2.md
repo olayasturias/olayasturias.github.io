@@ -24,7 +24,7 @@ summary: My roscon digest on the second and third day
 - [Localization, Navigation, Motion Planning and Collision Avoidance](#localization-navigation-motion-planning-and-collision-avoidance)
   - [Learn Probabilistic Robotics with ROS 2](#learn-probabilistic-robotics-with-ros-2)
   - [Beluga AMCL: a modern Monte Carlo Localization implementation for ROS](#beluga-amcl-a-modern-monte-carlo-localization-implementation-for-ros)
-    - [A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction](#a-ros2-package-for-dynamic-collision-avoidance-based-on-on-board-proximity-sensors-for-human-robot-close-interaction)
+  - [A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction](#a-ros2-package-for-dynamic-collision-avoidance-based-on-on-board-proximity-sensors-for-human-robot-close-interaction)
   - [GSplines: Generalized Splines for Motion Optimization and Smoot Collision Avoidance](#gsplines-generalized-splines-for-motion-optimization-and-smoot-collision-avoidance)
   - [Nav2 Docking](#nav2-docking)
   - [Radar Tracks for Path Planning in the presence of Dynamic Obstacles](#radar-tracks-for-path-planning-in-the-presence-of-dynamic-obstacles)
@@ -195,7 +195,7 @@ It relies on a series of open-source libraries and benchmarks, including [evo-to
  
 
 
-### A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction
+## A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction
 
 ![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/dynamic_collision_avoidance.png?raw=true)
 
