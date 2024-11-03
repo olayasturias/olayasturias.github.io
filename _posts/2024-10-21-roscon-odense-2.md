@@ -21,7 +21,9 @@ summary: My roscon digest on the second and third day
   - [Pixi package manager](#pixi-package-manager)
 - [Diagnosis and Performance Monitoring](#diagnosis-and-performance-monitoring)
   - [How is my robot? - On the state of ROS diagnostics](#how-is-my-robot---on-the-state-of-ros-diagnostics)
-- [Motion Planning and Collision Avoidance](#motion-planning-and-collision-avoidance)
+- [Localization, Navigation, Motion Planning and Collision Avoidance](#localization-navigation-motion-planning-and-collision-avoidance)
+  - [Learn Probabilistic Robotics with ROS 2](#learn-probabilistic-robotics-with-ros-2)
+  - [Beluga AMCL: a modern Monte Carlo Localization implementation for ROS](#beluga-amcl-a-modern-monte-carlo-localization-implementation-for-ros)
     - [A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction](#a-ros2-package-for-dynamic-collision-avoidance-based-on-on-board-proximity-sensors-for-human-robot-close-interaction)
   - [GSplines: Generalized Splines for Motion Optimization and Smoot Collision Avoidance](#gsplines-generalized-splines-for-motion-optimization-and-smoot-collision-avoidance)
   - [Nav2 Docking](#nav2-docking)
@@ -161,7 +163,36 @@ Christian Henkel introduced to as a series of ROS packages for diagnosis from th
 
 ![](https://i0.wp.com/warandpeas.com/wp-content/uploads/2017/03/war-and-peas-insult-machine.jpg?resize=580%2C649&ssl=1)
 
-# Motion Planning and Collision Avoidance
+
+# Localization, Navigation, Motion Planning and Collision Avoidance
+
+## Learn Probabilistic Robotics with ROS 2
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/9884b471-ac75-4f76-b1a5-6aea9f8d5945" width="400"/>
+</div>
+
+If you work in robotics, it is extremely likely that you've heard about the Probabilistic Robotics book. There are plenty of repositories in the literature implementing such algorithms, however, as a developer you might want to code your own implementation that is adapted to your needs.
+
+However, as addressed by Carlos Argueta, learning these algorithms is challenging, specially when it comes to translating theory into actual code (and making it work in the real world).
+
+Under [this repo](https://github.com/carlos-argueta/rse_prob_robotics), you can find a compilation of open-source implementations of the algorithms under the probabilistic robotics book, accompanied by [an article explaining them](https://soulhackerslabs.com/the-unreasonable-power-of-the-unscented-kalman-filter-with-ros-2-d4c97d4b4bb9).
+
+## Beluga AMCL: a modern Monte Carlo Localization implementation for ROS
+<!-- Franco Cipollone -->
+
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/beluga.png?raw=true)
+
+In this talk, Franco Cipollone first introduced [Beluga](https://ekumen-os.github.io/beluga/index.html), a toolkit for Monte Carlo Localization (MCL) which operates in 2D over laser scan measurements. He mentioned, however, how the ACML algorithms are aging:
+
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/beluga2.png?raw=true)
+
+Under that premise, he introduced a new library EKUMEN is working on: [the Localization And Mapping BenchmarKINg Toolkit (LAMBKIN)](https://github.com/Ekumen-OS/lambkin)
+
+Lambkin introduces a benchmarking application for localization and mapping systems, in which each component runs in a separate container.
+It relies on a series of open-source libraries and benchmarks, including [evo-tools](https://michaelgrupp.github.io/evo/) and [timem](https://timemory.readthedocs.io/en/develop/features.html#command-line-tools).
+
+ 
 
 
 ### A ROS2 Package for Dynamic Collision Avoidance Based on On-Board Proximity Sensors for Human-Robot Close Interaction
