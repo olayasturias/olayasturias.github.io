@@ -383,3 +383,7 @@ Krzysztof Wojciechowski presented [happypose_ros](https://github.com/agimus-proj
 The slides on how the method works can be found [here](https://docs.google.com/presentation/d/1jZDu4mw-uNcwzr5jMFlqEddZsb7SjQozXVG3dT6-1M0/edit#slide=id.g9145acbbc5_0_0)
 
 
+
+
+![Pssst, ey, look, we are women in robotics, wooo!](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/wir.png?raw=true)
+Pssst, ey, look, we are women in robotics, wooo!
