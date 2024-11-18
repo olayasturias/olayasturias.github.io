@@ -21,6 +21,7 @@ summary: My roscon digest on the second and third day
   - [Pixi package manager](#pixi-package-manager)
 - [Diagnosis and Performance Monitoring](#diagnosis-and-performance-monitoring)
   - [How is my robot? - On the state of ROS diagnostics](#how-is-my-robot---on-the-state-of-ros-diagnostics)
+  - [Scenic: a probabilistic language for world modelling](#scenic-a-probabilistic-language-for-world-modelling)
 - [Localization, Navigation, Motion Planning and Collision Avoidance](#localization-navigation-motion-planning-and-collision-avoidance)
   - [Learn Probabilistic Robotics with ROS 2](#learn-probabilistic-robotics-with-ros-2)
   - [Beluga AMCL: a modern Monte Carlo Localization implementation for ROS](#beluga-amcl-a-modern-monte-carlo-localization-implementation-for-ros)
@@ -162,6 +163,15 @@ Christian Henkel introduced to as a series of ROS packages for diagnosis from th
       - if it must only be consumed by the trained technician.
 
 ![](https://i0.wp.com/warandpeas.com/wp-content/uploads/2017/03/war-and-peas-insult-machine.jpg?resize=580%2C649&ssl=1)
+
+## Scenic: a probabilistic language for world modelling
+
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/scenic1.png?raw=true)
+
+[Scenic](https://scenic-lang.org/) is a stochastic scenario generator and a powerful language for defining spatio-temporal relationships in scenes. Whether you're creating environments for CARLA, Gazebo, Unity, or Webots, Scenic can model scenarios as a combination of scene distributions and agent behaviors.
+
+![scenic](https://docs.scenic-lang.org/en/latest/_images/scenic-sim.png)
+Why is it useful? Scenic helps test cyber-physical systems against rare edge cases, design environments for exploration, and generate synthetic data for robust machine learning models. While it’s not available for Unreal Engine yet, its versatility makes it a game-changer for simulation and testing.
 
 
 # Localization, Navigation, Motion Planning and Collision Avoidance
