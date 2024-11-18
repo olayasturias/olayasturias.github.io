@@ -9,6 +9,13 @@ featured: true
 summary: My roscon digest on the first day
 ---
 
+
+This year, our neighbor city Odense held the ROSCON conference, which I had the honour to attend :slightly_smiling_face:
+I collected some notes for my future self (and maybe the present you?), that I have collected in this post for day 1, and on my next post for days 2 and 3.
+
+If any of these notes raises your interest, you can watch the full talks [in this link](https://roscon.ros.org/2024/#program). Enjoy!
+
+
 # Workshop 3: Open source, open hardware hand-held mobile mapping system for large scale surveys 
 
 This workshop consisted of deploying an open-hardware hand-held device to record large-scale datasets and perform mapping tasks on them.

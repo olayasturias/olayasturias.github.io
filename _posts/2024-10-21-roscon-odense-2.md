@@ -8,9 +8,17 @@ author: olaya
 featured: true
 summary: My roscon digest on the second and third day
 ---
+
+This year, our neighbor city Odense held the ROSCON conference, which I had the honour to attend :slightly_smiling_face:
+I collected some notes for my future self (and maybe the present you?), that I have collected in this post for days 2 and 3,
+and on a previous post for day 1 (which consisted of workshops and birds of feather sessions).
+
+If any of these notes raises your interest, you can watch the full talks [in this link](https://roscon.ros.org/2024/#program). Enjoy!
+
 - [Simulation and AI Tools](#simulation-and-ai-tools)
   - [Robotec.ai: Simulation and AI tools](#robotecai-simulation-and-ai-tools)
   - [USBL Simulator](#usbl-simulator)
+  - [Automated testing framework with AWSIM and OpenScenario](#automated-testing-framework-with-awsim-and-openscenario)
 - [Data Management](#data-management)
   - [Segments.ai](#segmentsai)
   - [Roboto.ai](#robotoai)
@@ -22,6 +30,7 @@ summary: My roscon digest on the second and third day
 - [Diagnosis and Performance Monitoring](#diagnosis-and-performance-monitoring)
   - [How is my robot? - On the state of ROS diagnostics](#how-is-my-robot---on-the-state-of-ros-diagnostics)
   - [Scenic: a probabilistic language for world modelling](#scenic-a-probabilistic-language-for-world-modelling)
+  - [Scenario Execution for Robotics: A generic, backend-agnostic library for running reproducible robotics experiments and tests](#scenario-execution-for-robotics-a-generic-backend-agnostic-library-for-running-reproducible-robotics-experiments-and-tests)
 - [Localization, Navigation, Motion Planning and Collision Avoidance](#localization-navigation-motion-planning-and-collision-avoidance)
   - [Learn Probabilistic Robotics with ROS 2](#learn-probabilistic-robotics-with-ros-2)
   - [Beluga AMCL: a modern Monte Carlo Localization implementation for ROS](#beluga-amcl-a-modern-monte-carlo-localization-implementation-for-ros)
@@ -29,6 +38,7 @@ summary: My roscon digest on the second and third day
   - [GSplines: Generalized Splines for Motion Optimization and Smoot Collision Avoidance](#gsplines-generalized-splines-for-motion-optimization-and-smoot-collision-avoidance)
   - [Nav2 Docking](#nav2-docking)
   - [Radar Tracks for Path Planning in the presence of Dynamic Obstacles](#radar-tracks-for-path-planning-in-the-presence-of-dynamic-obstacles)
+  - [Mesh navigation](#mesh-navigation)
 - [Software and Tool Integration](#software-and-tool-integration)
   - [Main Street Autonomy](#main-street-autonomy)
   - [CROSS: FreeCAD and ROS](#cross-freecad-and-ros)
@@ -68,6 +78,10 @@ The simulator promisis a high-fidelity simulation, with features including (but 
 The parameters are configured in a YAML file, and the repository includes an example config file for an [OEM USBL by Evologics](https://www.evologics.com/usbl-oem).
 ![](https://www.evologics.com/web/image/15614/EvoLogics-USBL-OEM-2-600.jpg)
 
+## Automated testing framework with AWSIM and OpenScenario
+
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/awsim.png?raw=true )
+[AWSIM](https://github.com/tier4/AWSIM) is an Open source simulator for self-driving vehicles based in Unity.
 
 # Data Management
 
@@ -174,6 +188,19 @@ Christian Henkel introduced to as a series of ROS packages for diagnosis from th
 ![scenic](https://docs.scenic-lang.org/en/latest/_images/scenic-sim.png)
 Why is it useful? Scenic helps test cyber-physical systems against rare edge cases, design environments for exploration, and generate synthetic data for robust machine learning models. While it’s not available for Unreal Engine yet, its versatility makes it a game-changer for simulation and testing.
 
+## Scenario Execution for Robotics: A generic, backend-agnostic library for running reproducible robotics experiments and tests
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/sceexe.png?raw=true)
+[Scenario execution for robotics](https://github.com/IntelLabs/scenario_execution) is a backend - and a middleware - agnostic library, that enables the robotics community to perform reproducible
+experiments at scale. Written in Python and built upon the generic scenario descrition language OpenScenario2 and pytrees, Scenario Execution
+reads a scenario definition from a file, translates it to a pytrees behavior tree, and then executes it. Although scenario execution can be used as a 
+pure Python library, it is mainly targeted towards ROS 2. The backend-agnostic implementation allows Scenario Execution to be used with both simulated
+and physical robots, with minimal adaptations necessary in the scenario description file.
+
+This tool allows testing the robot in execution time. It allows testing of various actions in parallel, as well as error injection.
+
+With Scenario Execution, you create a logical scenario to reduce the amount of possible scenarios within your abstract scenario. 
+This concrete scenario will have specific values to test:
+![alt text](https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/scenarioexecution.png?raw=true)
 
 # Localization, Navigation, Motion Planning and Collision Avoidance
 
@@ -289,6 +316,15 @@ Further details on the docking API and dock configurations can be found on the [
 
 Obstacles in ROS 2 are typically represented by a stationary point in an occupancy grid, usually inflated by a user-defined radius and cost scaling factor. These points are updated frame-to-frame via ray tracing. A limitation on this approach is the difficulty on using obstacle dynamics.
 
+## Mesh navigation
+
+![meshnav](https://github.com/naturerobots/mesh_navigation/raw/humble/docs/images/demo.gif?raw=true)
+
+The [Mesh Navigation](https://github.com/naturerobots/mesh_navigation) software bundle allows
+efficient robot navigation on 2D manifolds, which are represented in 3D as triangle meshes. 
+It enables safe navigation in various complex outdoor environments by using a modularly extensible 
+layered mesh map. Layers can be loaded as plugins representing specific geometric or semantic metrics of the terrain.
+This allows the incorporation of obstacles in these complex outdoor environments into path and motion motion planning. 
 
 # Software and Tool Integration
 
