@@ -33,6 +33,7 @@ summary: My roscon digest on the second and third day
   - [Main Street Autonomy](#main-street-autonomy)
   - [CROSS: FreeCAD and ROS](#cross-freecad-and-ros)
 - [Robotics Education and Community Resources](#robotics-education-and-community-resources)
+  - [The defenitive guide to ROS Mobile Robotics](#the-defenitive-guide-to-ros-mobile-robotics)
   - [Foss Books](#foss-books)
   - [IEEE Robotics and Automation Practice (RA-P)](#ieee-robotics-and-automation-practice-ra-p)
   - [Awesome conferences and schools list](#awesome-conferences-and-schools-list)
@@ -306,6 +307,13 @@ What impressed me most, however, was their vSLAM solution, which demonstrated im
 
 # Robotics Education and Community Resources
 
+## The defenitive guide to ROS Mobile Robotics
+Steve Macenski introduced to us [one of his last papers](https://www.sciencedirect.com/science/article/abs/pii/S092188902300132X), a survey that answers to the following questions: 
+- What are his algorithm choices
+- How do they work
+- When should I use what and why
+- What features exist?
+- How do they compare computationally?
 
 ## Foss Books
 
