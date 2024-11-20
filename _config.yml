@@ -19,7 +19,7 @@ authors:
     image: /assets/images/yo.jpg
     email: oalvarez@ing.uc3m.es
     web: muonic.wordpress.com
-    twitter: twitter.com/oplahoma
+    twitter: https://bsky.app/profile/olayatu.bsky.social
     description: Hi, I am Olaya.
 
 # Plugins
@@ -52,6 +52,6 @@ twitter:
 social:
 name: Olaya Alvarez-Tuñon
 links:
-    - https://twitter.com/oplahoma
+    - https://bsky.app/profile/olayatu.bsky.social
     - https://www.linkedin.com/in/olayatu/en/
     - https://github.com/olayasturias
