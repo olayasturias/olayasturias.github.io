@@ -2,7 +2,7 @@
 layout: page
 title: AI for Marine Perception
 description: P1 program at the Pioneer Centre for AI — co-organizer
-img: assets/img/publication_preview/subpipe_GA.svg
+img: assets/img/ai_marine_perception.png
 importance: 1
 category: community
 ---
