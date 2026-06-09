@@ -1,12 +1,10 @@
 ---
 layout: post
-cover: assets/images/roscon/rosconattendees.png
+thumbnail: assets/images/roscon/rosconattendees.png
 title: My ROSCON 2024 digest - Days 2 and 3
 date: 2024-10-25 12:00:00 +0545
-categories: ROS conference roscon
-author: olaya
-featured: true
-summary: My roscon digest on the second and third day
+tags: ROS conference roscon
+description: My roscon digest on the second and third day
 ---
 
 This year, our neighbor city Odense held the ROSCON conference, which I had the honour to attend :slightly_smiling_face:

@@ -1,12 +1,10 @@
 ---
 layout: post
-cover: assets/images/workshop-roscon.png
+thumbnail: assets/images/workshop-roscon.png
 title: My ROSCON 2024 digest - Day 1
 date: 2024-10-21 12:00:00 +0545
-categories: cpp lidar ROS conference roscon
-author: olaya
-featured: true
-summary: My roscon digest on the first day
+tags: cpp lidar ROS conference roscon
+description: My roscon digest on the first day
 ---
 
 

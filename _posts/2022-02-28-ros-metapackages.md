@@ -1,12 +1,10 @@
 ---
 layout: post
-cover: assets/images/rostrioska.png
+thumbnail: assets/images/rostrioska.png
 title: creating ROS metapackages
 date: 2022-02-28 12:00:00 +0545
-categories: ROS
-author: olaya
-featured: true
-summary: concepts and creation of ROS metapackages.
+tags: ROS
+description: concepts and creation of ROS metapackages.
 ---
 
 

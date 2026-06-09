@@ -1,11 +1,9 @@
 ---
 layout: post
-cover: assets/images/rpi-cam-ros/rpicam.jpg
+thumbnail: assets/images/rpi-cam-ros/rpicam.jpg
 title: Streaming video from a Raspberry Pi Cam using a distributed ROS system
 date: 2020-07-25 12:00:00 +0545
-categories: ros Raspberry picam phdstuff
-author: olaya
-featured: true
+tags: ros Raspberry picam phdstuff
 ---
 
 

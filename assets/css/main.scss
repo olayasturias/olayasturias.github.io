@@ -1,0 +1,80 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+/* Built-in Sass modules you’ll likely use across partials */
+@use "sass:math";
+@use "sass:string";
+
+/* Configure your design tokens BEFORE loading any of your partials.
+   Make sure `_sass/_variables.scss` declares `$max-content-width: 72rem !default;` */
+@use "variables" with (
+  $max-content-width: {{ site.max_width | default:  "930px" }}
+);
+
+/* Your project partials — convert these files to `@use "variables";`
+   (or `@use "variables" as *;`) inside each file and qualify variables if needed. */
+@use "themes";
+@use "layout";
+
+// Core styles organized by usage
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+
+// Other specialized styles
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+/* -------------------------------------------------------------------------
+   Custom palette override (light + dark)
+   Palette: #becfe4 #f6847e #bd3fd8 #514c53 #221c2b #0e0915
+   Declared after @use "themes" so these CSS variables win the cascade.
+   ------------------------------------------------------------------------- */
+:root {
+  --global-bg-color: #becfe4;
+  --global-text-color: #0e0915;
+  --global-text-color-light: #514c53;
+  --global-theme-color: #bd3fd8;
+  --global-hover-color: #f6847e;
+  --global-hover-text-color: #ffffff;
+  --global-divider-color: rgba(81, 76, 83, 0.25);
+  --global-card-bg-color: #ffffff;
+  --global-code-bg-color: #d6e1ef;
+  --global-highlight-color: #f6847e;
+  --global-footer-bg-color: #221c2b;
+  --global-footer-text-color: #becfe4;
+  --global-footer-link-color: #f6847e;
+  --global-distill-app-color: #514c53;
+  --global-back-to-top-bg-color: rgba(189, 63, 216, 0.5);
+  --global-back-to-top-text-color: #ffffff;
+  --global-newsletter-bg-color: #ffffff;
+  --global-newsletter-text-color: #0e0915;
+}
+
+html[data-theme="dark"] {
+  --global-bg-color: #221c2b;
+  --global-text-color: #becfe4;
+  --global-text-color-light: #948da0;
+  --global-theme-color: #f6847e;
+  --global-hover-color: #bd3fd8;
+  --global-hover-text-color: #ffffff;
+  --global-divider-color: rgba(190, 207, 228, 0.15);
+  --global-card-bg-color: #2c2535;
+  --global-code-bg-color: #2a2333;
+  --global-highlight-color: #bd3fd8;
+  --global-footer-bg-color: #0e0915;
+  --global-footer-text-color: #becfe4;
+  --global-footer-link-color: #f6847e;
+  --global-distill-app-color: #948da0;
+  --global-back-to-top-bg-color: rgba(246, 132, 126, 0.4);
+  --global-back-to-top-text-color: #0e0915;
+  --global-newsletter-bg-color: #514c53;
+  --global-newsletter-text-color: #becfe4;
+}

@@ -1,12 +1,10 @@
 ---
 layout: post
-cover: assets/images/icra23/meaticra.jpeg
+thumbnail: assets/images/icra23/meaticra.jpeg
 title: My ICRA 2023 digest
 date: 2023-06-05 12:00:00 +0545
-categories: phdstuff conference icra
-author: olaya
-featured: true
-summary: a digest of all things I saw in the conference.
+tags: phdstuff conference icra
+description: a digest of all things I saw in the conference.
 ---
 
 # Mucho texto: Table of contents

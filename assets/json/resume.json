@@ -1,0 +1,227 @@
+{
+  "basics": {
+    "name": "Olaya Álvarez-Tuñón",
+    "label": "Computer Vision & Deep Learning Engineer · Postdoctoral Researcher",
+    "image": "",
+    "email": "olaya.tunon@gmail.com",
+    "summary": "Computer Vision and Deep Learning Engineer with extensive expertise in visual odometry and Visual SLAM. My research focuses on machine learning and computer vision within robotics, designing optimal architectures grounded in a geometric understanding of deep learning models. As a roboticist I have hands-on experience with both hardware and software, using ROS (1 and 2) and libraries such as behavior trees.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "",
+      "countryCode": "",
+      "region": "Spain / Denmark"
+    },
+    "profiles": [
+      {
+        "network": "ORCID",
+        "username": "0000-0003-3581-9481",
+        "url": "https://orcid.org/0000-0003-3581-9481"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "olayatu",
+        "url": "https://www.linkedin.com/in/olayatu/"
+      },
+      {
+        "network": "GitHub",
+        "username": "olayasturias",
+        "url": "https://github.com/olayasturias"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "ITU Copenhagen & EIVA A/S",
+      "position": "Robotics & AI developer, Postdoc",
+      "location": "Copenhagen, Denmark",
+      "startDate": "2024-01-01",
+      "endDate": "",
+      "summary": "IFD Project: Deep visual odometry for underwater intervention drones (DeepODO). Development of a deep-learning-based visual SLAM system to enable autonomous underwater robot localization, training neural networks for accurate, real-time camera-based navigation and overcoming unique underwater vision challenges.",
+      "highlights": []
+    },
+    {
+      "name": "Aarhus University & EIVA A/S",
+      "position": "Marie Curie PhD fellow",
+      "location": "Aarhus, Denmark",
+      "startDate": "2021-01-01",
+      "endDate": "2024-01-01",
+      "summary": "EU Project: Reliable AI for Marine Robotics (REMARO).",
+      "highlights": [
+        "Teaching: Autonomous Mobile Robots, Deep Learning, Control Systems.",
+        "Research stay at OceanScan-MST: design of behavior trees for AUV mission planning.",
+        "Research stay at DFKI: implemented and tested visual SLAM in a testbed with Qualisys ground-truth control."
+      ]
+    },
+    {
+      "name": "RoboticsLab, University Carlos III Madrid",
+      "position": "Research technician",
+      "location": "Madrid, Spain",
+      "startDate": "2015-01-01",
+      "endDate": "2020-01-01",
+      "summary": "EU Project: Long Term Stability Assessment and Monitoring of Flooded Shafts (STAMS).",
+      "highlights": ["Teaching: Industrial Automation, Industrial Robotics."]
+    },
+    {
+      "name": "R&D Arcelor-Mittal center, Avilés",
+      "position": "Research technician",
+      "location": "Avilés, Spain",
+      "startDate": "2013-01-01",
+      "endDate": "2014-01-01",
+      "summary": "Computer Vision for Automated Defect and Dust Detection on Rolled Steel Plates.",
+      "highlights": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "Aarhus University",
+      "location": "Aarhus, Denmark",
+      "url": "https://international.au.dk/",
+      "area": "Visual-based navigation for underwater safety-critical applications",
+      "studyType": "Ph.D. (Marie Curie Scholarship, ETN project REMARO)",
+      "startDate": "2021-01-01",
+      "endDate": "2024-01-01",
+      "score": "",
+      "courses": [],
+      "highlights": ["Thesis: Visual-based navigation for underwater-safety critical applications."]
+    },
+    {
+      "institution": "University Carlos III Madrid",
+      "location": "Madrid, Spain",
+      "url": "https://www.uc3m.es/",
+      "area": "Robotics and Automation",
+      "studyType": "M.Sc.",
+      "startDate": "2018-01-01",
+      "endDate": "2019-01-01",
+      "score": "",
+      "courses": [],
+      "highlights": ["Thesis: Visual Localization of an Underwater Robot in Flooded Mine Shafts."]
+    },
+    {
+      "institution": "University of Oviedo",
+      "location": "Oviedo, Spain",
+      "url": "https://www.uniovi.es/",
+      "area": "Electronics and Automation Engineering",
+      "studyType": "B.Sc.",
+      "startDate": "2011-01-01",
+      "endDate": "2015-01-01",
+      "score": "",
+      "courses": [],
+      "highlights": ["Thesis: Visual Odometry for quadrucopters."]
+    }
+  ],
+  "awards": [
+    {
+      "title": "IEEE RAS Science Communication Ambassador — ICRA 2026",
+      "date": "2026-05-15",
+      "awarder": "IEEE Robotics and Automation Society",
+      "url": "https://2026.ieee-icra.org/",
+      "summary": ""
+    },
+    {
+      "title": "Women in Engineering (WIE) OCEANS Ambassador 2025–2026",
+      "date": "2025-07-01",
+      "awarder": "IEEE Oceanic Engineering Society",
+      "url": "https://ieeeoes.org/get-involved/member-communities/women-in-engineering/",
+      "summary": ""
+    },
+    {
+      "title": "Best Poster Award — ICRA 2026 Workshop \"S2S: from Sea to Space\"",
+      "date": "2026-06-05",
+      "awarder": "ICRA 2026 S2S: from Sea to Space Workshop",
+      "url": "https://sites.google.com/view/icra-2026-s2s-perception/",
+      "summary": ""
+    },
+    {
+      "title": "Third prize — Virtual School on SLAM in Deformable Environments",
+      "date": "2021-01-01",
+      "awarder": "Robotics Institute, University of Technology Sydney",
+      "summary": ""
+    },
+    {
+      "title": "Second prize — IROS-RSJ Robotic Challenge for Young Students",
+      "date": "2021-01-01",
+      "awarder": "PAL Robotics",
+      "summary": ""
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Deep Learning Specialization",
+      "date": "2020-01-01",
+      "issuer": "Coursera",
+      "icon": "fa-solid fa-certificate"
+    }
+  ],
+  "publications": [],
+  "volunteer": [
+    {
+      "organization": "Spanish Scientists in Denmark (CED)",
+      "location": "Denmark",
+      "position": "Secretary and Aarhus delegate",
+      "startDate": "2021-01-01",
+      "endDate": "",
+      "summary": "",
+      "highlights": []
+    },
+    {
+      "organization": "Pint of Science Denmark",
+      "location": "Denmark",
+      "position": "Organizer and speaker",
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31",
+      "summary": "Talk: \"AI and the philosophy of seeing: what would Aristotle think about today's AI?\".",
+      "highlights": []
+    },
+    {
+      "organization": "Aarhus University PhD Association (AUPA)",
+      "location": "Aarhus, Denmark",
+      "position": "Social activity organizer",
+      "startDate": "2021-01-01",
+      "endDate": "2024-01-01",
+      "summary": "",
+      "highlights": []
+    }
+  ],
+  "skills": [
+    {
+      "name": "Coding",
+      "level": "",
+      "icon": "fa-solid fa-code",
+      "keywords": ["Python", "C++", "LaTeX"]
+    },
+    {
+      "name": "Tools",
+      "level": "",
+      "icon": "fa-solid fa-toolbox",
+      "keywords": ["PyTorch", "OpenCV", "Behavior trees", "ROS (1 and 2)", "ArduPilot", "Unreal Engine", "Inkscape"]
+    },
+    {
+      "name": "Misc.",
+      "level": "",
+      "icon": "fa-solid fa-lightbulb",
+      "keywords": ["Academic research", "Writing project proposals", "Science dissemination", "Teaching", "Consultation", "Graphic design"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "fluency": "Native speaker",
+      "icon": ""
+    },
+    {
+      "language": "English",
+      "fluency": "Fluent",
+      "icon": ""
+    }
+  ],
+  "interests": [],
+  "references": [
+    {
+      "name": "References",
+      "icon": "fa-solid fa-address-card",
+      "reference": "Available on request."
+    }
+  ],
+  "projects": []
+}

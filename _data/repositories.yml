@@ -1,0 +1,7 @@
+github_users:
+  - olayasturias
+
+repo_description_lines_max: 2
+
+# Repositories are listed and grouped by theme directly in _pages/repositories.md
+github_repos: []

@@ -1,12 +1,10 @@
 ---
 layout: post
-cover: assets/images/Screenshot from 2023-01-30 15-12-00.png
+thumbnail: assets/images/Screenshot from 2023-01-30 15-12-00.png
 title: LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻
-date: 2022-02-30 12:00:00 +0545
-categories: latex
-author: olaya
-featured: true
-summary: cool latex table tricks.
+date: 2022-01-30 12:00:00 +0545
+tags: latex
+description: cool latex table tricks.
 ---
 
 Do you know when you have an idea for something that can be done quickly, but then you start to have more ideas, one on top of the other and suddenly the small task has become a big task?

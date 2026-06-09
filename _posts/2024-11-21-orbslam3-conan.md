@@ -1,12 +1,11 @@
 ---
 layout: post
-cover: assets/images/roscon/rosconattendees.png
+published: false # draft — excluded from the built site
+thumbnail: assets/images/roscon/rosconattendees.png
 title: Compiling ORB-SLAM3 with conan
 date: 2024-10-25 12:00:00 +0545
-categories: Cpp conan vlsam
-author: olaya
-featured: true
-summary: Compiling ORB-SLAM3 with conan
+tags: Cpp conan vlsam
+description: Compiling ORB-SLAM3 with conan
 ---
 
 

@@ -1,12 +1,10 @@
 ---
 layout: post
-cover: assets/images/cpp/cpp2.png
+thumbnail: assets/images/cpp/cpp2.png
 title: Setting a Jetson AGX Orin for robotics development (II) - Inivation's event camera
 date: 2024-01-02 12:00:00 +0545
-categories: phdstuff cpp
-author: olaya
-featured: true
-summary: notebook for cpp project I.
+tags: phdstuff cpp
+description: notebook for cpp project I.
 ---
 
 Welcome to the second post on setting up a Jetson AGX Orin for robotics development! Today, we will focus on setting up all the required drivers and dependencies for Inivation's event camera, including the ROS installation and ROS packages. The structure for this post goes as follows:
