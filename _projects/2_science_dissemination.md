@@ -29,4 +29,20 @@ Invited talk for the students of the [MAIIND](https://www.instagram.com/maiindep
   </div>
 </div>
 
+## Pint of Science Aarhus
+
+I organized the **first edition of [Pint of Science](https://pintofscience.dk/) in Aarhus** (2023) — the international festival that brings researchers to local pubs to share their work with the general public. Beyond organizing, I also took the stage with my talk _"AI and the philosophy of seeing: what would Aristotle think about today's AI?"_, connecting computer vision and the philosophy of perception for a non-specialist audience.
+
+<div class="row">
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid path="assets/images/dissemination/pos.jpg" title="Pint of Science Aarhus" class="img-fluid rounded z-depth-1" %}
+  </div>
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid path="assets/images/dissemination/pos2.jpg" title="Pint of Science Aarhus" class="img-fluid rounded z-depth-1" %}
+  </div>
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid path="assets/images/dissemination/pos3.jpg" title="Pint of Science Aarhus" class="img-fluid rounded z-depth-1" %}
+  </div>
+</div>
+
 <!-- TODO: add more events as their own sections -->
