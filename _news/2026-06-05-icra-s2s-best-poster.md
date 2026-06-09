@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Best Poster Award at the ICRA 2026 "S2S: from Sea to Space" workshop
+title: 'Best Poster Award at the ICRA 2026 "S2S: from Sea to Space" workshop'
 date: 2026-06-05 09:00:00+0200
 inline: false
 related_posts: false
