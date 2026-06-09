@@ -1,0 +1,89 @@
+---
+layout: default
+---
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">
+      {% if site.title == 'blank' %}
+        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
+        {{ site.last_name }}
+      {% else %}
+        {{ site.title }}
+      {% endif %}
+    </h1>
+    <p class="desc">{{ page.subtitle }}</p>
+  </header>
+
+  <article>
+    {% if page.profile %}
+      {% assign profile_image_path = page.profile.image | prepend: '/assets/img/' %}
+      {% if page.profile.image_circular %}
+        {% assign profile_radius = '50%' %}
+      {% else %}
+        {% assign profile_radius = '8px' %}
+      {% endif %}
+      <!-- Two-column intro: text and photo side by side, no text wrap -->
+      <div
+        class="profile-intro"
+        style="display: flex; flex-wrap: wrap; gap: 1.75rem; align-items: flex-start; margin-bottom: 1.5rem;"
+      >
+        <div style="flex: 1 1 320px; min-width: 260px;">{{ content }}</div>
+        <div style="flex: 0 0 auto; width: 240px; max-width: 45vw; text-align: center; margin-left: auto;">
+          {% if page.profile.image %}
+            <img
+              src="{{ profile_image_path | relative_url }}"
+              alt="{{ page.profile.image }}"
+              style="width: 240px; height: 240px; max-width: 45vw; max-height: 45vw; object-fit: cover; border-radius: {{ profile_radius }}; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);"
+            />
+          {% endif %}
+          {% if page.profile.more_info %}
+            <div class="more-info" style="margin-top: 0.75rem;">{{ page.profile.more_info }}</div>
+          {% endif %}
+        </div>
+      </div>
+    {% else %}
+      <div class="clearfix">{{ content }}</div>
+    {% endif %}
+
+    <!-- News -->
+    {% if page.announcements and page.announcements.enabled %}
+      <h2>
+        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
+      </h2>
+      {% include news.liquid limit=true %}
+    {% endif %}
+
+    <!-- Latest posts -->
+    {% if page.latest_posts and page.latest_posts.enabled %}
+      <h2>
+        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+      </h2>
+      {% include latest_posts.liquid %}
+    {% endif %}
+
+    <!-- Selected papers -->
+    {% if page.selected_papers %}
+      <h2>
+        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
+      </h2>
+      {% include selected_papers.liquid %}
+    {% endif %}
+
+    <!-- Social -->
+    {% if page.social %}
+      <div class="social">
+        <div class="contact-icons">{% social_links %}</div>
+
+        <div class="contact-note">{{ site.contact_note }}</div>
+      </div>
+    {% endif %}
+
+    {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
+      {% if site.plugins contains 'al_newsletter' %}
+        {% include plugins/al_newsletter_form_center_margin.liquid %}
+      {% else %}
+        {% include newsletter.liquid center=true %}
+      {% endif %}
+    {% endif %}
+  </article>
+</div>
