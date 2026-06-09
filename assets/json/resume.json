@@ -112,6 +112,13 @@
   ],
   "awards": [
     {
+      "title": "Best Poster Award — ICRA 2026 Workshop \"S2S: from Sea to Space\"",
+      "date": "2026-06-05",
+      "awarder": "ICRA 2026 S2S: from Sea to Space Workshop",
+      "url": "https://sites.google.com/view/icra-2026-s2s-perception/",
+      "summary": ""
+    },
+    {
       "title": "Third prize — Virtual School on SLAM in Deformable Environments",
       "date": "2021-01-01",
       "awarder": "Robotics Institute, University of Technology Sydney",
