@@ -1,13 +1,10 @@
 ---
 layout: post
-cover: assets/images/flysky/flysky.jpg
+thumbnail: assets/images/flysky/flysky.jpg
 title: Using your RC controller as an USB joystick
 date: 2020-07-21 12:00:00 +0545
-categories: flysky fs-i6x phdstuff
-author: olaya
-featured: true
-summary: Using the flysky fs-i6x as a joystick in Ubuntu
-comment_issue_id: 2
+tags: flysky fs-i6x phdstuff
+description: Using the flysky fs-i6x as a joystick in Ubuntu
 ---
 
 Hello all! First of all, I want to note the new `phdstuff` label that I'm introducing in this post. The point

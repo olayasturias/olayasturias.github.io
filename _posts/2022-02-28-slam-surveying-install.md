@@ -1,12 +1,10 @@
 ---
 layout: post
-cover: assets/images/survey-slam-install/2723025827_a96dcce288_4k.jpg
+thumbnail: assets/images/survey-slam-install/2723025827_a96dcce288_4k.jpg
 title: Surveying SLAM algorithms with ROS (I) - Installation
 date: 2022-03-01 12:00:00 +0545
-categories: ROS SLAM survey
-author: olaya
-featured: true
-summary: installing slam packages.
+tags: ROS SLAM survey
+description: installing slam packages.
 ---
 
 In this post we will install different state-of-art SLAM algorithms and test that they work in our computer.

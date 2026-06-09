@@ -1,12 +1,10 @@
 ---
 layout: post
-cover: assets/images/cpp/robot_pc_environment.png
+thumbnail: assets/images/cpp/robot_pc_environment.png
 title: Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM
 date: 2024-01-04 12:00:00 +0545
-categories: phdstuff cpp
-author: olaya
-featured: true
-summary: notebook for cpp project III.
+tags: phdstuff cpp
+description: notebook for cpp project III.
 ---
 
 Welcome to the third post on setting up a Jetson AGX Orin for robotics development! Today, we will focus on setting up a set of state-of-the-art methods for event-based localization. The structure of the post goes as follows:
