@@ -19,4 +19,14 @@ Invited talk at [T3chFest 2026](https://t3chfest.es/2026/programa/inteligencia-a
   </div>
 </div>
 
+## MAIIND — University of Oviedo
+
+Invited talk for the students of the [MAIIND](https://www.instagram.com/maiindepigijon/p/DGnHj7qOWab/) (_Máster en Ingeniería de Automatización e Informática Industrial_) at the Polytechnic School of Engineering of Gijón, University of Oviedo. This one was special: Gijón is my hometown and the University of Oviedo is where I did my bachelor's degree, so coming back to share my research with the next generation of automation and industrial-computing engineers meant a lot to me.
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-8 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/images/dissemination/maiind.png" title="Talk at MAIIND, Polytechnic School of Gijón" class="img-fluid rounded z-depth-1" %}
+  </div>
+</div>
+
 <!-- TODO: add more events as their own sections -->
