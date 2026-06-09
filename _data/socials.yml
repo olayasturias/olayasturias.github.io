@@ -8,4 +8,4 @@ linkedin_username: olayatu # your LinkedIn username
 orcid_id: 0000-0003-3581-9481 # your ORCID ID
 bluesky_url: https://bsky.app/profile/olayatu.bsky.social # your Bluesky profile URL
 rss_icon: true # comment this line to hide the RSS icon
-# scholar_userid: # add your Google Scholar ID to enable the Scholar icon and citation counts
+scholar_userid: 4goTk4EAAAAJ # Google Scholar ID (enables the Scholar icon and citation counts)
