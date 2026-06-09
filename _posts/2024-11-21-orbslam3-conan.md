@@ -1,5 +1,6 @@
 ---
 layout: post
+published: false # draft — excluded from the built site
 thumbnail: assets/images/roscon/rosconattendees.png
 title: Compiling ORB-SLAM3 with conan
 date: 2024-10-25 12:00:00 +0545
