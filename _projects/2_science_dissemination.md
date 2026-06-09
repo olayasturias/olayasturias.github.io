@@ -23,6 +23,16 @@ Invited talk at [T3chFest 2026](https://t3chfest.es/2026/programa/inteligencia-a
   </div>
 </div>
 
+## OCEANS 2025 Brest — Women in Engineering round table
+
+Invited speaker at the **Women in Engineering (WIE) round table** at [OCEANS 2025 Brest](https://brest25.oceansconference.org/) (June 2025), discussing careers, challenges, and the role of women in marine technology and engineering.
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-10 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/images/dissemination/WIE_Panel_OceansBrest.png" title="Women in Engineering round table at OCEANS 2025 Brest" class="img-fluid rounded z-depth-1" %}
+  </div>
+</div>
+
 ## MAIIND — University of Oviedo
 
 Invited talk for the students of the [MAIIND](https://www.instagram.com/maiindepigijon/p/DGnHj7qOWab/) (_Máster en Ingeniería de Automatización e Informática Industrial_) at the Polytechnic School of Engineering of Gijón, University of Oviedo (February 2025). This one was special: Gijón is my hometown and the University of Oviedo is where I did my bachelor's degree, so coming back to share my research with the next generation of automation and industrial-computing engineers meant a lot to me.
@@ -46,16 +56,6 @@ I organized the **first edition of [Pint of Science](https://pintofscience.dk/) 
   </div>
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid path="assets/images/dissemination/pos3.jpg" title="Pint of Science Aarhus" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-
-## OCEANS 2025 Brest — Women in Engineering round table
-
-Invited speaker at the **Women in Engineering (WIE) round table** at [OCEANS 2025 Brest](https://brest25.oceansconference.org/) (June 2025), discussing careers, challenges, and the role of women in marine technology and engineering.
-
-<div class="row justify-content-sm-center">
-  <div class="col-sm-10 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/images/dissemination/WIE_Panel_OceansBrest.png" title="Women in Engineering round table at OCEANS 2025 Brest" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
 
