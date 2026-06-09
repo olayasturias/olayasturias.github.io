@@ -1,0 +1,418 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Setting a Jetson AGX Orin for robotics development (II) - Inivation's event camera | Olaya Álvarez-Tuñón </title> <meta name="author" content="Olaya Álvarez-Tuñón"> <meta name="description" content="notebook for cpp project I."> <meta name="keywords" content="robotics, computer vision, deep learning, visual SLAM, underwater robotics, visual odometry"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%8C%8A&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://olayasturias.github.io/blog/2024/the-cpp-diaries-2/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Olaya</span> Álvarez-Tuñón </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Setting a Jetson AGX Orin for robotics development (II) - Inivation's event camera</h1> <p class="post-meta"> Created on January 02, 2024 </p> <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/phdstuff"> <i class="fa-solid fa-hashtag fa-sm"></i> phdstuff</a>   <a href="/blog/tag/cpp"> <i class="fa-solid fa-hashtag fa-sm"></i> cpp</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Welcome to the second post on setting up a Jetson AGX Orin for robotics development! Today, we will focus on setting up all the required drivers and dependencies for Inivation’s event camera, including the ROS installation and ROS packages. The structure for this post goes as follows:</p> <ul> <li><a href="#1-prerequisites">1. Prerequisites</a></li> <li><a href="#2-setting-up-the-camera-driver">2. Setting up the camera driver</a></li> <li> <a href="#3-setting-up-ros-noetic">3. Setting up ROS Noetic</a> <ul> <li><a href="#31-installing-bootstrap-dependencies">3.1 Installing bootstrap dependencies</a></li> <li><a href="#32-initializing-rosdep">3.2 Initializing rosdep</a></li> <li> <a href="#33-installation">3.3 Installation</a> <ul> <li><a href="#331-create-a-catkin-workspace">3.3.1 Create a catkin workspace</a></li> <li><a href="#332-resolve-dependencies">3.3.2 Resolve dependencies</a></li> <li><a href="#333-building-the-catkin-workspace">3.3.3 Building the catkin workspace</a></li> </ul> </li> </ul> </li> <li> <a href="#4-setting-up-the-ros-camera-driver">4. Setting up the ROS camera driver</a> <ul> <li><a href="#41-some-extra-dependencies">4.1 Some extra dependencies</a></li> <li><a href="#42-setting-up-the-workspace">4.2 Setting up the workspace</a></li> <li><a href="#43-cloning-and-building-dv-ros">4.3 Cloning and building dv-ros</a></li> </ul> </li> </ul> <p>Once you’ve gone through all these steps, you will be ready to run the iniVation’s event camera on your board.</p> <blockquote> <p><strong>Reminder:</strong> For this project I will be using the <strong>JETSON AGX ORIN DEVELOPER KIT</strong>. Some things to take into account about this board:</p> <ul> <li>It is an ARM64 architecture.</li> <li>It has Ubuntu 20.04 installed</li> <li>It comes with the Nvidia Jetpack 5.1.2</li> </ul> </blockquote> <h1 id="1-prerequisites">1. Prerequisites</h1> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install liblz4-dev libzstd-dev libgoogle-perftools-dev ninja-build python3-pip
+</code></pre></div></div> <ul> <li> <strong>Compilers</strong> <ul> <li> <strong>GCC and G++ compiler</strong> should be version 10.0 as required by the inivation driver. Check which version you have set up by default as: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  gcc -v
+  g++ -v
+</code></pre></div> </div> <p>For me it is:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+  g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+</code></pre></div> </div> <p>Therefore, we first need to install gcc and g++ 10.0:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt install gcc-10 g++-10
+</code></pre></div> </div> <p>And then set it as the default compiler:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
+  sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
+</code></pre></div> </div> </li> </ul> </li> <li> <strong>Boost library</strong> &gt;= 1.76. Check which version you have installed as: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  apt list --installed | grep libboost
+</code></pre></div> </div> <p>If your version is less than 1.76, you can install a newer version as follows:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo add-apt-repository ppa:mhier/libboost-latest
+  sudo apt update
+</code></pre></div> </div> <p>And then (e.g. for version 1.83):</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt install libboost1.83-all-dev
+</code></pre></div> </div> <p>However, before deciding which version to install, I recommend you to read section <a href="#3-setting-up-ros-noetic">3. Setting up ROS Noetic</a> in this post.</p> </li> <li> <strong>OpenSSL</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt install libssl-dev
+</code></pre></div> </div> </li> <li> <p><strong>Eigen3</strong>. In Ubuntu 20.4, the eigen3 version installed by the apt is 3.3.4. To install the required version 3.4, follow the instructions depicted <a href="https://olayasturias.github.io/ros/slam/survey/2022/03/01/slam-surveying-install.html">here</a>.</p> </li> <li> <strong>fmt</strong>. Similarly, the apt manager installs an older version of the fmt library. To install the latest release: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  wget https://github.com/fmtlib/fmt/releases/download/10.1.0/fmt-10.1.0.zip
+  unzip fmt-10.1.0.zip
+  cd fmt-10.1.0
+  mkdir build &amp;&amp; cd build
+  cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
+  make
+  sudo make install
+</code></pre></div> </div> </li> <li> <p><strong>OpenCV additional modules</strong>. The default installation is missing some OpenCV modules. You can follow the instructions from <a href="https://olayasturias.github.io/phdstuff/cpp/2023/06/05/the-cpp-diaries.html">my previous post</a> to install all required modules.</p> </li> <li> <strong>(Optional) SDL</strong>, with installation instructions <a href="https://wiki.libsdl.org/SDL2/Installation" rel="external nofollow noopener" target="_blank">here</a>.</li> <li> <strong>(Optional) Aravis</strong>, with installation instructions <a href="https://aravisproject.github.io/aravis/building.html" rel="external nofollow noopener" target="_blank">here</a>. <ul> <li>In Ubuntu 20.04, the meson version installed by the apt is too old for this build. Therefore, you need to install it manually: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://github.com/mesonbuild/meson
+  cd meson
+  python3 -m pip install -I meson
+  python3 -m pip install ninja
+</code></pre></div> </div> </li> <li>When running <code class="language-plaintext highlighter-rouge">ninja install</code> for installing Aravis, you might get the error <code class="language-plaintext highlighter-rouge">ModuleNotFoundError: no module named 'mesonbuild'</code>. This is due to the installation path for the meson library. You can fix it by adding it to the <code class="language-plaintext highlighter-rouge">PYTHONPATH</code>: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  export PYTHONPATH=$(python3 -m site --user-site)
+</code></pre></div> </div> <p>and then, running the ninja install command as:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo -E ninja install
+</code></pre></div> </div> </li> </ul> </li> </ul> <h1 id="2-setting-up-the-camera-driver">2. Setting up the camera driver</h1> <p>Inivation provides instructions for the Ubuntu packages (for Ubuntu 20.04 in my case) <a href="https://inivation.gitlab.io/dv/dv-docs/docs/getting-started.html" rel="external nofollow noopener" target="_blank">on their official website</a>. However, the apt installation did not work: The Orin comes with CuDNN 8.0, which requires OpenCV &gt;= 4.4, and the apt dv-runtime-dev installation is looking for OpenCV 4.2. Therefore, we’ve installed the libraries from source. For that, we must download the DV repos in our favorite folder (for me, <code class="language-plaintext highlighter-rouge">$HOME/dev</code>). Let’s go one by one:</p> <ul> <li> <a href="https://gitlab.com/inivation/dv/libcaer" rel="external nofollow noopener" target="_blank">libcaer</a>: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://gitlab.com/inivation/dv/libcaer
+  cd libcaer
+  cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  make
+  sudo make install
+</code></pre></div> </div> </li> <li> <a href="https://gitlab.com/inivation/dv/dv-processing" rel="external nofollow noopener" target="_blank">dv-processing</a>: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://gitlab.com/inivation/dv/dv-processing
+  cd dv-processing
+  cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  make
+  sudo make install
+</code></pre></div> </div> </li> <li> <a href="https://gitlab.com/inivation/dv/dv-runtime" rel="external nofollow noopener" target="_blank">dv-runtime</a>: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://gitlab.com/inivation/dv/dv-runtime
+  cd dv-runtime
+  cmake -DCMAKE_INSTALL_PREFIX=/usr DVR_ENABLE_PROFILER=ON .
+  make
+  sudo make install
+</code></pre></div> </div> </li> </ul> <h1 id="3-setting-up-ros-noetic">3. Setting up ROS Noetic</h1> <p>Fighting demons or being the demon? Yes, we’re setting up ROS1 here. It is still the primary OS for event cameras. This section needs a bit of storytelling: <em>This is not my first iteration of installing all these libraries in the Orin.</em> In a previous iteration, I installed all the libraries (OpenCV, ROS, etc.), and the installation of the iniVation drivers would fail. I blamed OpenCV for these issues (don’t look at me like that, OpenCV; we’ve been through this before). But I think now that the problems actually came from ROS and its dependencies!</p> <p>It turns out that ROS Noetic uses a version of Boost older than the one that the inivation driver needs. Because I installed the iniVation driver first, the compilation went down smoothly. However, now I can’t install ROS Noetic with <code class="language-plaintext highlighter-rouge">apt</code>. We will need to install it from source. Damm! Seems like we’re being the demons <em>and</em> fighting demons after all.</p> <blockquote> <p>Note for future self: <strong>maybe</strong> if instead of Boost 1.83 I would have installed the minimum required version by inivation, that is, Boost 1.76, then <strong>maybe</strong> <code class="language-plaintext highlighter-rouge">sudo apt install ros-noetic-desktop-full</code> would have worked? It does not seem likely because I tried running that command with <code class="language-plaintext highlighter-rouge">aptitude</code>, and the only option it gave for Boost was 1.71. But this could be something worth a try.</p> </blockquote> <p>Now, I will put here the instructions for installing ROS Noetic from source. They’re slightly modified with respect to <a href="http://wiki.ros.org/noetic/Installation/Source" rel="external nofollow noopener" target="_blank">the original instructions</a>. For convenience, I will follow the same structure.</p> <h2 id="31-installing-bootstrap-dependencies">3.1 Installing bootstrap dependencies</h2> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install python3-rosdep python3-rosinstall-generator python3-vcstools python3-vcstool build-essential
+</code></pre></div></div> <h2 id="32-initializing-rosdep">3.2 Initializing rosdep</h2> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo rosdep init
+rosdep update
+</code></pre></div></div> <h2 id="33-installation">3.3 Installation</h2> <h3 id="331-create-a-catkin-workspace">3.3.1 Create a catkin workspace</h3> <p>I will call my workspace <code class="language-plaintext highlighter-rouge">ros_noetic_ws</code>. You can give it whichever name you want.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir ~/ros_noetic_ws
+cd ~/ros_noetic_ws
+</code></pre></div></div> <p>Download <em>all</em> the ROS packages into the source:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rosinstall_generator desktop --rosdistro noetic --deps --tar &gt; noetic-desktop.rosinstall
+mkdir ./src
+vcs import --input noetic-desktop.rosinstall ./src
+</code></pre></div></div> <h3 id="332-resolve-dependencies">3.3.2 Resolve dependencies</h3> <p>I’m putting this command here, but it gave me an error. It gave me the same error as for the <code class="language-plaintext highlighter-rouge">sudo apt install ros-noetic-desktop-full</code>: unresolved dependencies. Basically, I had to manually install all the dependencies myself. A bit annoying but not too bad.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro noetic -y
+</code></pre></div></div> <p>The dependencies I had to install are:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install -y libassimp-dev liburdfdom-dev liblog4cxx-dev libgpgme-dev libbz2-dev libgtest-dev sip-dev pyqt5-dev python-sip-dev pyqt5-dev-tools python3-pyqt5 libtinyxml2-dev libtinyxml-dev libpoco-dev  libconsole-bridge-dev python3-empy
+</code></pre></div></div> <p>Another dependency available in <code class="language-plaintext highlighter-rouge">apt</code> but that needs to be installed manually due to the unresolved dependencies with Boost is <code class="language-plaintext highlighter-rouge">libogre</code>, with building instructions indicated <a href="https://ogrecave.github.io/ogre/api/13/building-ogre.html" rel="external nofollow noopener" target="_blank">here</a>.</p> <ul> <li> <strong>pugixml</strong> (required by Ogre): <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://github.com/zeux/pugixml.git
+  cd pugixml
+  mkdir build &amp;&amp; cd build
+  cmake -DCMAKE_INSTALL_PREFIX=/usr DVR_ENABLE_PROFILER=ON ..
+  make &amp;&amp; sudo make install
+</code></pre></div> </div> </li> <li> <strong>Ogre v1.12.2</strong>, as it is the latest version supported by ROS Noetic. First, install the dependencies: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt install libcppunit-dev
+</code></pre></div> </div> <p>Then proceed to the installation itself:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://github.com/OGRECave/ogre.git
+  cd ogre
+  git checkout v1.12.2  # Replace with the version you need
+</code></pre></div> </div> <blockquote> <p><strong>NOTE:</strong> If you get compilation issues with Ogre, you can proceed without installing the ROS packages that depend on it. Those are <code class="language-plaintext highlighter-rouge">rviz</code> and all the packages depending on <code class="language-plaintext highlighter-rouge">rviz</code>. This means that you will have to run the catkin_make_isolated command with the flag: <code class="language-plaintext highlighter-rouge">--ignore-pkg rviz rviz_plugin_tutorials rviz_python_tutorial librviz_tutorial rqt_rviz</code></p> </blockquote> </li> <li> <strong>image_common ROS stack</strong>: for some reason, the image_common stack downloaded by the previous steps does not include all the packages that we will need. You can manually download it into the workspace as: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  cd ~/ros_noetic_ws/src
+  git rm -rf image_common &amp;&amp; git clone https://github.com/ros-perception/image_common.git
+  cd image_common &amp;&amp; git checkout noetic-devel
+</code></pre></div> </div> </li> </ul> <h3 id="333-building-the-catkin-workspace">3.3.3 Building the catkin workspace</h3> <p>This command is slightly different from the original instructions. The difference lies in the flag <code class="language-plaintext highlighter-rouge">-DCMAKE_CXX_FLAGS=-DBOOST_TIMER_ENABLE_DEPRECATED.</code> Without it, the compilation gives an error due to a deprecated header:</p> <blockquote> <p>/usr/include/boost/progress.hpp:23:3: error: #error This header is deprecated and will be removed. (You can define BOOST_TIMER_ENABLE_DEPRECATED to suppress this error.)</p> </blockquote> <p>What the flag does is ignore the error and resume the compilation:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3 -DCMAKE_CXX_FLAGS=-DBOOST_TIMER_ENABLE_DEPRECATED
+</code></pre></div></div> <p>Now, you should have successfully compiled all the ROS Noetic packages! You can source the workspace by adding the following line to the end of the <code class="language-plaintext highlighter-rouge">~/.bashrc</code>:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source ~/ros_catkin_ws/install_isolated/setup.bash
+</code></pre></div></div> <h1 id="4-setting-up-the-ros-camera-driver">4. Setting up the ROS camera driver</h1> <p>We finally have all the external libraries ready to run the ROS driver for the iniVation camera. Let’s install it!</p> <h2 id="41-some-extra-dependencies">4.1 Some extra dependencies</h2> <p>After following the previous instructions, you might still miss the following dependencies:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 install defusedxml netifaces
+</code></pre></div></div> <h2 id="42-setting-up-the-workspace">4.2 Setting up the workspace</h2> <p>Let’s set up a separate workspace for ROS development. Doing so is as simple as creating a folder containing a source workspace and building it with catkin:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p catkin_ws/src 
+cd catkin_ws
+catkin build
+</code></pre></div></div> <h2 id="43-cloning-and-building-dv-ros">4.3 Cloning and building dv-ros</h2> <p>The ROS package that contains the code to run the iniVation camera is dv-ros. The original code is in <a href="https://gitlab.com/inivation/dv/dv-ros" rel="external nofollow noopener" target="_blank">this repo</a>. However, we will use <a href="https://github.com/olayasturias/dv-ros" rel="external nofollow noopener" target="_blank">this fork</a> of the repo. This is because, as of today (Jan 24), the original code is not compatible with <code class="language-plaintext highlighter-rouge">fmt10</code> (although that’s not the case for the camera drivers).</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd catkin_ws/src 
+git clone https://github.com/olayasturias/dv-ros
+cd ..
+catkin build --cmake-args -DCMAKE_C_COMPILER=gcc-10 -DCMAKE_CXX_COMPILER=g++-10
+</code></pre></div></div> <p>If the compilation is successful, test that the driver is working:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source devel/setup.bash
+roslaunch dv_ros_visualization event_visualization.launch
+</code></pre></div></div> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/roscon-odense-2/">My ROSCON 2024 digest - Days 2 and 3</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/roscon-odense-1/">My ROSCON 2024 digest - Day 1</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/the-cpp-diaries-3/">Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2023/the-cpp-diaries/">Setting a Jetson AGX Orin for robotics development (I) - building the basis</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2023/my-icra-digest/">My ICRA 2023 digest</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/slam-surveying-install/">Surveying SLAM algorithms with ROS (I) - Installation</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/ros-metapackages/">creating ROS metapackages</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/latex-tables/">LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2021/ekf/">A notebook on the Extended Kalman Filter</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/improveorprocess/">To enhance or not to enhance? Computer Vision in challenging imaging conditions</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Olaya Álvarez-Tuñón. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "A small collection of my creative and outreach work.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-repositories",
+          title: "repositories",
+          description: "My GitHub repositories, grouped by theme. Items marked (fork) are repositories I forked to use or build on; the rest are my own.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/repositories/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "My academic CV. Use the button above to download the PDF version.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-my-roscon-2024-digest-days-2-and-3",
+        
+          title: "My ROSCON 2024 digest - Days 2 and 3",
+        
+        description: "My roscon digest on the second and third day",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/roscon-odense-2/";
+          
+        },
+      },{id: "post-my-roscon-2024-digest-day-1",
+        
+          title: "My ROSCON 2024 digest - Day 1",
+        
+        description: "My roscon digest on the first day",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/roscon-odense-1/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-iii-event-based-slam",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM",
+        
+        description: "notebook for cpp project III.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/the-cpp-diaries-3/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-ii-inivation-39-s-event-camera",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (II) - Inivation&#39;s event camera...",
+        
+        description: "notebook for cpp project I.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/the-cpp-diaries-2/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-i-building-the-basis",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (I) - building the basis...",
+        
+        description: "notebook for cpp project I.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/the-cpp-diaries/";
+          
+        },
+      },{id: "post-my-icra-2023-digest",
+        
+          title: "My ICRA 2023 digest",
+        
+        description: "a digest of all things I saw in the conference.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/my-icra-digest/";
+          
+        },
+      },{id: "post-surveying-slam-algorithms-with-ros-i-installation",
+        
+          title: "Surveying SLAM algorithms with ROS (I) - Installation",
+        
+        description: "installing slam packages.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/slam-surveying-install/";
+          
+        },
+      },{id: "post-creating-ros-metapackages",
+        
+          title: "creating ROS metapackages",
+        
+        description: "concepts and creation of ROS metapackages.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/ros-metapackages/";
+          
+        },
+      },{id: "post-latex-table-tricks-for-no-more-table-flips",
+        
+          title: "LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻",
+        
+        description: "cool latex table tricks.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/latex-tables/";
+          
+        },
+      },{id: "post-a-notebook-on-the-extended-kalman-filter",
+        
+          title: "A notebook on the Extended Kalman Filter",
+        
+        description: "ekf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/ekf/";
+          
+        },
+      },{id: "post-to-enhance-or-not-to-enhance-computer-vision-in-challenging-imaging-conditions",
+        
+          title: "To enhance or not to enhance? Computer Vision in challenging imaging conditions",
+        
+        description: "comparative.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/improveorprocess/";
+          
+        },
+      },{id: "post-streaming-video-from-a-raspberry-pi-cam-using-a-distributed-ros-system",
+        
+          title: "Streaming video from a Raspberry Pi Cam using a distributed ROS system",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/rpi-cam-ros/";
+          
+        },
+      },{id: "post-using-your-rc-controller-as-an-usb-joystick",
+        
+          title: "Using your RC controller as an USB joystick",
+        
+        description: "Using the flysky fs-i6x as a joystick in Ubuntu",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/flysky-linux/";
+          
+        },
+      },{id: "post-deep-learning-datasets-in-the-covid-era",
+        
+          title: "Deep Learning Datasets in the COVID era",
+        
+        description: "creating a dataset from internet images.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/dataset/";
+          
+        },
+      },{id: "post-setting-up-home-assistant-at-your-house",
+        
+          title: "Setting up Home Assistant at your house",
+        
+        description: "Automating you home with a low budget and using open-source tools",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/setting-home-assistant/";
+          
+        },
+      },{id: "news-i-was-selected-as-a-women-in-engineering-wie-oceans-ambassador-for-2025-2026-with-the-ieee-oceanic-engineering-society",
+          title: 'I was selected as a Women in Engineering (WIE) OCEANS Ambassador for 2025–2026...',
+          description: "",
+          section: "News",},{id: "news-our-ai-for-marine-perception-p1-program-was-accepted-at-the-pioneer-centre-for-artificial-intelligence",
+          title: 'Our AI for Marine Perception P1 program was accepted at the Pioneer Centre...',
+          description: "",
+          section: "News",},{id: "news-selected-as-ieee-ras-science-communication-ambassador-for-icra-2026",
+          title: 'Selected as IEEE RAS Science Communication Ambassador for ICRA 2026',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-05-15-ras-scicomm-ambassador/";
+            },},{id: "news-best-poster-award-at-the-icra-2026-quot-s2s-from-sea-to-space-quot-workshop",
+          title: 'Best Poster Award at the ICRA 2026 &amp;quot;S2S: from Sea to Space&amp;quot; workshop...',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-06-05-icra-s2s-best-poster/";
+            },},{id: "news-i-have-been-invited-as-a-keynote-speaker-at-marinevision-2026-the-2nd-workshop-on-marine-vision-held-in-conjunction-with-eccv-2026-in-malmö",
+          title: 'I have been invited as a keynote speaker at MarineVision 2026, the 2nd...',
+          description: "",
+          section: "News",},{id: "projects-graphic-design",
+          title: 'Graphic Design',
+          description: "Posters, illustrations and visual material for science dissemination and outreach",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_graphic_design/";
+            },},{id: "projects-science-dissemination",
+          title: 'Science Dissemination',
+          description: "Talks and outreach activities for the general public, universities, and conferences",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_science_dissemination/";
+            },},{id: "projects-ai-for-marine-perception",
+          title: 'AI for Marine Perception',
+          description: "P1 program at the Pioneer Centre for AI — co-organizer",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_ai_marine_perception/";
+            },},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/pdf/cv.pdf", "_blank");
+        },
+      },{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6F%6C%61%79%61.%74%75%6E%6F%6E@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/olayasturias", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/olayatu", "_blank");
+        },
+      },{
+        id: 'social-orcid',
+        title: 'ORCID',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://orcid.org/0000-0003-3581-9481", "_blank");
+        },
+      },{
+        id: 'social-bluesky',
+        title: 'Bluesky',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://bsky.app/profile/olayatu.bsky.social", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=4goTk4EAAAAJ", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

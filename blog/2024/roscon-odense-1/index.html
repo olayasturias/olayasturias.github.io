@@ -1,0 +1,343 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> My ROSCON 2024 digest - Day 1 | Olaya Álvarez-Tuñón </title> <meta name="author" content="Olaya Álvarez-Tuñón"> <meta name="description" content="My roscon digest on the first day"> <meta name="keywords" content="robotics, computer vision, deep learning, visual SLAM, underwater robotics, visual odometry"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%8C%8A&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://olayasturias.github.io/blog/2024/roscon-odense-1/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Olaya</span> Álvarez-Tuñón </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">My ROSCON 2024 digest - Day 1</h1> <p class="post-meta"> Created on October 21, 2024 </p> <p class="post-tags"> <a href="/blog/2024"> <i class="fa-solid fa-calendar fa-sm"></i> 2024 </a>   ·   <a href="/blog/tag/cpp"> <i class="fa-solid fa-hashtag fa-sm"></i> cpp</a>   <a href="/blog/tag/lidar"> <i class="fa-solid fa-hashtag fa-sm"></i> lidar</a>   <a href="/blog/tag/ros"> <i class="fa-solid fa-hashtag fa-sm"></i> ROS</a>   <a href="/blog/tag/conference"> <i class="fa-solid fa-hashtag fa-sm"></i> conference</a>   <a href="/blog/tag/roscon"> <i class="fa-solid fa-hashtag fa-sm"></i> roscon</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>This year, our neighbor city Odense held the ROSCON conference, which I had the honour to attend <img class="emoji" title=":slightly_smiling_face:" alt=":slightly_smiling_face:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f642.png" height="20" width="20"> I collected some notes for my future self (and maybe the present you?), that I have collected in this post for day 1, and on my next post for days 2 and 3.</p> <p>If any of these notes raises your interest, you can watch the full talks <a href="https://roscon.ros.org/2024/#program" rel="external nofollow noopener" target="_blank">in this link</a>. Enjoy!</p> <h1 id="workshop-3-open-source-open-hardware-hand-held-mobile-mapping-system-for-large-scale-surveys">Workshop 3: Open source, open hardware hand-held mobile mapping system for large scale surveys</h1> <p>This workshop consisted of deploying an open-hardware hand-held device to record large-scale datasets and perform mapping tasks on them. The device comprises a low-cost Lidar sensor with a GPS unit and an IMU sensor. A Raspberry Pi 4 board collects the data. Data processing is performed offline after the collected data is transferred to our PCs.</p> <h2 id="the-open-hardware">The open hardware</h2> <p>The bill of materials for the device can be found <a href="https://github.com/JanuszBedkowski/mandeye_controller" rel="external nofollow noopener" target="_blank">under the Mandeye repository.</a> The bill of materials comprises:</p> <ul> <li>A Raspberry 4 (or 5).</li> <li>The Lidar sensor Livox Mid-360. It is a low-cost lidar intended for low-speed robotics. It provides a field of view of 360*59 degrees, with a minimum range of 0.1m and a 40-line point cloud density.</li> <li>3D printed cases for the Lidar and the Raspberry Pi.</li> <li>A Ulanzi tripod with a built-in battery is used to power up the unit (and hand-hold the device).</li> <li>… among other materials you can check out <a href="https://github.com/JanuszBedkowski/mandeye_controller/blob/main/doc/BIM.md" rel="external nofollow noopener" target="_blank">here</a>.</li> </ul> <p>The main selection criteria for the provided materials is to keep the device (relatively) low cost, in this case less than 1000 euros.</p> <h2 id="the-open-software">The open software</h2> <p>The open softwareware is all collected under the <a href="https://github.com/MapsHD/HDMapping" rel="external nofollow noopener" target="_blank">HDMapping project</a>. Some (quick) interesting notes about this project:</p> <ul> <li>In Windows, the deployment is quite off-the-shell. You just need to download and execute the binaries without any installation process.</li> <li>It has been developed with the pure objective of collecting ground-truth datasets. To that aim, it allows manual drift correction and algorithmic-based loop closing for data optimization.</li> </ul> <h1 id="bof-accelerating-robot-learning-at-scale-in-simulation-hatched_chick">BoF: Accelerating robot learning at scale in simulation <img class="emoji" title=":hatched_chick:" alt=":hatched_chick:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f425.png" height="20" width="20"> </h1> <p><img src="https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/bof_nvidia.png?raw=true" alt="alt text"></p> <p>Aside from the workshops, day 1 also featured a series of “Bird of Feather” sessions. Birds of a Feather (BoF) sessions are informal gatherings at a pre-arranged time and place by individuals with a common interest in a topic. Markus Wuensch, head of the Robotics Ecosystem at NVIDIA, hosted this session and proposed the following bullet points:</p> <ul> <li>Intro</li> <li>State of your development</li> <li>Products/use cases</li> <li>ROS in robot learning</li> <li>Tools</li> <li>Challenges</li> <li>Wishlist</li> <li>Future</li> </ul> <p>All things said, this was oriented to get ideas and feedback from the attendants about using NVIDIA hardware for simulators in general, and NVIDIA’s simulator Isaac Sim in particular.</p> <p><img src="https://github.com/olayasturias/olayasturias.github.io/blob/master/assets/images/roscon/bof_nvidia_1.png?raw=true" alt="alt text"></p> <p>The BoF session was joined by people with very different backgrounds (manipulation, planning, navigation…) with a vast majority of us applying computer vision to these problems. Therefore, most use simulators with realistic renderings: Unreal Engine, Unity, or Open3D (more on this one later), were the most mentioned. Gazebo is the primary ROS simulator, which, despite its outstanding capabilities for robot simulation, falls short when it comes to visual renderings. Surprisingly, very few people in the room were using Isaac Sim. People commented on the high computational requirements and the difficulty of deploying it. People in underwater robotics commented on the need for underwater simulation <img class="emoji" title=":wink:" alt=":wink:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png" height="20" width="20"></p> <p>Most people utilize simulators for training models that will be deployed in real robots later. Markus concurred on this and mentioned that NVIDIA aims for what they call the “three body computation”, divided into train, simulation, and run. Their aimed solution consists of training in simulation and deploying the trained models at runtime, which is the aim for most of the attendees.</p> <p>We discussed <strong>limitations in simulators</strong>. Beyond the limitations that I mentions earlier, when it comes to computer vision, <strong>the repetition of texture patterns</strong> can be troublesome. If, for example, you’re using those texture renderings in a visual localization algorithms, the detection of those repeated patterns can mislead the localization estimate. One of the attendees mentioned the use of <strong>procedural generation of textures</strong> to address this problem.</p> <p>My main take-home message from this discussion is a confirmation of the lack of consensus regarding simulation. Most of us take whichever simulation in the literature looks more convenient and adapt it to our specific needs. For this purpose, the preferred simulators are open-source and have a relatively simple API (which is not the case for Isaac Sim).</p> <p>This raises a few questions: does having a simulator that fulfills everyone’s needs make sense? If so, how could that be possible? Is there any billionaire in the room willing to fund such an open-source initiative?</p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/roscon-odense-2/">My ROSCON 2024 digest - Days 2 and 3</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/the-cpp-diaries-3/">Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/the-cpp-diaries-2/">Setting a Jetson AGX Orin for robotics development (II) - Inivation's event camera</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2023/the-cpp-diaries/">Setting a Jetson AGX Orin for robotics development (I) - building the basis</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2023/my-icra-digest/">My ICRA 2023 digest</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/slam-surveying-install/">Surveying SLAM algorithms with ROS (I) - Installation</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/ros-metapackages/">creating ROS metapackages</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/latex-tables/">LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2021/ekf/">A notebook on the Extended Kalman Filter</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/improveorprocess/">To enhance or not to enhance? Computer Vision in challenging imaging conditions</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Olaya Álvarez-Tuñón. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "A small collection of my creative and outreach work.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-repositories",
+          title: "repositories",
+          description: "My GitHub repositories, grouped by theme. Items marked (fork) are repositories I forked to use or build on; the rest are my own.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/repositories/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "My academic CV. Use the button above to download the PDF version.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-my-roscon-2024-digest-days-2-and-3",
+        
+          title: "My ROSCON 2024 digest - Days 2 and 3",
+        
+        description: "My roscon digest on the second and third day",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/roscon-odense-2/";
+          
+        },
+      },{id: "post-my-roscon-2024-digest-day-1",
+        
+          title: "My ROSCON 2024 digest - Day 1",
+        
+        description: "My roscon digest on the first day",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/roscon-odense-1/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-iii-event-based-slam",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM",
+        
+        description: "notebook for cpp project III.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/the-cpp-diaries-3/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-ii-inivation-39-s-event-camera",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (II) - Inivation&#39;s event camera...",
+        
+        description: "notebook for cpp project I.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/the-cpp-diaries-2/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-i-building-the-basis",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (I) - building the basis...",
+        
+        description: "notebook for cpp project I.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/the-cpp-diaries/";
+          
+        },
+      },{id: "post-my-icra-2023-digest",
+        
+          title: "My ICRA 2023 digest",
+        
+        description: "a digest of all things I saw in the conference.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/my-icra-digest/";
+          
+        },
+      },{id: "post-surveying-slam-algorithms-with-ros-i-installation",
+        
+          title: "Surveying SLAM algorithms with ROS (I) - Installation",
+        
+        description: "installing slam packages.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/slam-surveying-install/";
+          
+        },
+      },{id: "post-creating-ros-metapackages",
+        
+          title: "creating ROS metapackages",
+        
+        description: "concepts and creation of ROS metapackages.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/ros-metapackages/";
+          
+        },
+      },{id: "post-latex-table-tricks-for-no-more-table-flips",
+        
+          title: "LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻",
+        
+        description: "cool latex table tricks.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/latex-tables/";
+          
+        },
+      },{id: "post-a-notebook-on-the-extended-kalman-filter",
+        
+          title: "A notebook on the Extended Kalman Filter",
+        
+        description: "ekf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/ekf/";
+          
+        },
+      },{id: "post-to-enhance-or-not-to-enhance-computer-vision-in-challenging-imaging-conditions",
+        
+          title: "To enhance or not to enhance? Computer Vision in challenging imaging conditions",
+        
+        description: "comparative.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/improveorprocess/";
+          
+        },
+      },{id: "post-streaming-video-from-a-raspberry-pi-cam-using-a-distributed-ros-system",
+        
+          title: "Streaming video from a Raspberry Pi Cam using a distributed ROS system",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/rpi-cam-ros/";
+          
+        },
+      },{id: "post-using-your-rc-controller-as-an-usb-joystick",
+        
+          title: "Using your RC controller as an USB joystick",
+        
+        description: "Using the flysky fs-i6x as a joystick in Ubuntu",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/flysky-linux/";
+          
+        },
+      },{id: "post-deep-learning-datasets-in-the-covid-era",
+        
+          title: "Deep Learning Datasets in the COVID era",
+        
+        description: "creating a dataset from internet images.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/dataset/";
+          
+        },
+      },{id: "post-setting-up-home-assistant-at-your-house",
+        
+          title: "Setting up Home Assistant at your house",
+        
+        description: "Automating you home with a low budget and using open-source tools",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/setting-home-assistant/";
+          
+        },
+      },{id: "news-i-was-selected-as-a-women-in-engineering-wie-oceans-ambassador-for-2025-2026-with-the-ieee-oceanic-engineering-society",
+          title: 'I was selected as a Women in Engineering (WIE) OCEANS Ambassador for 2025–2026...',
+          description: "",
+          section: "News",},{id: "news-our-ai-for-marine-perception-p1-program-was-accepted-at-the-pioneer-centre-for-artificial-intelligence",
+          title: 'Our AI for Marine Perception P1 program was accepted at the Pioneer Centre...',
+          description: "",
+          section: "News",},{id: "news-selected-as-ieee-ras-science-communication-ambassador-for-icra-2026",
+          title: 'Selected as IEEE RAS Science Communication Ambassador for ICRA 2026',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-05-15-ras-scicomm-ambassador/";
+            },},{id: "news-best-poster-award-at-the-icra-2026-quot-s2s-from-sea-to-space-quot-workshop",
+          title: 'Best Poster Award at the ICRA 2026 &amp;quot;S2S: from Sea to Space&amp;quot; workshop...',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-06-05-icra-s2s-best-poster/";
+            },},{id: "news-i-have-been-invited-as-a-keynote-speaker-at-marinevision-2026-the-2nd-workshop-on-marine-vision-held-in-conjunction-with-eccv-2026-in-malmö",
+          title: 'I have been invited as a keynote speaker at MarineVision 2026, the 2nd...',
+          description: "",
+          section: "News",},{id: "projects-graphic-design",
+          title: 'Graphic Design',
+          description: "Posters, illustrations and visual material for science dissemination and outreach",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_graphic_design/";
+            },},{id: "projects-science-dissemination",
+          title: 'Science Dissemination',
+          description: "Talks and outreach activities for the general public, universities, and conferences",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_science_dissemination/";
+            },},{id: "projects-ai-for-marine-perception",
+          title: 'AI for Marine Perception',
+          description: "P1 program at the Pioneer Centre for AI — co-organizer",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_ai_marine_perception/";
+            },},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/pdf/cv.pdf", "_blank");
+        },
+      },{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6F%6C%61%79%61.%74%75%6E%6F%6E@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/olayasturias", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/olayatu", "_blank");
+        },
+      },{
+        id: 'social-orcid',
+        title: 'ORCID',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://orcid.org/0000-0003-3581-9481", "_blank");
+        },
+      },{
+        id: 'social-bluesky',
+        title: 'Bluesky',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://bsky.app/profile/olayatu.bsky.social", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=4goTk4EAAAAJ", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

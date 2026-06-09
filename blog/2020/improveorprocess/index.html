@@ -1,0 +1,343 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> To enhance or not to enhance? Computer Vision in challenging imaging conditions | Olaya Álvarez-Tuñón </title> <meta name="author" content="Olaya Álvarez-Tuñón"> <meta name="description" content="comparative."> <meta name="keywords" content="robotics, computer vision, deep learning, visual SLAM, underwater robotics, visual odometry"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%8C%8A&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://olayasturias.github.io/blog/2020/improveorprocess/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Olaya</span> Álvarez-Tuñón </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">To enhance or not to enhance? Computer Vision in challenging imaging conditions</h1> <p class="post-meta"> Created on September 15, 2020 </p> <p class="post-tags"> <a href="/blog/2020"> <i class="fa-solid fa-calendar fa-sm"></i> 2020 </a>   ·   <a href="/blog/tag/deeplearning"> <i class="fa-solid fa-hashtag fa-sm"></i> deeplearning</a>   <a href="/blog/tag/dataset"> <i class="fa-solid fa-hashtag fa-sm"></i> dataset</a>   <a href="/blog/tag/database"> <i class="fa-solid fa-hashtag fa-sm"></i> database</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>The question that gives title to this post is one that I’ve been asking myself a lot recently. But before I get into it, let me give you some context on how I got here:</p> <p>My first -serious- computer vision project was a Visual Odometry algorithm for a drone camera. It was my Bachelor Thesis, which means that I implemented the whole thing (looking at David Scaramuzza and Andrew Zisserman works) from scratch and in the “traditional” way. Surely that was reinventing the wheel, and there were more modern techniques to solve the problem, but the whole point was to learn how it works.</p> <p>After that I started working with an underwater robot in the European project STAMS, which made me find out that: 1. there’s very little work in underwater computer vision, and 2. there’s a very good reason for that: the imaging conditions make it very difficult to extract any kind of information from the pictures.</p> <p><img src="https://media1.tenor.com/images/bba8fcb26bf3ff32fd1125c175b8268d/tenor.gif" alt=""></p> <p>For my Master Thesis I decided then to implement a Visual Odometry algorithm again… But let’s make it underwater now! However, I found out that I could not extract information the traditional way (i.e., keypoints) with the picture as it is. So, the next step I took was to process the image in order to improve the saliency of those keypoints, and remove all the noise that came from the underwater image formation.</p> <p>Again, I avoided the use of Deep Learning, because I wanted to get to know very well <strong>why</strong> and <strong>how</strong> was this challenging image formation occurring, and how to solve it. If you’re interested in my findings, you can read <a href="https://doi.org/10.3390/s19245497" rel="external nofollow noopener" target="_blank">my journal article published</a> in Sensors. You’ll find that I did a simulation of this imaging conditions too. That was because, now that I know how this happens, why not simulating it?</p> <p>Anyway, after all this research, and taking now into consideration Deep Learning techniques, a new question arises in my head: What’s better now, processing the image first and then extracting the information (both with DL algorithms), or just directly training a Deep Learning algorithm to extract the information from a raw underwater picture?</p> <p>What my intuition first told me is that deep learning algorithms such as image classification, if trained with underwater images, would perform the required enhancement (or preprocessing in general) themselves. Kind of like an underwater black box for image classification. However, it turns out that doing that preprocessing separately improves the performance of the classification algorithm. This makes me think of some advantages that doing those two steps separately could imply:</p> <ul> <li> <p>More modular algorithms: that means, if you want to take only the enhancement part, or just the image classification part, you can separate them easily as they don’t directly depend on each other. That is, it’s easier to recycle the code. Maybe this advantage is not such a big deal for developers who have high computing resources, as they can just quickly train a new deep net. But for you, it might be something to take into consideration.</p> </li> <li> <p>Recycle code: maybe you have a better (or specific to your use-case) database for image enhancement. Or maybe you don’t have an image enhancement database, but want to train your neural net in your specific object-scene-whatever recognition database. If you’re focused in a very specific part of your algorithm, it seems like a good idea to rely in a previous work from someone more experienced than you (or with better data than yours) to do that other part. That third-party software will probably work better than yours… and if you save that time, you’ll be able to focus better in your field of expertise!</p> </li> </ul> <p>I found a couple of works that perform an image enhancement and afterwards use object detection as a metric of such enhancement:</p> <p>The work proposed by <a href="https://doi.org/10.1016/j.compeleceng.2016.08.008" rel="external nofollow noopener" target="_blank">Li Yujie et al.</a> performs a de-scattering and color correction based on a model on the scattering and the color distortion. They don’t use deep learning for the enhancement process itself, but they have tested their preprocessed image altogether with a classification algorithm, to conclude that the performance of the classification had improved slightly. However, when performing an image enhancement it should be taken into consideration the different distortions that the image could suffer. One of the most popular classifications of the these distortions is listed in the <a href="https://doi.org/10.1364/AO.54.005392" rel="external nofollow noopener" target="_blank">Jerlov water types</a>. <a href="https://openaccess.thecvf.com/content_CVPRW_2019/papers/UG2+%20Prize%20Challenge/Uplavikar_All-in-One_Underwater_Image_Enhancement_Using_Domain-Adversarial_Learning_CVPRW_2019_paper.pdf" rel="external nofollow noopener" target="_blank">Pritish Uplavikar et al.</a> use a encoder-decoder network to disentangle the unwanted nuisances corresponding to the Jerlov water types. They used a synthesized dataset to train it. When performing a YOLO object detection over the synthetic images, the object detection is better. However, they say the improvement is not so clear over a <a href="https://li-chongyi.github.io/proj_benchmark.html" rel="external nofollow noopener" target="_blank">this real dataset</a>. They didn’t give any conclusion on why this might be. I think it maybe is because the object detection itself over underwater images isn’t as good, since there isn’t much training data on objects in underwater contexts. They use <a href="https://pjreddie.com/darknet/yolo/" rel="external nofollow noopener" target="_blank">YOLO</a>, which is trained with the <a href="https://cocodataset.org/#home" rel="external nofollow noopener" target="_blank">COCO</a> dataset, which, for example, has 6808 images of persons…but probably very few of them, if any, are scuba diving.</p> <p><img src="https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/persons.PNG" alt="person"> <sub><sup><em>Left: person in the COCO dataset. Right: person in the UIEB dataset.</em></sup></sub></p> <p>Anyhow, I don’t really reach any conclusion with this. So let’s reach our own conclusions! I want to do a comparative between the two approaches, with and without a prior image enhancement, and see which performs better for object detection. I will be using State of the Art algorithms for such comparative. But first of all, let’s think about which metrics we could use:</p> <h1 id="metrics-for-object-detection">Metrics for object detection</h1> <h3 id="intersection-over-union">Intersection Over Union</h3> <p>Intersection Over Union (IOU) evaluates the overlap between two bounding boxes, that is, between the ground truth (Bgt) and the predicted (Bp) bounding boxes. It basically divides the area of the overlapping between the area of the union, i.e.:</p> <p><img src="https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/iou.png" alt="iou"></p> <p>According to the returned value, we could have:</p> <ul> <li>True positive (TP): IOU &gt; threshold. There is a ground truth object and we fairly detected it.</li> <li>False negative (FP): a ground truth object not detected.</li> <li>False positive (FN): IOU &lt; threshold. The object was detected, but missclassified.</li> </ul> <p>The value of the threshold depends on the metric. MS COCO and PASCAL VOC use an IOU of 0.5, the minimum threshold, but also 0.75 or 0.95 are often used.</p> <h3 id="precision-and-recall">Precision and recall</h3> <p>These two are well known Machine Learning concepts.</p> <p>Precision measures the percentage of correct positive predictions. It is the answer to the question: “ of all the positive predictions, how many are actually positive?”. It is useful when we want our model to <strong>only</strong> identify relevant objects. <img src="https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/precision.png" alt="precision"></p> <p>Recall is the percentage of true positives among all ground truths. It is useful when we want to find <strong>all</strong> the relevant objects. <img src="https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/recall.png" alt="recall"></p> <p>From these two values we can obtain the PrecisionxRecall curve. There is one curve for each object class. If the prediction stays high as the recall increases, we can consider that we have a good detector.</p> <p><img src="https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/underwater-enhancement/pxr.png" alt="pxr"></p> <h3 id="average-precision">Average precision</h3> <p>This concept is considered in the <a href="http://host.robots.ox.ac.uk:8080/pascal/VOC/index.html" rel="external nofollow noopener" target="_blank">PASCAL VOC project</a>. Here we consider any IOU higher than 0.5 as a true positive. After that, we obtain the Precision vs. Recall curve and obtain the Average Precision (AP) as the area under the curve. It is called “Average precision” because in order to simplify the calculation, the precision is averaged across all the recall values.</p> <p>-under construction-</p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/roscon-odense-2/">My ROSCON 2024 digest - Days 2 and 3</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/roscon-odense-1/">My ROSCON 2024 digest - Day 1</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/the-cpp-diaries-3/">Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/the-cpp-diaries-2/">Setting a Jetson AGX Orin for robotics development (II) - Inivation's event camera</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2023/the-cpp-diaries/">Setting a Jetson AGX Orin for robotics development (I) - building the basis</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2023/my-icra-digest/">My ICRA 2023 digest</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/slam-surveying-install/">Surveying SLAM algorithms with ROS (I) - Installation</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/ros-metapackages/">creating ROS metapackages</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/latex-tables/">LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2021/ekf/">A notebook on the Extended Kalman Filter</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Olaya Álvarez-Tuñón. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "A small collection of my creative and outreach work.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-repositories",
+          title: "repositories",
+          description: "My GitHub repositories, grouped by theme. Items marked (fork) are repositories I forked to use or build on; the rest are my own.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/repositories/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "My academic CV. Use the button above to download the PDF version.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-my-roscon-2024-digest-days-2-and-3",
+        
+          title: "My ROSCON 2024 digest - Days 2 and 3",
+        
+        description: "My roscon digest on the second and third day",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/roscon-odense-2/";
+          
+        },
+      },{id: "post-my-roscon-2024-digest-day-1",
+        
+          title: "My ROSCON 2024 digest - Day 1",
+        
+        description: "My roscon digest on the first day",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/roscon-odense-1/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-iii-event-based-slam",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM",
+        
+        description: "notebook for cpp project III.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/the-cpp-diaries-3/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-ii-inivation-39-s-event-camera",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (II) - Inivation&#39;s event camera...",
+        
+        description: "notebook for cpp project I.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/the-cpp-diaries-2/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-i-building-the-basis",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (I) - building the basis...",
+        
+        description: "notebook for cpp project I.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/the-cpp-diaries/";
+          
+        },
+      },{id: "post-my-icra-2023-digest",
+        
+          title: "My ICRA 2023 digest",
+        
+        description: "a digest of all things I saw in the conference.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/my-icra-digest/";
+          
+        },
+      },{id: "post-surveying-slam-algorithms-with-ros-i-installation",
+        
+          title: "Surveying SLAM algorithms with ROS (I) - Installation",
+        
+        description: "installing slam packages.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/slam-surveying-install/";
+          
+        },
+      },{id: "post-creating-ros-metapackages",
+        
+          title: "creating ROS metapackages",
+        
+        description: "concepts and creation of ROS metapackages.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/ros-metapackages/";
+          
+        },
+      },{id: "post-latex-table-tricks-for-no-more-table-flips",
+        
+          title: "LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻",
+        
+        description: "cool latex table tricks.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/latex-tables/";
+          
+        },
+      },{id: "post-a-notebook-on-the-extended-kalman-filter",
+        
+          title: "A notebook on the Extended Kalman Filter",
+        
+        description: "ekf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/ekf/";
+          
+        },
+      },{id: "post-to-enhance-or-not-to-enhance-computer-vision-in-challenging-imaging-conditions",
+        
+          title: "To enhance or not to enhance? Computer Vision in challenging imaging conditions",
+        
+        description: "comparative.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/improveorprocess/";
+          
+        },
+      },{id: "post-streaming-video-from-a-raspberry-pi-cam-using-a-distributed-ros-system",
+        
+          title: "Streaming video from a Raspberry Pi Cam using a distributed ROS system",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/rpi-cam-ros/";
+          
+        },
+      },{id: "post-using-your-rc-controller-as-an-usb-joystick",
+        
+          title: "Using your RC controller as an USB joystick",
+        
+        description: "Using the flysky fs-i6x as a joystick in Ubuntu",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/flysky-linux/";
+          
+        },
+      },{id: "post-deep-learning-datasets-in-the-covid-era",
+        
+          title: "Deep Learning Datasets in the COVID era",
+        
+        description: "creating a dataset from internet images.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/dataset/";
+          
+        },
+      },{id: "post-setting-up-home-assistant-at-your-house",
+        
+          title: "Setting up Home Assistant at your house",
+        
+        description: "Automating you home with a low budget and using open-source tools",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/setting-home-assistant/";
+          
+        },
+      },{id: "news-i-was-selected-as-a-women-in-engineering-wie-oceans-ambassador-for-2025-2026-with-the-ieee-oceanic-engineering-society",
+          title: 'I was selected as a Women in Engineering (WIE) OCEANS Ambassador for 2025–2026...',
+          description: "",
+          section: "News",},{id: "news-our-ai-for-marine-perception-p1-program-was-accepted-at-the-pioneer-centre-for-artificial-intelligence",
+          title: 'Our AI for Marine Perception P1 program was accepted at the Pioneer Centre...',
+          description: "",
+          section: "News",},{id: "news-selected-as-ieee-ras-science-communication-ambassador-for-icra-2026",
+          title: 'Selected as IEEE RAS Science Communication Ambassador for ICRA 2026',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-05-15-ras-scicomm-ambassador/";
+            },},{id: "news-best-poster-award-at-the-icra-2026-quot-s2s-from-sea-to-space-quot-workshop",
+          title: 'Best Poster Award at the ICRA 2026 &amp;quot;S2S: from Sea to Space&amp;quot; workshop...',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-06-05-icra-s2s-best-poster/";
+            },},{id: "news-i-have-been-invited-as-a-keynote-speaker-at-marinevision-2026-the-2nd-workshop-on-marine-vision-held-in-conjunction-with-eccv-2026-in-malmö",
+          title: 'I have been invited as a keynote speaker at MarineVision 2026, the 2nd...',
+          description: "",
+          section: "News",},{id: "projects-graphic-design",
+          title: 'Graphic Design',
+          description: "Posters, illustrations and visual material for science dissemination and outreach",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_graphic_design/";
+            },},{id: "projects-science-dissemination",
+          title: 'Science Dissemination',
+          description: "Talks and outreach activities for the general public, universities, and conferences",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_science_dissemination/";
+            },},{id: "projects-ai-for-marine-perception",
+          title: 'AI for Marine Perception',
+          description: "P1 program at the Pioneer Centre for AI — co-organizer",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_ai_marine_perception/";
+            },},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/pdf/cv.pdf", "_blank");
+        },
+      },{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6F%6C%61%79%61.%74%75%6E%6F%6E@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/olayasturias", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/olayatu", "_blank");
+        },
+      },{
+        id: 'social-orcid',
+        title: 'ORCID',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://orcid.org/0000-0003-3581-9481", "_blank");
+        },
+      },{
+        id: 'social-bluesky',
+        title: 'Bluesky',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://bsky.app/profile/olayatu.bsky.social", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=4goTk4EAAAAJ", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

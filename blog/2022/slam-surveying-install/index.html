@@ -1,0 +1,438 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Surveying SLAM algorithms with ROS (I) - Installation | Olaya Álvarez-Tuñón </title> <meta name="author" content="Olaya Álvarez-Tuñón"> <meta name="description" content="installing slam packages."> <meta name="keywords" content="robotics, computer vision, deep learning, visual SLAM, underwater robotics, visual odometry"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%8C%8A&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://olayasturias.github.io/blog/2022/slam-surveying-install/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Olaya</span> Álvarez-Tuñón </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Surveying SLAM algorithms with ROS (I) - Installation</h1> <p class="post-meta"> Created on March 01, 2022 </p> <p class="post-tags"> <a href="/blog/2022"> <i class="fa-solid fa-calendar fa-sm"></i> 2022 </a>   ·   <a href="/blog/tag/ros"> <i class="fa-solid fa-hashtag fa-sm"></i> ROS</a>   <a href="/blog/tag/slam"> <i class="fa-solid fa-hashtag fa-sm"></i> SLAM</a>   <a href="/blog/tag/survey"> <i class="fa-solid fa-hashtag fa-sm"></i> survey</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>In this post we will install different state-of-art SLAM algorithms and test that they work in our computer.</p> <h1 id="1-orb-slam3">1. ORB-SLAM3</h1> <p>ORB-SLAM3 is the first real-time SLAM library able to perform <strong>Visual, Visual-Inertial and Multi-Map SLAM</strong> with <strong>monocular, stereo and RGB-D</strong> cameras, using <strong>pin-hole and fisheye</strong> lens models. In all sensor configurations, ORB-SLAM3 is as robust as the best systems available in the literature, and significantly more accurate.</p> <h2 id="11-installation">1.1 Installation</h2> <p>Install from <a href="https://github.com/olayasturias/ORB_SLAM3" rel="external nofollow noopener" target="_blank">this fork</a> on ORB-SLAM3’s repository.</p> <ul> <li>Some notes in the dependencies: <ul> <li>If OpenCV gives you a version error, modify the CMakeLists to look for the opencv version that you have installed. For example, if you are using ROS Melodic you will have OpenCV 3.2: <code class="language-plaintext highlighter-rouge">find_package(OpenCV 3.2)</code> </li> <li>ROS packages for ORB-SLAM3 need rospkg: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt install python-rospkg
+</code></pre></div> </div> </li> <li>Install Eigen3 (I am using 3.4.0) <ul> <li>Some dependencies for eigen (optional): <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt install qt5-default libsparsehash-dev libadolc2 libmpfr-dev fftw-dev
+</code></pre></div> </div> </li> <li> <a href="https://gitlab.com/libeigen/eigen/-/releases/3.4.0" rel="external nofollow noopener" target="_blank">Download</a> the source code in your preferred folder: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+</code></pre></div> </div> </li> <li>unzip the file: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  tar -zxvf eigen-3.4.0.tar.gz
+</code></pre></div> </div> </li> <li>prepare the directory for building <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  cd eigen-3.4.0
+  mkdir build
+  cd build
+</code></pre></div> </div> </li> <li>Build it <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  cmake ..
+  make
+  sudo make install
+</code></pre></div> </div> </li> <li>check which eigen version you have installed with: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  pkg-config --modversion eigen3
+</code></pre></div> </div> </li> </ul> </li> <li>Install Pangolin <ul> <li>Install pangolin dependencies <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt-get install -y  libglew-dev libboost-dev libboost-thread-dev  
+  libboost-filesystem-dev ffmpeg libavutil-dev libpng-dev &amp;&amp; \
+</code></pre></div> </div> <p>Install Pangolin last version in your preferred directory</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://github.com/stevenlovegrove/Pangolin.git Pangolin &amp;&amp; cd Pangolin
+  mkdir build
+  cd build/
+  cmake -D CMAKE_BUILD_TYPE=RELEASE \
+  -DCPP11_NO_BOOST=1 \
+  ../ &amp;&amp; \
+  make -j4 &amp;&amp; \
+  sudo make install
+</code></pre></div> </div> <p>if you experience errors installing Pangolin (may happen in lasts Ubuntu’s distros) try installing it with <a href="https://vcpkg.io/en/getting-started.html" rel="external nofollow noopener" target="_blank">vcpkg</a>.In that case:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://github.com/stevenlovegrove/Pangolin.git Pangolin &amp;&amp; cd Pangolin
+  mkdir build
+  cd build/
+  cmake -S . -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake \
+  ../ &amp;&amp; \
+  make -j4 &amp;&amp; \
+  sudo make install
+</code></pre></div> </div> </li> </ul> <p>If ORB-SLAM is giving you trouble with Pangolin, try installing Pangolin v.06.</p> </li> <li> <p>Install OpenCV</p> <ul> <li> <p>Install OpenCV dependencies</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt-get install -y libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev software-properties-common
+</code></pre></div> </div> </li> <li> <p>Clone and install opencv</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://github.com/Itseez/opencv.git opencv &amp;&amp; \
+  git clone https://github.com/Itseez/opencv_contrib.git opencv_contrib
+
+  cd opencv
+  mkdir build &amp;&amp; \
+  cd build/ &amp;&amp; \
+  cmake -D CMAKE_BUILD_TYPE=RELEASE \
+  -D BUILD_TIFF=ON \
+  -D WITH_CUDA=OFF \
+  -D ENABLE_AVX=OFF \
+  -D WITH_OPENGL=OFF \
+  -D WITH_OPENCL=OFF \
+  -D WITH_IPP=OFF \
+  -D WITH_TBB=ON \
+  -D BUILD_TBB=ON \
+  -D WITH_EIGEN=ON \
+  -D WITH_V4L=OFF \
+  -D WITH_VTK=OFF \
+  -D BUILD_TESTS=OFF \
+  -D BUILD_PERF_TESTS=OFF \
+  -D OPENCV_GENERATE_PKGCONFIG=ON \
+  -D OPENCV_EXTRA_MODULES_PATH=&lt;your-path&gt;/opencv_contrib/modules \
+  /&lt;your-path&gt;/opencv/ &amp;&amp; \
+  make -j4 &amp;&amp; \
+  sudo make install 
+</code></pre></div> </div> </li> </ul> </li> <li> <p>Install ORB-SLAM third-party modules</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://github.com/UZ-SLAMLab/ORB_SLAM3.git ORB_SLAM3
+
+  cd /&lt;your-dir&gt;/ORB_SLAM3/ &amp;&amp; \
+  chmod +x build.sh &amp;&amp; \
+  ./build.sh
+</code></pre></div> </div> </li> </ul> <p>Some recent distros for Ubuntu (20 and 22) give compilation errors. Try using C++14 instead of 11 for the compilation by replacing it on the CMakeLists as follows: <code class="language-plaintext highlighter-rouge"> sed -i 's/++11/++14/g' CMakeLists.txt </code></p> <ul> <li> <p>Build for ROS usage</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  cd /&lt;your-dir&gt;/ORB_SLAM3 &amp;&amp; \
+  chmod +x build_ros.sh &amp;&amp; \
+  ./build_ros.sh
+</code></pre></div> </div> </li> </ul> </li> </ul> <h2 id="12-testing">1.2 Testing</h2> <p>We will test that the ORB-SLAM scripts work for us with our webcam.</p> <ul> <li>Install the required package to publish the webcam image as ROS messages: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt install ros-melodic-usb-cam
+</code></pre></div> </div> </li> <li>Start a roscore session: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  roscore
+</code></pre></div> </div> </li> <li>Run the webcam publisher. Note that we need to remap the default topic from usb_cam because ORB-SLAM3 reads from <code class="language-plaintext highlighter-rouge">/camera/image_raw</code>, but usb_cam is publishing in <code class="language-plaintext highlighter-rouge">/usb_cam/image_raw</code>. <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  rosrun usb_cam usb_cam_node /usb_cam/image_raw:=/camera/image_raw _pixel_format:="yuyv"
+</code></pre></div> </div> </li> <li>Run the monocular version of ORB-SLAM3 as: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  rosrun ORB_SLAM3 Mono ORB_SLAM3_PATH/Vocabulary/ORBvoc.txt ORB_SLAM3_PATH/Examples/Monocular/EuRoC.yaml
+</code></pre></div> </div> </li> </ul> <p>If everything is working correctly, you should be seeing something like this:</p> <p><img src="https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/survey-slam-install/orbrun.png" alt=""></p> <h1 id="2-dso">2. DSO</h1> <h2 id="21-installation">2.1 Installation</h2> <p>DSO has a ROS wrapper, but it first requires that you install DSO:</p> <ul> <li>Install DSO. Follow the instructions from <a href="https://github.com/JakobEngel/dso" rel="external nofollow noopener" target="_blank">the readme in DSO’s repository</a>. <ul> <li>If you get an OpenCV error, modify the CMakeLists to point to your version (mine is 3.2) <code class="language-plaintext highlighter-rouge">find_package(OpenCV 3 QUIET)</code> </li> <li>This will compile a library libdso.a, which can be linked from external projects. It will also build a binary dso_dataset, to run DSO on datasets. It is stored in /build/lib.</li> </ul> </li> <li>Install ROS wrapper. Download <a href="https://github.com/olayasturias/dso_ros" rel="external nofollow noopener" target="_blank">the source code</a>. <ul> <li>It will look for your lib file in ${DSO_PATH}/build/lib. We need to specify our DSO_PATH, which is the path to your dso repository folder: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>      export DSO_PATH=YOUR_PATH/dso
+</code></pre></div> </div> <p>you chan check if it was correctly set with</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>      echo $DSO_PATH
+</code></pre></div> </div> </li> <li>build it with: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>      catkin build dso_ros
+</code></pre></div> </div> </li> </ul> </li> </ul> <h2 id="22-testing">2.2 Testing</h2> <p>We will test that the dso_live scripts work for us with our webcam.</p> <ul> <li>If you didn’t do it before, install the required package to publish the webcam image as ROS messages: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  sudo apt install ros-melodic-usb-cam
+</code></pre></div> </div> </li> <li>Start a roscore session: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  roscore
+</code></pre></div> </div> </li> <li>Run the webcam publisher. Note that usb_cam is publishing in <code class="language-plaintext highlighter-rouge">/usb_cam/image_raw</code>. <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  rosrun usb_cam usb_cam_node /usb_cam/image_raw:=/camera/image_raw _pixel_format:="yuyv"
+</code></pre></div> </div> </li> <li>Run dso: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  rosrun dso_ros dso_live image:=/usb_cam/image_raw \
+      calib=XXXXX/camera.txt \
+      gamma=XXXXX/pcalib.txt \
+      vignette=XXXXX/vignette.png \
+
+</code></pre></div> </div> <ul> <li> <p>Note that you need to provide <strong>at least</strong> a camera.txt file. It has the format:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  fx fy cx cy k1 k2 r1 r2
+  in_width in_height
+  "crop"/"full"/"fx fy cx cy 0"
+  out_width out_height
+</code></pre></div> </div> </li> <li> <p>An example of a camera.txt could be like this:</p> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  Pinhole 458.654 457.296 367.215 248.375 0
+  640 480
+  crop
+  640 480
+  0.110074
+</code></pre></div> </div> </li> </ul> </li> </ul> <p>Now if everything works as it should, you should be seeing something like this:</p> <p><img src="https://raw.githubusercontent.com/olayasturias/olayasturias.github.io/master/assets/images/survey-slam-install/dso_ros.png" alt=""></p> <h1 id="3-rds-slam">3. RDS-SLAM</h1> <h2 id="31-installation">3.1 Installation</h2> <ul> <li>You will need to install some requirements: <ul> <li> <p>Caffe. Follow the instructions <a href="https://atinesh.medium.com/caffe-installation-on-ubuntu-18-04-lts-python-2-7-8e8c388ce51f" rel="external nofollow noopener" target="_blank">here</a></p> <ul> <li>If you get errors with hdf5 <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  cd /usr/lib/x86_64-linux-gnu
+  sudo ln -s libhdf5_serial.so.100.0.1 libhdf5.so # or whichever version you have
+  sudo ln -s libhdf5_serial_hl.so.100.0.0 libhdf5_hl.so # same applies here
+</code></pre></div> </div> </li> <li>If you get errors with Opencv</li> </ul> </li> </ul> </li> <li>Clone the RDS-SLAM repository in your <code class="language-plaintext highlighter-rouge">/catkin_ws/src</code> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  git clone https://github.com/yubaoliu/RDS-SLAM
+
+</code></pre></div> </div> </li> <li>cd into the SLAM folder and build with the following script: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  cd SLAM/
+  ./build_thridparty.sh
+</code></pre></div> </div> </li> <li>go back to your <code class="language-plaintext highlighter-rouge">/catkin_ws/src</code> and build rds_slam: <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  cd ~/catkin_ws
+  catkin build rds_slam
+</code></pre></div> </div> </li> </ul> <h2 id="32-testing">3.2 Testing</h2> <p>If everything is working correctly, you should be seeing something like this:</p> <p>[under construction]</p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/roscon-odense-2/">My ROSCON 2024 digest - Days 2 and 3</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/roscon-odense-1/">My ROSCON 2024 digest - Day 1</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/the-cpp-diaries-3/">Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/the-cpp-diaries-2/">Setting a Jetson AGX Orin for robotics development (II) - Inivation's event camera</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2023/the-cpp-diaries/">Setting a Jetson AGX Orin for robotics development (I) - building the basis</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2023/my-icra-digest/">My ICRA 2023 digest</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/ros-metapackages/">creating ROS metapackages</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2022/latex-tables/">LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2021/ekf/">A notebook on the Extended Kalman Filter</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2020/improveorprocess/">To enhance or not to enhance? Computer Vision in challenging imaging conditions</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Olaya Álvarez-Tuñón. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "A small collection of my creative and outreach work.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-repositories",
+          title: "repositories",
+          description: "My GitHub repositories, grouped by theme. Items marked (fork) are repositories I forked to use or build on; the rest are my own.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/repositories/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "My academic CV. Use the button above to download the PDF version.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-my-roscon-2024-digest-days-2-and-3",
+        
+          title: "My ROSCON 2024 digest - Days 2 and 3",
+        
+        description: "My roscon digest on the second and third day",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/roscon-odense-2/";
+          
+        },
+      },{id: "post-my-roscon-2024-digest-day-1",
+        
+          title: "My ROSCON 2024 digest - Day 1",
+        
+        description: "My roscon digest on the first day",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/roscon-odense-1/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-iii-event-based-slam",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (III) - event-based SLAM",
+        
+        description: "notebook for cpp project III.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/the-cpp-diaries-3/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-ii-inivation-39-s-event-camera",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (II) - Inivation&#39;s event camera...",
+        
+        description: "notebook for cpp project I.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/the-cpp-diaries-2/";
+          
+        },
+      },{id: "post-setting-a-jetson-agx-orin-for-robotics-development-i-building-the-basis",
+        
+          title: "Setting a Jetson AGX Orin for robotics development (I) - building the basis...",
+        
+        description: "notebook for cpp project I.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/the-cpp-diaries/";
+          
+        },
+      },{id: "post-my-icra-2023-digest",
+        
+          title: "My ICRA 2023 digest",
+        
+        description: "a digest of all things I saw in the conference.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/my-icra-digest/";
+          
+        },
+      },{id: "post-surveying-slam-algorithms-with-ros-i-installation",
+        
+          title: "Surveying SLAM algorithms with ROS (I) - Installation",
+        
+        description: "installing slam packages.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/slam-surveying-install/";
+          
+        },
+      },{id: "post-creating-ros-metapackages",
+        
+          title: "creating ROS metapackages",
+        
+        description: "concepts and creation of ROS metapackages.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/ros-metapackages/";
+          
+        },
+      },{id: "post-latex-table-tricks-for-no-more-table-flips",
+        
+          title: "LateX table tricks for no more table flips (╯°□°)╯︵ ┻━┻",
+        
+        description: "cool latex table tricks.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/latex-tables/";
+          
+        },
+      },{id: "post-a-notebook-on-the-extended-kalman-filter",
+        
+          title: "A notebook on the Extended Kalman Filter",
+        
+        description: "ekf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/ekf/";
+          
+        },
+      },{id: "post-to-enhance-or-not-to-enhance-computer-vision-in-challenging-imaging-conditions",
+        
+          title: "To enhance or not to enhance? Computer Vision in challenging imaging conditions",
+        
+        description: "comparative.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/improveorprocess/";
+          
+        },
+      },{id: "post-streaming-video-from-a-raspberry-pi-cam-using-a-distributed-ros-system",
+        
+          title: "Streaming video from a Raspberry Pi Cam using a distributed ROS system",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/rpi-cam-ros/";
+          
+        },
+      },{id: "post-using-your-rc-controller-as-an-usb-joystick",
+        
+          title: "Using your RC controller as an USB joystick",
+        
+        description: "Using the flysky fs-i6x as a joystick in Ubuntu",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/flysky-linux/";
+          
+        },
+      },{id: "post-deep-learning-datasets-in-the-covid-era",
+        
+          title: "Deep Learning Datasets in the COVID era",
+        
+        description: "creating a dataset from internet images.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/dataset/";
+          
+        },
+      },{id: "post-setting-up-home-assistant-at-your-house",
+        
+          title: "Setting up Home Assistant at your house",
+        
+        description: "Automating you home with a low budget and using open-source tools",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/setting-home-assistant/";
+          
+        },
+      },{id: "news-i-was-selected-as-a-women-in-engineering-wie-oceans-ambassador-for-2025-2026-with-the-ieee-oceanic-engineering-society",
+          title: 'I was selected as a Women in Engineering (WIE) OCEANS Ambassador for 2025–2026...',
+          description: "",
+          section: "News",},{id: "news-our-ai-for-marine-perception-p1-program-was-accepted-at-the-pioneer-centre-for-artificial-intelligence",
+          title: 'Our AI for Marine Perception P1 program was accepted at the Pioneer Centre...',
+          description: "",
+          section: "News",},{id: "news-selected-as-ieee-ras-science-communication-ambassador-for-icra-2026",
+          title: 'Selected as IEEE RAS Science Communication Ambassador for ICRA 2026',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-05-15-ras-scicomm-ambassador/";
+            },},{id: "news-best-poster-award-at-the-icra-2026-quot-s2s-from-sea-to-space-quot-workshop",
+          title: 'Best Poster Award at the ICRA 2026 &amp;quot;S2S: from Sea to Space&amp;quot; workshop...',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-06-05-icra-s2s-best-poster/";
+            },},{id: "news-i-have-been-invited-as-a-keynote-speaker-at-marinevision-2026-the-2nd-workshop-on-marine-vision-held-in-conjunction-with-eccv-2026-in-malmö",
+          title: 'I have been invited as a keynote speaker at MarineVision 2026, the 2nd...',
+          description: "",
+          section: "News",},{id: "projects-graphic-design",
+          title: 'Graphic Design',
+          description: "Posters, illustrations and visual material for science dissemination and outreach",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_graphic_design/";
+            },},{id: "projects-science-dissemination",
+          title: 'Science Dissemination',
+          description: "Talks and outreach activities for the general public, universities, and conferences",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_science_dissemination/";
+            },},{id: "projects-ai-for-marine-perception",
+          title: 'AI for Marine Perception',
+          description: "P1 program at the Pioneer Centre for AI — co-organizer",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_ai_marine_perception/";
+            },},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/pdf/cv.pdf", "_blank");
+        },
+      },{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6F%6C%61%79%61.%74%75%6E%6F%6E@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/olayasturias", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/olayatu", "_blank");
+        },
+      },{
+        id: 'social-orcid',
+        title: 'ORCID',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://orcid.org/0000-0003-3581-9481", "_blank");
+        },
+      },{
+        id: 'social-bluesky',
+        title: 'Bluesky',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://bsky.app/profile/olayatu.bsky.social", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=4goTk4EAAAAJ", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
