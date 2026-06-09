@@ -13,6 +13,16 @@ I believe knowledge is only valuable when it can be understood and applied by ot
 
 Invited **keynote speaker** at [MarineVision 2026](https://vap.aau.dk/marinevision/call-for-papers/), the 2nd Workshop on Marine Vision, held in conjunction with the European Conference on Computer Vision (ECCV) in Malmö, Sweden (September 2026). The workshop brings together the computer-vision community working on understanding, monitoring, and assessing marine environments — from underwater imaging and 3D reconstruction to species detection and environmental monitoring.
 
+## WIE Luncheon — Scientific Storytelling (OCEANS 2026 Sanya)
+
+I co-organized the **IEEE Women in Engineering (WIE) Luncheon** at [OCEANS 2026 Sanya](https://sanya26.oceansconference.org/) (May 2026), together with [Luyuan Peng](https://www.linkedin.com/in/peng-luyuan/) and [Vijaya Lakshmi](https://www.linkedin.com/in/tvijayalakshmi/). The hands-on workshop, _"Scientific Storytelling"_, helped researchers turn complex technical work into clear, engaging narratives that reach broader audiences without losing scientific depth.
+
+<div class="row justify-content-sm-center">
+  <div class="col-sm-7 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/images/dissemination/oceans_sanya_wie.jpg" title="WIE Luncheon — Scientific Storytelling, OCEANS 2026 Sanya" class="img-fluid rounded z-depth-1" %}
+  </div>
+</div>
+
 ## T3chFest
 
 Invited talk at [T3chFest 2026](https://t3chfest.es/2026/programa/inteligencia-artificial-para-localizacion-visual), the technology festival held at Universidad Carlos III de Madrid (March 2026). In _"Inteligencia artificial para la localización visual en robótica submarina"_ I introduced visual SLAM methods that combine deep learning with geometric constraints for more robust, accurate, and reliable underwater navigation, including uncertainty estimation for real-time error detection.
