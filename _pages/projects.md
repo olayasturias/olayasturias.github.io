@@ -5,7 +5,7 @@ permalink: /projects/
 description: A small collection of my creative and outreach work.
 nav: true
 nav_order: 3
-display_categories: [creative]
+display_categories: [outreach, creative]
 horizontal: false
 ---
 
