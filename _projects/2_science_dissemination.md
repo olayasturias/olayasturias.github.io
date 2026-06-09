@@ -15,7 +15,7 @@ I believe knowledge is only valuable when it can be understood and applied by ot
 
 ## At universities
 
-<!-- TODO: add events with links -->
+- **[T3chFest 2026](https://t3chfest.es/2026/programa/inteligencia-artificial-para-localizacion-visual)** — invited talk _"Inteligencia artificial para la localización visual en robótica submarina"_. Universidad Carlos III de Madrid, March 2026.
 
 ## At conferences
 
