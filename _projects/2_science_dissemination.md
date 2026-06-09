@@ -9,6 +9,10 @@ category: outreach
 
 I believe knowledge is only valuable when it can be understood and applied by others. I am passionate about science dissemination — bringing robotics, computer vision, and AI to audiences of all kinds. Here are some of the events I have taken part in.
 
+## MarineVision (ECCV 2026)
+
+Invited **keynote speaker** at [MarineVision 2026](https://vap.aau.dk/marinevision/call-for-papers/), the 2nd Workshop on Marine Vision, held in conjunction with the European Conference on Computer Vision (ECCV) in Malmö, Sweden (September 2026). The workshop brings together the computer-vision community working on understanding, monitoring, and assessing marine environments — from underwater imaging and 3D reconstruction to species detection and environmental monitoring.
+
 ## T3chFest
 
 Invited talk at [T3chFest 2026](https://t3chfest.es/2026/programa/inteligencia-artificial-para-localizacion-visual), the technology festival held at Universidad Carlos III de Madrid (March 2026). In _"Inteligencia artificial para la localización visual en robótica submarina"_ I introduced visual SLAM methods that combine deep learning with geometric constraints for more robust, accurate, and reliable underwater navigation, including uncertainty estimation for real-time error detection.
