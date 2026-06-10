@@ -203,10 +203,12 @@ kramdown:
       start_line: 1
 
 # Includes & excludes
-include: ["_pages"]
+include: ["_pages", ".nojekyll"]
 exclude:
   - al-folio-upgrade-report.md
   - bin/
+  - CLAUDE.md
+  - requirements.txt
   - CONTRIBUTING.md
   - CUSTOMIZE.md
   - Dockerfile

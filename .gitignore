@@ -15,3 +15,6 @@ node_modules/
 output/playwright/
 test-results/
 vendor
+
+# Claude Code working doc (not published)
+CLAUDE.md
