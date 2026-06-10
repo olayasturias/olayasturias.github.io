@@ -1,17 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://olayasturias.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://olayasturias.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2026-06-10T13:32:19+00:00</updated><id>https://olayasturias.github.io/feed.xml</id><title type="html">blank</title><subtitle>Postdoctoral researcher in Robotics, Computer Vision, and Deep Learning — focusing on Visual SLAM for underwater applications. </subtitle><entry><title type="html">ICRA 2026: an interactive topic map</title><link href="https://olayasturias.github.io/blog/2026/icra-2026-topic-map/" rel="alternate" type="text/html" title="ICRA 2026: an interactive topic map"/><published>2026-06-10T07:00:00+00:00</published><updated>2026-06-10T07:00:00+00:00</updated><id>https://olayasturias.github.io/blog/2026/icra-2026-topic-map</id><content type="html" xml:base="https://olayasturias.github.io/blog/2026/icra-2026-topic-map/"><![CDATA[<p>Every ICRA paper this year — all <strong>3,028</strong> of them, proceedings and workshop papers together — clustered into <strong>43 topics</strong> and wired into one graph. Each node is a topic, sized by how many papers it holds; an edge means two topics share papers, so the layout pulls related areas together (SLAM next to localization, manipulation next to imitation learning, and so on).</p> <p><strong>How to use it:</strong> type in the search box to match papers by <strong>title or author</strong> — the graph lights up the topics those papers fall in and the panel lists every match. Click a highlighted topic to <strong>refine</strong> the list to that topic. With the box empty, click any topic to browse its papers, and click a paper title to read its abstract.</p> <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet"/> <style>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://olayasturias.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://olayasturias.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2026-06-10T13:42:22+00:00</updated><id>https://olayasturias.github.io/feed.xml</id><title type="html">blank</title><subtitle>Postdoctoral researcher in Robotics, Computer Vision, and Deep Learning — focusing on Visual SLAM for underwater applications. </subtitle><entry><title type="html">ICRA 2026: an interactive topic map</title><link href="https://olayasturias.github.io/blog/2026/icra-2026-topic-map/" rel="alternate" type="text/html" title="ICRA 2026: an interactive topic map"/><published>2026-06-10T07:00:00+00:00</published><updated>2026-06-10T07:00:00+00:00</updated><id>https://olayasturias.github.io/blog/2026/icra-2026-topic-map</id><content type="html" xml:base="https://olayasturias.github.io/blog/2026/icra-2026-topic-map/"><![CDATA[<p>Every ICRA paper this year — all <strong>3,028</strong> of them, proceedings and workshop papers together — clustered into <strong>43 topics</strong> and wired into one graph. Each node is a topic, sized by how many papers it holds; an edge means two topics share papers, so the layout pulls related areas together (SLAM next to localization, manipulation next to imitation learning, and so on).</p> <p><strong>How to use it:</strong> type in the search box to match papers by <strong>title or author</strong> — the graph lights up the topics those papers fall in and the panel lists every match. Click a highlighted topic to <strong>refine</strong> the list to that topic. With the box empty, click any topic to browse its papers, and click a paper title to read its abstract.</p> <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet"/> <style>
+  /* Light theme (default) */
   .tm-app {
-    --tm-bg:#0a0c16; --tm-surface:#11152a; --tm-surface-2:#171c34;
-    --tm-border:#222a45; --tm-border-soft:#1a2038;
-    --tm-text:#e8eefb; --tm-muted:#8b95b5; --tm-faint:#5a637f;
-    --tm-accent:#58C4DD; --tm-accent-dim:#234a5a; --tm-radius:12px;
+    --tm-bg:#f4f6fc; --tm-surface:#ffffff; --tm-surface-2:#eceff7;
+    --tm-border:#d7ddec; --tm-border-soft:#e7ebf5;
+    --tm-text:#16203a; --tm-muted:#5a637f; --tm-faint:#9aa3bd;
+    --tm-accent:#bd3fd8; --tm-accent-dim:#e6cdee; --tm-radius:12px;
+    --tm-grad-a:rgba(189,63,216,.10); --tm-grad-b:rgba(88,196,221,.12); --tm-fade:rgba(244,246,252,0);
+    --tm-shadow:0 14px 44px rgba(40,30,60,.14);
     background:
-      radial-gradient(1000px 480px at 74% -14%, #16213f 0%, rgba(10,12,22,0) 60%),
-      radial-gradient(820px 460px at 6% 112%, #122033 0%, rgba(10,12,22,0) 55%),
+      radial-gradient(1000px 480px at 74% -14%, var(--tm-grad-a) 0%, var(--tm-fade) 60%),
+      radial-gradient(820px 460px at 6% 112%, var(--tm-grad-b) 0%, var(--tm-fade) 55%),
       var(--tm-bg);
     color:var(--tm-text); border:1px solid var(--tm-border); border-radius:16px;
     padding:1.5rem clamp(1rem,3vw,1.9rem) 1.7rem; margin:1.5rem 0;
-    box-shadow:0 14px 44px rgba(0,0,0,.5);
+    box-shadow:var(--tm-shadow);
     font-family:"Source Serif 4",Charter,Georgia,Cambria,"Times New Roman",serif; letter-spacing:.1px;
+  }
+  /* Dark theme */
+  html[data-theme="dark"] .tm-app {
+    --tm-bg:#0a0c16; --tm-surface:#11152a; --tm-surface-2:#171c34;
+    --tm-border:#222a45; --tm-border-soft:#1a2038;
+    --tm-text:#e8eefb; --tm-muted:#8b95b5; --tm-faint:#5a637f;
+    --tm-accent:#58C4DD; --tm-accent-dim:#234a5a;
+    --tm-grad-a:#16213f; --tm-grad-b:#122033; --tm-fade:rgba(10,12,22,0);
+    --tm-shadow:0 14px 44px rgba(0,0,0,.5);
   }
   .tm-app * { box-sizing:border-box; }
   .tm-app .tm-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--tm-accent); }
@@ -30,12 +42,13 @@
   .tm-app #tm-legend i { width:11px; height:11px; border-radius:3px; display:inline-block; box-shadow:0 0 0 1px rgba(0,0,0,.4); }
 
   .tm-app #tm-wrap { display:flex; gap:1rem; align-items:stretch; flex-wrap:wrap; }
-  .tm-app #tm-graph { flex:2 1 520px; height:min(70vh,700px); min-width:320px; background:radial-gradient(900px 480px at 30% 0%, #0f141d 0%, #0a0d12 70%), var(--tm-bg); border:1px solid var(--tm-border); border-radius:var(--tm-radius); }
+  .tm-app #tm-graph { flex:2 1 520px; height:min(70vh,700px); min-width:320px; background:var(--tm-surface); border:1px solid var(--tm-border); border-radius:var(--tm-radius); }
+  html[data-theme="dark"] .tm-app #tm-graph { background:radial-gradient(900px 480px at 30% 0%, #0f141d 0%, #0a0d12 70%), var(--tm-bg); }
   .tm-app #tm-panel { flex:1 1 320px; max-height:min(70vh,700px); overflow:auto; padding:.25rem .35rem .5rem; background:var(--tm-surface); border:1px solid var(--tm-border); border-radius:var(--tm-radius); }
   .tm-app #tm-panel::-webkit-scrollbar { width:10px; }
   .tm-app #tm-panel::-webkit-scrollbar-thumb { background:#2a3342; border-radius:8px; border:2px solid var(--tm-surface); }
 
-  .tm-app .tm-topic-head { position:sticky; top:0; background:linear-gradient(var(--tm-surface),rgba(17,22,31,.85)); backdrop-filter:blur(4px); border-left:4px solid #888; padding:.6rem .8rem; margin:0 0 .4rem; z-index:1; }
+  .tm-app .tm-topic-head { position:sticky; top:0; background:var(--tm-surface); backdrop-filter:blur(4px); border-left:4px solid #888; padding:.6rem .8rem; margin:0 0 .4rem; z-index:1; }
   .tm-app .tm-topic-head h3 { margin:0 0 .15rem; font-family:"Source Serif 4",Charter,Georgia,serif; font-size:1.12rem; font-weight:600; color:var(--tm-text); }
   .tm-app .tm-topic-head .tm-meta { font-size:.74rem; letter-spacing:.04em; text-transform:uppercase; color:var(--tm-muted); }
   .tm-app ol.tm-papers { list-style:none; padding:0 .5rem; margin:0; }
@@ -45,7 +58,7 @@
   .tm-app .tm-badge.tm-P { background:var(--tm-accent); } .tm-app .tm-badge.tm-W { background:#FC6255; }
   .tm-app .tm-title { cursor:pointer; font-size:.9rem; line-height:1.4; color:var(--tm-text); transition:color .12s; }
   .tm-app li.tm-paper:hover .tm-title { color:var(--tm-accent); }
-  .tm-app .tm-abstract { font-size:.84rem; line-height:1.55; margin:.5rem 0 .2rem 1.85em; padding:.6rem .8rem; color:#cdd6e2; background:var(--tm-surface-2); border:1px solid var(--tm-border-soft); border-radius:9px; }
+  .tm-app .tm-abstract { font-size:.84rem; line-height:1.55; margin:.5rem 0 .2rem 1.85em; padding:.6rem .8rem; color:var(--tm-text); background:var(--tm-surface-2); border:1px solid var(--tm-border-soft); border-radius:9px; }
   .tm-app .tm-abstract .tm-authors { font-size:.8rem; font-style:italic; color:var(--tm-muted); margin-bottom:.4rem; }
   .tm-app .tm-abstract .tm-links { margin-top:.5rem; font-size:.8rem; }
   .tm-app .tm-abstract a { color:var(--tm-accent); text-decoration:none; }
