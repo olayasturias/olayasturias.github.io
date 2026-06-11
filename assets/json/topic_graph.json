@@ -4,6 +4,7 @@
    "id": "slam",
    "label": "SLAM",
    "group": "Estimation & Mapping",
+   "color": "#58C4DD",
    "count": 125,
    "paperIds": [
     "pp:0056",
@@ -137,6 +138,7 @@
    "id": "localization",
    "label": "Localization",
    "group": "Estimation & Mapping",
+   "color": "#58C4DD",
    "count": 122,
    "paperIds": [
     "pp:0032",
@@ -267,6 +269,7 @@
    "id": "mapping",
    "label": "Mapping",
    "group": "Estimation & Mapping",
+   "color": "#58C4DD",
    "count": 64,
    "paperIds": [
     "pp:0010",
@@ -339,6 +342,7 @@
    "id": "state_estimation",
    "label": "State Estimation & Calibration",
    "group": "Estimation & Mapping",
+   "color": "#58C4DD",
    "count": 163,
    "paperIds": [
     "pp:0028",
@@ -510,6 +514,7 @@
    "id": "sensor_fusion",
    "label": "Sensor Fusion",
    "group": "Estimation & Mapping",
+   "color": "#58C4DD",
    "count": 102,
    "paperIds": [
     "pp:0005",
@@ -620,6 +625,7 @@
    "id": "perception",
    "label": "Visual Perception",
    "group": "Perception",
+   "color": "#5CD0B3",
    "count": 706,
    "paperIds": [
     "pp:0001",
@@ -1334,6 +1340,7 @@
    "id": "object_detection",
    "label": "Object Detection & Tracking",
    "group": "Perception",
+   "color": "#5CD0B3",
    "count": 71,
    "paperIds": [
     "pp:0064",
@@ -1413,6 +1420,7 @@
    "id": "reconstruction",
    "label": "3D Reconstruction & Gaussian Splatting",
    "group": "Perception",
+   "color": "#5CD0B3",
    "count": 133,
    "paperIds": [
     "pp:0008",
@@ -1554,6 +1562,7 @@
    "id": "tactile",
    "label": "Tactile Sensing",
    "group": "Perception",
+   "color": "#5CD0B3",
    "count": 120,
    "paperIds": [
     "pp:0046",
@@ -1682,6 +1691,7 @@
    "id": "radar",
    "label": "Radar Sensing",
    "group": "Perception",
+   "color": "#5CD0B3",
    "count": 28,
    "paperIds": [
     "pp:0042",
@@ -1718,6 +1728,7 @@
    "id": "neuromorphic",
    "label": "Neuromorphic & Event Vision",
    "group": "Perception",
+   "color": "#5CD0B3",
    "count": 32,
    "paperIds": [
     "pp:0028",
@@ -1758,6 +1769,7 @@
    "id": "rl",
    "label": "Reinforcement Learning",
    "group": "Learning",
+   "color": "#F0AC5F",
    "count": 277,
    "paperIds": [
     "pp:0006",
@@ -2043,6 +2055,7 @@
    "id": "imitation",
    "label": "Imitation & Learning from Demonstration",
    "group": "Learning",
+   "color": "#F0AC5F",
    "count": 216,
    "paperIds": [
     "pp:0004",
@@ -2267,6 +2280,7 @@
    "id": "diffusion_policy",
    "label": "Diffusion & Generative Policies",
    "group": "Learning",
+   "color": "#F0AC5F",
    "count": 102,
    "paperIds": [
     "pp:0059",
@@ -2377,6 +2391,7 @@
    "id": "vla",
    "label": "Vision-Language-Action & Foundation Models",
    "group": "Learning",
+   "color": "#F0AC5F",
    "count": 284,
    "paperIds": [
     "pp:0001",
@@ -2669,6 +2684,7 @@
    "id": "world_models",
    "label": "World Models & Representation Learning",
    "group": "Learning",
+   "color": "#F0AC5F",
    "count": 77,
    "paperIds": [
     "pp:0054",
@@ -2754,6 +2770,7 @@
    "id": "manipulation",
    "label": "Manipulation",
    "group": "Manipulation",
+   "color": "#FC6255",
    "count": 601,
    "paperIds": [
     "pp:0006",
@@ -3363,6 +3380,7 @@
    "id": "grasping",
    "label": "Grasping",
    "group": "Manipulation",
+   "color": "#FC6255",
    "count": 105,
    "paperIds": [
     "pp:0008",
@@ -3476,6 +3494,7 @@
    "id": "dexterous",
    "label": "Dexterous & Multifingered Hands",
    "group": "Manipulation",
+   "color": "#FC6255",
    "count": 85,
    "paperIds": [
     "pp:0096",
@@ -3569,6 +3588,7 @@
    "id": "mobile_manipulation",
    "label": "Mobile & Bimanual Manipulation",
    "group": "Manipulation",
+   "color": "#FC6255",
    "count": 47,
    "paperIds": [
     "pp:0001",
@@ -3624,6 +3644,7 @@
    "id": "legged",
    "label": "Legged Locomotion",
    "group": "Locomotion & Platforms",
+   "color": "#83C167",
    "count": 148,
    "paperIds": [
     "pp:0039",
@@ -3780,6 +3801,7 @@
    "id": "humanoid",
    "label": "Humanoids",
    "group": "Locomotion & Platforms",
+   "color": "#83C167",
    "count": 71,
    "paperIds": [
     "pp:0078",
@@ -3859,6 +3881,7 @@
    "id": "aerial",
    "label": "Aerial Robots / UAVs",
    "group": "Locomotion & Platforms",
+   "color": "#83C167",
    "count": 191,
    "paperIds": [
     "pp:0007",
@@ -4058,6 +4081,7 @@
    "id": "marine",
    "label": "Marine & Underwater",
    "group": "Locomotion & Platforms",
+   "color": "#83C167",
    "count": 92,
    "paperIds": [
     "pp:0089",
@@ -4158,6 +4182,7 @@
    "id": "space",
    "label": "Space & Planetary",
    "group": "Locomotion & Platforms",
+   "color": "#83C167",
    "count": 67,
    "paperIds": [
     "pp:0090",
@@ -4233,6 +4258,7 @@
    "id": "soft",
    "label": "Soft Robotics",
    "group": "Locomotion & Platforms",
+   "color": "#83C167",
    "count": 100,
    "paperIds": [
     "pp:0085",
@@ -4341,6 +4367,7 @@
    "id": "motion_planning",
    "label": "Motion & Path Planning",
    "group": "Planning & Control",
+   "color": "#E8C547",
    "count": 312,
    "paperIds": [
     "pp:0015",
@@ -4661,6 +4688,7 @@
    "id": "control",
    "label": "Optimization & Optimal Control",
    "group": "Planning & Control",
+   "color": "#E8C547",
    "count": 487,
    "paperIds": [
     "pp:0017",
@@ -5156,6 +5184,7 @@
    "id": "navigation",
    "label": "Navigation",
    "group": "Planning & Control",
+   "color": "#E8C547",
    "count": 321,
    "paperIds": [
     "pp:0007",
@@ -5485,6 +5514,7 @@
    "id": "collision_avoidance",
    "label": "Collision Avoidance & Safety",
    "group": "Planning & Control",
+   "color": "#E8C547",
    "count": 56,
    "paperIds": [
     "pp:0020",
@@ -5549,6 +5579,7 @@
    "id": "multi_robot",
    "label": "Multi-Robot & Swarm",
    "group": "Planning & Control",
+   "color": "#E8C547",
    "count": 190,
    "paperIds": [
     "pp:0014",
@@ -5747,6 +5778,7 @@
    "id": "autonomous_driving",
    "label": "Autonomous Driving",
    "group": "Applications",
+   "color": "#CF8DE5",
    "count": 234,
    "paperIds": [
     "pp:0013",
@@ -5989,6 +6021,7 @@
    "id": "pedestrian",
    "label": "Human Motion & Pedestrian Prediction",
    "group": "Applications",
+   "color": "#CF8DE5",
    "count": 30,
    "paperIds": [
     "pp:0030",
@@ -6027,6 +6060,7 @@
    "id": "medical",
    "label": "Medical & Surgical Robotics",
    "group": "Applications",
+   "color": "#CF8DE5",
    "count": 128,
    "paperIds": [
     "pp:0060",
@@ -6163,6 +6197,7 @@
    "id": "hri",
    "label": "Human-Robot Interaction",
    "group": "Applications",
+   "color": "#CF8DE5",
    "count": 183,
    "paperIds": [
     "pp:0011",
@@ -6354,6 +6389,7 @@
    "id": "teleoperation",
    "label": "Teleoperation",
    "group": "Applications",
+   "color": "#CF8DE5",
    "count": 55,
    "paperIds": [
     "pp:0017",
@@ -6417,6 +6453,7 @@
    "id": "wearable",
    "label": "Wearable & Exoskeletons",
    "group": "Applications",
+   "color": "#CF8DE5",
    "count": 56,
    "paperIds": [
     "pp:0011",
@@ -6481,6 +6518,7 @@
    "id": "field",
    "label": "Field & Inspection Robotics",
    "group": "Applications",
+   "color": "#CF8DE5",
    "count": 91,
    "paperIds": [
     "pp:0010",
@@ -6580,6 +6618,7 @@
    "id": "sim2real",
    "label": "Sim2Real & Digital Twins",
    "group": "Methods & Tooling",
+   "color": "#E07A9B",
    "count": 89,
    "paperIds": [
     "pp:0006",
@@ -6677,6 +6716,7 @@
    "id": "synthetic_data",
    "label": "Synthetic & Generative Data",
    "group": "Methods & Tooling",
+   "color": "#E07A9B",
    "count": 33,
    "paperIds": [
     "pp:0005",
@@ -6718,6 +6758,7 @@
    "id": "uncertainty",
    "label": "Uncertainty & Robustness",
    "group": "Methods & Tooling",
+   "color": "#E07A9B",
    "count": 60,
    "paperIds": [
     "pp:0029",
@@ -6786,6 +6827,7 @@
    "id": "benchmarking",
    "label": "Benchmarks & Datasets",
    "group": "Methods & Tooling",
+   "color": "#E07A9B",
    "count": 86,
    "paperIds": [
     "pp:0052",
@@ -6880,6 +6922,7 @@
    "id": "hardware",
    "label": "Mechanism Design & Hardware",
    "group": "Methods & Tooling",
+   "color": "#E07A9B",
    "count": 223,
    "paperIds": [
     "pp:0004",
@@ -8151,7 +8194,42 @@
   }
  ],
  "meta": {
+  "kind": "topics",
   "papers": 3028,
-  "edge_min": 6
+  "edge_min": 6,
+  "groups": [
+   {
+    "group": "Estimation & Mapping",
+    "color": "#58C4DD"
+   },
+   {
+    "group": "Perception",
+    "color": "#5CD0B3"
+   },
+   {
+    "group": "Learning",
+    "color": "#F0AC5F"
+   },
+   {
+    "group": "Manipulation",
+    "color": "#FC6255"
+   },
+   {
+    "group": "Locomotion & Platforms",
+    "color": "#83C167"
+   },
+   {
+    "group": "Planning & Control",
+    "color": "#E8C547"
+   },
+   {
+    "group": "Applications",
+    "color": "#CF8DE5"
+   },
+   {
+    "group": "Methods & Tooling",
+    "color": "#E07A9B"
+   }
+  ]
  }
 }
