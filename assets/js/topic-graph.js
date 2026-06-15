@@ -220,7 +220,13 @@
 
     // paperIds per topic, kept off the cy nodes for convenience
     var graphPaperIds = {};
-    graph.nodes.forEach(function (n) { graphPaperIds[n.id] = n.paperIds || []; });
+    var paperTopics = {};  // inverse: paper id -> [topic id, ...]
+    graph.nodes.forEach(function (n) {
+      graphPaperIds[n.id] = n.paperIds || [];
+      (n.paperIds || []).forEach(function (pid) {
+        (paperTopics[pid] || (paperTopics[pid] = [])).push(n.id);
+      });
+    });
 
     function showSearchResults() {
       var ids = [];
@@ -284,7 +290,7 @@
         Object.keys(papers).forEach(function (pid) {
           if (paperMatches(papers[pid], q)) {
             matchSet.add(pid);
-            (papers[pid].topics || []).forEach(function (t) { topicsHit.add(t); });
+            (paperTopics[pid] || []).forEach(function (t) { topicsHit.add(t); });
           }
         });
         highlightTopics(topicsHit);
