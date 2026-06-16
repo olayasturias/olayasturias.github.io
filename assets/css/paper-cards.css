@@ -1,6 +1,8 @@
 /* Paper cards — modern layout for paper listings in blog posts.
    Uses al-folio CSS variables so it adapts to light/dark mode. */
 
+/* Horizontal scroll-snap carousel for image-only cards */
+
 /* Poster grid — compact tiles for long poster listings */
 
 /* The img keeps its natural aspect ratio (width-fit, cropped by the wrapper),
