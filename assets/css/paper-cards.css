@@ -11,6 +11,20 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
 }
 
+.pc-row {
+  display: flex;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  margin: 1.3rem 0;
+  align-items: stretch;
+}
+
+.pc-row > .paper-card {
+  flex: 1 1 0;
+  min-width: 250px;
+  margin: 0;
+}
+
 .paper-card .pc-header {
   display: flex;
   justify-content: space-between;
@@ -48,6 +62,30 @@
   border-radius: 10px;
   border: 1px solid var(--global-divider-color, #e5e7eb);
   margin: 0.55rem 0;
+}
+
+/* Horizontal scroll-snap carousel for image-only cards */
+.paper-card .pc-carousel {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.4rem;
+  margin: 0.55rem 0;
+  scrollbar-width: thin;
+}
+
+.paper-card .pc-carousel img {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 85%;
+  height: 320px;
+  object-fit: contain;
+  scroll-snap-align: center;
+  border-radius: 10px;
+  border: 1px solid var(--global-divider-color, #e5e7eb);
+  background: var(--global-code-bg-color, #f6f8fa);
 }
 
 .paper-card .pc-body {
