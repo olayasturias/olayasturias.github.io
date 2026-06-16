@@ -1,11 +1,181 @@
 /* Paper cards — modern layout for paper listings in blog posts.
    Uses al-folio CSS variables so it adapts to light/dark mode. */
 
+.paper-card {
+  background: var(--global-card-bg-color, var(--global-bg-color, #fff));
+  border: 1px solid var(--global-divider-color, #e5e7eb);
+  border-left: 4px solid var(--global-theme-color, #b509ac);
+  border-radius: 14px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.3rem 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+}
+
+.pc-row {
+  display: flex;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  margin: 1.3rem 0;
+  align-items: stretch;
+}
+
+.pc-row > .paper-card {
+  flex: 1 1 0;
+  min-width: 250px;
+  margin: 0;
+}
+
+.paper-card .pc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.paper-card .pc-title {
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.paper-card .pc-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.paper-card .pc-authors {
+  font-size: 0.82rem;
+  opacity: 0.75;
+  margin: 0.15rem 0 0.55rem;
+}
+
+.paper-card .pc-fig {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--global-divider-color, #e5e7eb);
+  margin: 0.55rem 0;
+}
+
 /* Horizontal scroll-snap carousel for image-only cards */
+.paper-card .pc-carousel {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.4rem;
+  margin: 0.55rem 0;
+  scrollbar-width: thin;
+}
+
+.paper-card .pc-carousel img {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 85%;
+  height: 320px;
+  object-fit: contain;
+  scroll-snap-align: center;
+  border-radius: 10px;
+  border: 1px solid var(--global-divider-color, #e5e7eb);
+  background: var(--global-code-bg-color, #f6f8fa);
+}
+
+.paper-card .pc-body {
+  font-size: 0.93rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.paper-card .pc-body ul {
+  margin: 0.4rem 0 0.2rem 1.1rem;
+  padding: 0;
+}
 
 /* Poster grid — compact tiles for long poster listings */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 0.8rem;
+  margin: 1.2rem 0;
+}
+
+.poster-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.85rem 1rem;
+  background: var(--global-card-bg-color, var(--global-bg-color, #fff));
+  border: 1px solid var(--global-divider-color, #e5e7eb);
+  border-radius: 12px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.poster-item:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.poster-item .poster-thumb-wrap {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--global-divider-color, #e5e7eb);
+  margin-bottom: 0.2rem;
+}
 
 /* The img keeps its natural aspect ratio (width-fit, cropped by the wrapper),
    so medium-zoom shows the full, undistorted poster when opened. */
+.poster-item .poster-thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: zoom-in;
+}
+
+.poster-item .poster-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.poster-item .poster-title .fa-camera {
+  font-size: 0.72rem;
+  opacity: 0.55;
+  margin-left: 0.25rem;
+}
+
+.poster-item .poster-meta {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.poster-item .poster-note {
+  font-size: 0.83rem;
+  line-height: 1.45;
+}
 
 /* Accent colors — left border on the card, tint on the badge */
+.paper-card.pc-blue { border-left-color: #3b82f6; }
+.pc-badge.pc-blue { background: rgba(59, 130, 246, 0.14); color: #3b82f6; }
+
+.paper-card.pc-green { border-left-color: #10b981; }
+.pc-badge.pc-green { background: rgba(16, 185, 129, 0.14); color: #0e9f6e; }
+
+.paper-card.pc-orange { border-left-color: #f59e0b; }
+.pc-badge.pc-orange { background: rgba(245, 158, 11, 0.16); color: #d97706; }
+
+.paper-card.pc-teal { border-left-color: #14b8a6; }
+.pc-badge.pc-teal { background: rgba(20, 184, 166, 0.14); color: #0d9488; }
+
+.paper-card.pc-pink { border-left-color: #ec4899; }
+.pc-badge.pc-pink { background: rgba(236, 72, 153, 0.14); color: #db2777; }
