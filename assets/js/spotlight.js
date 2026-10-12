@@ -21,9 +21,20 @@
   lightCanvas.setAttribute("aria-hidden", "true");
   canvas.after(lightCanvas);
   const lctx = lightCanvas.getContext("2d");
+  // Third layer: marine snow caught in the light. Extra particles (so the snow reads
+  // denser there), each a bright core in a Gaussian halo, masked by the light's own
+  // shape and brightness. Also screen-blended. Mask kept at the light's resolution.
+  const snowCanvas = document.createElement("canvas");
+  snowCanvas.className = "spotlight-snow";
+  snowCanvas.setAttribute("aria-hidden", "true");
+  lightCanvas.after(snowCanvas);
+  const sctx = snowCanvas.getContext("2d");
+  const maskCanvas = document.createElement("canvas");
+  const mctx = maskCanvas.getContext("2d");
 
   const SCALE = 0.5; // internal resolution; every edge is blurred anyway
   const PAD = 14; // px of light around the lit block
+  const GLOW_FADE_MS = 600; // matches the .is-spotlit text-shadow transition in main.scss
   const SWITCH_MARGIN = 40; // px a new block must be closer to the midline to take over
   const LIGHT = "124, 145, 182"; // reference beam colour
   const RESPONSE_S = 0.45; // lit-rectangle spring, damping ratio 1
@@ -77,8 +88,10 @@
   const resize = () => {
     width = window.innerWidth;
     height = window.innerHeight;
-    canvas.width = lightCanvas.width = Math.ceil(width * SCALE);
-    canvas.height = lightCanvas.height = Math.ceil(height * SCALE);
+    canvas.width = lightCanvas.width = maskCanvas.width = Math.ceil(width * SCALE);
+    canvas.height = lightCanvas.height = maskCanvas.height = Math.ceil(height * SCALE);
+    snowCanvas.width = width;
+    snowCanvas.height = height;
     if (!source.mouse) {
       source.tx = width / 2;
       source.ty = -60;
@@ -134,6 +147,16 @@
     } else {
       Object.assign(offset, { x: 0, y: 0, w: 0, h: 0, vx: 0, vy: 0, vw: 0, vh: 0 });
     }
+    // Text in the lit block glows (CSS .is-spotlit). The previous block keeps a
+    // transition-only class briefly so its glow fades out instead of snapping off.
+    if (target) {
+      const previous = target;
+      previous.classList.remove("is-spotlit");
+      previous.classList.add("was-spotlit");
+      setTimeout(() => previous.classList.remove("was-spotlit"), GLOW_FADE_MS);
+    }
+    el.classList.remove("was-spotlit");
+    el.classList.add("is-spotlit");
     target = el;
   };
 
@@ -218,6 +241,81 @@
     return g;
   };
 
+  // --- Lit marine snow ------------------------------------------------------------------
+  // Same three layers as marine-snow.js (sizes 1/2/3 px), but denser, so more specks show
+  // in the light than in the dim. Positions live in the shared 2560 x 2000 tile.
+  const LIT_LAYERS = [
+    [2200, 1],
+    [800, 2],
+    [320, 3],
+  ];
+  let litBounds = null;
+  let litLayers = null;
+
+  // Bright core in a Gaussian halo, pre-rendered once per s
+  // Kept small and soft: the lit snow should read as texture, not compete with the text.
+  const SPRITE_RADIUS = (size) => Math.ceil(2 + size * 1.8); // halo radius, px
+  const HALO_ALPHA = 0.22;
+  const CORE_ALPHA = 0.2;
+  const sprite = (size) => {
+    const R = SPRITE_RADIUS(size);
+    const c = document.createElement("canvas");
+    c.width = c.height = R * 2;
+    const g = c.getContext("2d");
+    const grad = g.createRadialGradient(R, R, 0, R, R, R);
+    for (let i = 0; i <= 12; i++) {
+      const t = i / 12;
+      // Gaussian, sigma = R/3, plus a tight core (half the particle size).
+      const halo = Math.exp(-((t * 3) ** 2) / 2) * HALO_ALPHA;
+      const core = t < (size * 0.5) / R ? CORE_ALPHA : 0;
+      grad.addColorStop(t, `rgba(225, 236, 255, ${Math.min(1, halo + core).toFixed(3)})`);
+    }
+    g.fillStyle = grad;
+    g.fillRect(0, 0, R * 2, R * 2);
+    return { canvas: c, R };
+  };
+
+  const ensureLit = () => {
+    if (litLayers || !window.marineSnow) return litLayers;
+    const { tileWidth, tileHeight } = window.marineSnow;
+    litLayers = LIT_LAYERS.map(([count, size]) => {
+      const xs = new Float32Array(count);
+      const ys = new Float32Array(count);
+      for (let i = 0; i < count; i++) {
+        xs[i] = Math.random() * tileWidth;
+        ys[i] = Math.random() * tileHeight;
+      }
+      return { xs, ys, sprite: sprite(size) };
+    });
+    return litLayers;
+  };
+
+  const drawSnow = () => {
+    sctx.setTransform(1, 0, 0, 1, 0, 0);
+    sctx.globalCompositeOperation = "source-over";
+    sctx.clearRect(0, 0, width, height);
+    const snow = window.marineSnow;
+    if (!litBounds || !snow || !ensureLit()) return;
+    const tileH = snow.tileHeight;
+    const [px, py] = snow.parallax();
+    const b = litBounds;
+    litLayers.forEach((layer, index) => {
+      const offset = snow.offset(index);
+      const { canvas: img, R } = layer.sprite;
+      for (let i = 0; i < layer.xs.length; i++) {
+        const x = layer.xs[i] + px;
+        if (x < b.left || x > b.right) continue;
+        const y = ((((layer.ys[i] + offset) % tileH) + tileH) % tileH) + py;
+        if (y < b.top || y > b.bottom) continue;
+        sctx.drawImage(img, x - R, y - R);
+      }
+    });
+    // Keep only what the light reaches, in proportion to how bright it is there.
+    sctx.globalCompositeOperation = "destination-in";
+    sctx.drawImage(maskCanvas, 0, 0, width, height);
+    sctx.globalCompositeOperation = "source-over";
+  };
+
   const draw = () => {
     const dark = document.documentElement.getAttribute("data-theme") === "dark";
     ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
@@ -231,7 +329,10 @@
     // 1. Dim everything.
     ctx.fillStyle = dark ? "rgba(5, 6, 15, 0.55)" : "rgba(14, 9, 21, 0.42)";
     ctx.fillRect(0, 0, width, height);
-    if (!drawn) return;
+    if (!drawn) {
+      litBounds = null;
+      return;
+    }
 
     const circle = pool(drawn);
     const apex = apexFor(circle);
@@ -269,6 +370,24 @@
     }
     lctx.fillStyle = glow;
     lctx.fillRect(circle.x - circle.r * 1.15, circle.y - circle.r * 1.15, circle.r * 2.3, circle.r * 2.3);
+
+    // 4. Mask for the lit snow: the light's shape at full strength in the circle.
+    mctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
+    mctx.clearRect(0, 0, width, height);
+    mctx.filter = blur;
+    hullPath(mctx, apex, circle);
+    mctx.fillStyle = alongLight(mctx, apex, d, circle, 0.45, 0.8, "255,255,255");
+    mctx.fill();
+    mctx.filter = "none";
+    mctx.fillStyle = smoothRadial(circle.x, circle.y, circle.r * 0.3, circle.r * 1.1, 1, "255,255,255");
+    mctx.fillRect(circle.x - circle.r * 1.1, circle.y - circle.r * 1.1, circle.r * 2.2, circle.r * 2.2);
+    const reach = circle.r * 1.2;
+    litBounds = {
+      left: Math.min(apex.x, circle.x - reach) - 30,
+      right: Math.max(apex.x, circle.x + reach) + 30,
+      top: Math.min(apex.y, circle.y - reach) - 30,
+      bottom: Math.max(apex.y, circle.y + reach) + 30,
+    };
   };
 
   const frame = (now) => {
@@ -314,6 +433,7 @@
       lastKey = key;
       draw();
     }
+    drawSnow(); // every frame: the snow keeps drifting even when the light is still
     requestAnimationFrame(frame);
   };
 

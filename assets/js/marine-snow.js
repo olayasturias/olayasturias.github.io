@@ -151,6 +151,15 @@
     driftId = requestAnimationFrame(drift);
   };
 
+  // Shared with spotlight.js, which draws extra lit particles under its beam that must
+  // drift exactly with these layers.
+  window.marineSnow = {
+    tileWidth: TILE_W,
+    tileHeight: TILE_H,
+    offset: (i) => (layers[i] ? layers[i].y : 0),
+    parallax: () => [spring.x, spring.y],
+  };
+
   reducedMotion.addEventListener("change", startDrift);
   startDrift();
 })();

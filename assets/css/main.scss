@@ -828,7 +828,8 @@ html[data-theme="dark"] #marine-snow {
 
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   #beams-background,
-  #marine-snow {
+  #marine-snow,
+  .spotlight-snow {
     display: none;
   }
 }
@@ -853,8 +854,10 @@ html[data-theme="dark"] #marine-snow {
   transition: opacity var(--dur-fluid) ease;
 }
 
-/* The light layer (created by spotlight.js) brightens what is under it. */
-.spotlight-light {
+/* The light layer and the lit marine snow (created by spotlight.js) only brighten what
+   is under them. */
+.spotlight-light,
+.spotlight-snow {
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -865,14 +868,49 @@ html[data-theme="dark"] #marine-snow {
   transition: opacity var(--dur-fluid) ease;
 }
 
+/* Text in the lit block glows in the light's colour. text-shadow inherits, so setting
+   it on the block reaches all of its text. was-spotlit only carries the fade-out. */
+@media screen and (not (prefers-contrast: more)) {
+  .is-spotlit,
+  .was-spotlit {
+    transition: text-shadow 600ms ease, color 600ms ease;
+  }
+
+  /* Light mode: a white halo alone vanishes on the pale background, so it carries a
+     cool-blue outer glow too. */
+  .is-spotlit {
+    text-shadow:
+      0 0 0.35em rgba(255, 255, 255, 1),
+      0 0 0.9em rgba(150, 180, 235, 0.75),
+      0 0 1.8em rgba(124, 145, 182, 0.5);
+  }
+
+  /* Dark mode: the lit text itself turns bright white under its halo. The theme sets the
+     text colour on every element through these variables, so overriding them on the block
+     reaches all of its text (links keep their own colour). */
+  html[data-theme="dark"] .is-spotlit {
+    --global-text-color: #ffffff;
+    --global-text-color-light: #e4eaf6;
+    text-shadow:
+      0 0 0.4em rgba(190, 210, 245, 0.55),
+      0 0 1.1em rgba(124, 145, 182, 0.5);
+  }
+
+  .is-spotlit *,
+  .was-spotlit * {
+    transition: color 600ms ease;
+  }
+}
+
 /* Zoomed images (medium-zoom, z 999) must not be dimmed. */
-body:has(.medium-zoom-image--opened) :is(#spotlight, .spotlight-light) {
+body:has(.medium-zoom-image--opened) :is(#spotlight, .spotlight-light, .spotlight-snow) {
   opacity: 0;
 }
 
 @media (prefers-contrast: more), print {
   #spotlight,
-  .spotlight-light {
+  .spotlight-light,
+  .spotlight-snow {
     display: none;
   }
 }
