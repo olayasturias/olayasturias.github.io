@@ -78,3 +78,255 @@ html[data-theme="dark"] {
   --global-newsletter-bg-color: #514c53;
   --global-newsletter-text-color: #becfe4;
 }
+
+/* -------------------------------------------------------------------------
+   Apple-style interaction layer
+   Fluid, restrained motion; translucent chrome; size-aware typography.
+   Every motion has a reduced-motion / reduced-transparency fallback below.
+   ------------------------------------------------------------------------- */
+:root {
+  /* Critically damped feel: fast start, long soft settle, no overshoot. */
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-press: 100ms;
+  --dur-fluid: 400ms;
+  --material-bg: rgba(190, 207, 228, 0.72);
+  --material-edge: rgba(255, 255, 255, 0.45);
+  --card-shadow: 0 1px 2px rgba(14, 9, 21, 0.06), 0 2px 8px rgba(14, 9, 21, 0.06);
+  --card-shadow-lift: 0 2px 4px rgba(14, 9, 21, 0.06), 0 12px 32px rgba(14, 9, 21, 0.14);
+}
+
+html[data-theme="dark"] {
+  --material-bg: rgba(34, 28, 43, 0.72);
+  --material-edge: rgba(190, 207, 228, 0.08);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --card-shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Ease light <-> dark switches instead of an abrupt brightness jump. */
+body {
+  transition: background-color var(--dur-fluid) ease, color var(--dur-fluid) ease;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Typography: tracking and leading scale with size -------------------- */
+body {
+  line-height: 1.6;
+  font-optical-sizing: auto;
+}
+
+h1, .post-title {
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+}
+
+h2 {
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+h3, h4 {
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* Small caps-style labels read better with a little positive tracking. */
+.post-meta, .post-tags, .post-description, .badge, .periodical, .news .date {
+  letter-spacing: 0.01em;
+}
+
+/* --- Translucent navbar: content scrolls under a material, not a slab ----- */
+.navbar {
+  background-color: var(--material-bg);
+  opacity: 1;
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--material-edge);
+  transition: background-color var(--dur-fluid) ease;
+}
+
+/* Fallback for browsers without backdrop-filter: stay nearly opaque. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navbar { background-color: var(--global-bg-color); }
+}
+
+/* Mobile menu materializes from the toggle (top-right), not from nowhere. */
+@media (max-width: 575.98px) {
+  /* A keyframe animation (not @starting-style, which PurgeCSS strips) runs
+     each time the panel goes from display:none to .show. */
+  .navbar .navbar-collapse.show {
+    transform-origin: top right;
+    animation: menu-materialize var(--dur-fluid) var(--ease-fluid);
+  }
+}
+
+@keyframes menu-materialize {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-6px);
+    filter: blur(4px);
+  }
+}
+
+@keyframes menu-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* --- Instant press feedback (on pointer-down, not release) --------------- */
+.btn,
+.nav-item > .nav-link,
+#light-toggle,
+#search-toggle,
+.navbar-toggler,
+.contact-icons a,
+.post-list li .post-title a,
+.af-page-link {
+  transition: transform var(--dur-press) ease-out, color 150ms ease, border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.btn:active,
+.nav-item > .nav-link:active,
+#light-toggle:active,
+#search-toggle:active,
+.navbar-toggler:active,
+.contact-icons a:active,
+.af-page-link:active {
+  transform: scale(0.96);
+}
+
+.contact-icons a {
+  display: inline-block;
+}
+
+/* Publication link buttons: pill shape, consistent with the soft material look. */
+.publications ol.bibliography li .links a.btn {
+  border-radius: 999px;
+}
+
+/* --- Cards: lift on hover, settle on press -------------------------------- */
+.card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--global-divider-color);
+  box-shadow: var(--card-shadow);
+}
+
+.card.hoverable,
+.paper-card {
+  transition: transform var(--dur-fluid) var(--ease-fluid), box-shadow var(--dur-fluid) var(--ease-fluid);
+}
+
+@media (hover: hover) {
+  .card.hoverable:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow-lift);
+  }
+}
+
+.card.hoverable:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: var(--dur-press);
+}
+
+/* Profile picture and publication previews: soft, consistent corners. */
+.profile img,
+.publications .preview {
+  border-radius: 12px;
+}
+
+/* --- Abstract / BibTeX panels: expand to their real height ---------------
+   Replaces the max-height: 100em trick (which made closing feel laggy because
+   most of the transition happened above the visible height). A 0fr -> 1fr
+   grid row animates exactly the content height and reverses from wherever
+   it is if clicked mid-motion. */
+.publications ol.bibliography li .hidden {
+  display: grid;
+  grid-template-rows: 0fr;
+  max-height: none;
+  opacity: 0;
+  padding-block: 0;
+  transition: grid-template-rows var(--dur-fluid) var(--ease-fluid), opacity 200ms ease,
+    padding-block var(--dur-fluid) var(--ease-fluid), border-color 200ms ease;
+}
+
+.publications ol.bibliography li .hidden.open {
+  grid-template-rows: 1fr;
+  max-height: none;
+  opacity: 1;
+  padding-block: 10px;
+  transition: grid-template-rows var(--dur-fluid) var(--ease-fluid), opacity 300ms ease 60ms,
+    padding-block var(--dur-fluid) var(--ease-fluid), border-color 200ms ease;
+}
+
+.publications ol.bibliography li .hidden > * {
+  min-height: 0;
+  overflow: hidden;
+  margin-block: 0;
+}
+
+.publications ol.bibliography li div.abstract.hidden,
+.publications ol.bibliography li div.abstract.hidden.open {
+  border-radius: 10px;
+}
+
+/* Scroll-progress bar: rounded leading edge. */
+.progress-bar {
+  border-radius: 0 3px 3px 0;
+}
+
+/* Smooth in-page anchor jumps (ToC, footnotes). */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Accessibility: gentler equivalents, not no feedback ----------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card.hoverable:hover,
+  .card.hoverable:active,
+  .btn:active,
+  .nav-item > .nav-link:active,
+  #light-toggle:active,
+  #search-toggle:active,
+  .navbar-toggler:active,
+  .contact-icons a:active,
+  .af-page-link:active {
+    transform: none;
+  }
+
+  .publications ol.bibliography li .hidden,
+  .publications ol.bibliography li .hidden.open {
+    transition: opacity 200ms ease, border-color 200ms ease;
+  }
+
+  .navbar .navbar-collapse.show {
+    animation-name: menu-fade;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .navbar {
+    background-color: var(--global-bg-color);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .navbar {
+    background-color: var(--global-bg-color);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom: 1px solid var(--global-text-color);
+  }
+
+  .card {
+    border-color: var(--global-text-color);
+  }
+}
