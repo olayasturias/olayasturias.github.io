@@ -23,21 +23,18 @@ layout: default
         {% assign profile_radius = '8px' %}
       {% endif %}
       <!-- Two-column intro: text and photo side by side, no text wrap -->
-      <div
-        class="profile-intro"
-        style="display: flex; flex-wrap: wrap; gap: 1.75rem; align-items: flex-start; margin-bottom: 1.5rem;"
-      >
-        <div style="flex: 1 1 320px; min-width: 260px;">{{ content }}</div>
-        <div style="flex: 0 0 auto; width: 240px; max-width: 45vw; text-align: center; margin-left: auto;">
+      <div class="profile-intro">
+        <div class="profile-intro-text">{{ content }}</div>
+        <div class="profile-intro-photo">
           {% if page.profile.image %}
             <img
               src="{{ profile_image_path | relative_url }}"
-              alt="{{ page.profile.image }}"
-              style="width: 240px; height: 240px; max-width: 45vw; max-height: 45vw; object-fit: cover; border-radius: {{ profile_radius }}; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);"
-            />
+              alt="Portrait of {{ site.first_name }} {{ site.last_name }}"
+              style="border-radius: {{ profile_radius }};"
+            >
           {% endif %}
           {% if page.profile.more_info %}
-            <div class="more-info" style="margin-top: 0.75rem;">{{ page.profile.more_info }}</div>
+            <div class="more-info">{{ page.profile.more_info }}</div>
           {% endif %}
         </div>
       </div>
@@ -48,7 +45,7 @@ layout: default
     <!-- News -->
     {% if page.announcements and page.announcements.enabled %}
       <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
+        <a href="{{ '/news/' | relative_url }}" class="section-link">news</a>
       </h2>
       {% include news.liquid limit=true %}
     {% endif %}
@@ -56,7 +53,7 @@ layout: default
     <!-- Latest posts -->
     {% if page.latest_posts and page.latest_posts.enabled %}
       <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+        <a href="{{ '/blog/' | relative_url }}" class="section-link">latest posts</a>
       </h2>
       {% include latest_posts.liquid %}
     {% endif %}
@@ -64,7 +61,7 @@ layout: default
     <!-- Selected papers -->
     {% if page.selected_papers %}
       <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
+        <a href="{{ '/publications/' | relative_url }}" class="section-link">selected publications</a>
       </h2>
       {% include selected_papers.liquid %}
     {% endif %}

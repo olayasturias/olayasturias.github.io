@@ -41,8 +41,8 @@
   --global-bg-color: #becfe4;
   --global-text-color: #0e0915;
   --global-text-color-light: #514c53;
-  --global-theme-color: #bd3fd8;
-  --global-hover-color: #f6847e;
+  --global-theme-color: #7d1f94; /* #bd3fd8 deepened to pass AA as link text on #becfe4 */
+  --global-hover-color: #5e1670;
   --global-hover-text-color: #ffffff;
   --global-divider-color: rgba(81, 76, 83, 0.25);
   --global-card-bg-color: #ffffff;
@@ -50,7 +50,7 @@
   --global-highlight-color: #f6847e;
   --global-footer-bg-color: #221c2b;
   --global-footer-text-color: #becfe4;
-  --global-footer-link-color: #f6847e;
+  --global-footer-link-color: #d98bec;
   --global-distill-app-color: #514c53;
   --global-back-to-top-bg-color: rgba(189, 63, 216, 0.5);
   --global-back-to-top-text-color: #ffffff;
@@ -62,8 +62,8 @@ html[data-theme="dark"] {
   --global-bg-color: #221c2b;
   --global-text-color: #becfe4;
   --global-text-color-light: #948da0;
-  --global-theme-color: #f6847e;
-  --global-hover-color: #bd3fd8;
+  --global-theme-color: #d98bec; /* single purple accent, lightened for AA on #221c2b */
+  --global-hover-color: #e3a6f2;
   --global-hover-text-color: #ffffff;
   --global-divider-color: rgba(190, 207, 228, 0.15);
   --global-card-bg-color: #2c2535;
@@ -71,9 +71,9 @@ html[data-theme="dark"] {
   --global-highlight-color: #bd3fd8;
   --global-footer-bg-color: #0e0915;
   --global-footer-text-color: #becfe4;
-  --global-footer-link-color: #f6847e;
+  --global-footer-link-color: #d98bec;
   --global-distill-app-color: #948da0;
-  --global-back-to-top-bg-color: rgba(246, 132, 126, 0.4);
+  --global-back-to-top-bg-color: rgba(217, 139, 236, 0.4);
   --global-back-to-top-text-color: #0e0915;
   --global-newsletter-bg-color: #514c53;
   --global-newsletter-text-color: #becfe4;
@@ -329,4 +329,129 @@ html {
   .card {
     border-color: var(--global-text-color);
   }
+}
+
+/* -------------------------------------------------------------------------
+   Redesign pass: layout classes for the about intro, readable measure,
+   wrapping, numerals, focus.
+   ------------------------------------------------------------------------- */
+
+/* About intro (moved out of inline styles in _layouts/about.liquid). */
+.profile-intro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem 2.5rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+.profile-intro-text {
+  flex: 1 1 320px;
+  min-width: 260px;
+  max-width: 68ch;
+}
+
+.profile-intro-photo {
+  flex: 0 0 auto;
+  width: 240px;
+  max-width: 45vw;
+  margin-left: auto;
+  text-align: center;
+}
+
+.profile-intro-photo img {
+  width: 240px;
+  height: 240px;
+  max-width: 45vw;
+  max-height: 45vw;
+  object-fit: cover;
+  /* Shadow tinted with the palette's ink, not pure black. */
+  box-shadow: 0 2px 4px rgba(14, 9, 21, 0.12), 0 12px 28px rgba(14, 9, 21, 0.16);
+}
+
+.profile-intro-photo .more-info {
+  margin-top: 0.75rem;
+}
+
+/* Home page name: more presence than a default h1. */
+.post-header .post-title {
+  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.post-header .desc {
+  color: var(--global-text-color-light);
+  font-size: 1.05rem;
+}
+
+/* Section headings on the home page are links; keep them looking like headings. */
+.section-link,
+.section-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.section-link:hover {
+  color: var(--global-theme-color);
+}
+
+/* No orphaned single words on headings or paragraph last lines. */
+h1, h2, h3, h4, .post-title, .card-title, .publications .title {
+  text-wrap: balance;
+}
+
+p, li, .card-text, .news td {
+  text-wrap: pretty;
+}
+
+/* Dates and numbers line up in columns. */
+.news th, .post-meta, .periodical, .post-list .post-meta {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keyboard focus that can actually be seen. */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Type pairing: Fraunces (serif, optical sizes) for headings, Outfit for text --- */
+:root {
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4,
+.post-title,
+.card-title,
+.navbar-brand {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+}
+
+h2, h3 {
+  font-weight: 500;
+}
+
+/* Serifs need less negative tracking than the sans did. */
+.post-header .post-title {
+  letter-spacing: -0.02em;
+}
+
+/* Brand purple stays on decoration, where text contrast doesn't apply. */
+.progress-bar {
+  background-color: #bd3fd8;
+}
+
+html[data-theme="dark"] .progress-bar {
+  background-color: #d98bec;
 }
