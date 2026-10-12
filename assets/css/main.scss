@@ -757,3 +757,41 @@ body:has(.home-timeline) .progress-container {
 .tl-js .tl-body {
   padding-bottom: 1.1rem;
 }
+
+/* --- Animated beams background (assets/js/beams-background.js) -------------
+   The page colour moves to <html> and <body> goes transparent so the fixed
+   canvas (z-index -1) sits between the page colour and the content. */
+html {
+  background-color: var(--global-bg-color);
+  transition: background-color var(--dur-fluid) ease;
+}
+
+body {
+  background-color: transparent;
+}
+
+#beams-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+html[data-theme="dark"] #beams-background {
+  opacity: 1;
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  #beams-background {
+    display: none;
+  }
+}
+
+@media print {
+  #beams-background {
+    display: none;
+  }
+}
