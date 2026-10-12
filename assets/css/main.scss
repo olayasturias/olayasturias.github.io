@@ -839,3 +839,40 @@ html[data-theme="dark"] #marine-snow {
     display: none;
   }
 }
+
+/* --- Spotlight (assets/js/spotlight.js) ------------------------------------
+   Above the content, below the fixed navbar and footer (Bootstrap z 1030), and
+   never in the way of clicks. */
+#spotlight {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1020;
+  pointer-events: none;
+  transition: opacity var(--dur-fluid) ease;
+}
+
+/* The light layer (created by spotlight.js) brightens what is under it. */
+.spotlight-light {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1020;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: opacity var(--dur-fluid) ease;
+}
+
+/* Zoomed images (medium-zoom, z 999) must not be dimmed. */
+body:has(.medium-zoom-image--opened) :is(#spotlight, .spotlight-light) {
+  opacity: 0;
+}
+
+@media (prefers-contrast: more), print {
+  #spotlight,
+  .spotlight-light {
+    display: none;
+  }
+}
