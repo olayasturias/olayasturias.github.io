@@ -784,14 +784,75 @@ html[data-theme="dark"] #beams-background {
   opacity: 1;
 }
 
+/* Marine snow over the beams (assets/js/marine-snow.js). Particles take `color`. */
+#marine-snow {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* after the canvas in the DOM, so it paints above the beams */
+  overflow: hidden;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.9);
+  --snow-speed: 50s;
+}
+
+html[data-theme="dark"] #marine-snow {
+  color: #ffffff;
+}
+
+.snow-parallax {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.snow-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2000px;
+  animation: snow-drift calc(var(--snow-speed) * var(--snow-duration-scale, 1)) linear infinite;
+  will-change: transform;
+}
+
+/* The theme sets the page text colour on every div; let the particles (and the wrapper
+   divs above them) inherit the marine-snow colour instead. */
+#marine-snow div {
+  color: inherit;
+}
+
+.snow-dots {
+  position: absolute;
+  left: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+@keyframes snow-drift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snow-layer {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
-  #beams-background {
+  #beams-background,
+  #marine-snow {
     display: none;
   }
 }
 
 @media print {
-  #beams-background {
+  #beams-background,
+  #marine-snow {
     display: none;
   }
 }
