@@ -1,0 +1,136 @@
+{% comment %}
+  Home-page timeline: news, latest posts and selected papers merged and sorted newest first.
+  Limits come from the about page front matter (announcements.limit, latest_posts.limit).
+  Papers come from _plugins/selected_papers.rb (site.data.timeline_papers).
+{% endcomment %}
+{% assign items = '' | split: '' %}
+
+{% if page.announcements and page.announcements.enabled %}
+  {% assign news_limit = page.announcements.limit | default: 5 %}
+  {% assign news_items = site.news | sort: 'date' | reverse | slice: 0, news_limit %}
+  {% assign items = items | concat: news_items %}
+{% endif %}
+
+{% if page.latest_posts and page.latest_posts.enabled %}
+  {% assign posts_limit = page.latest_posts.limit | default: 3 %}
+  {% assign post_items = site.posts | slice: 0, posts_limit %}
+  {% assign items = items | concat: post_items %}
+{% endif %}
+
+{% if page.selected_papers and site.data.timeline_papers %}
+  {% assign items = items | concat: site.data.timeline_papers %}
+{% endif %}
+
+{% assign items = items | sort: 'date' | reverse %}
+
+<section class="home-timeline" aria-labelledby="home-timeline-heading">
+  <div class="tl-intro">
+    <span class="tl-badge">Timeline</span>
+    <h2 id="home-timeline-heading">Recent work and news</h2>
+    <p>
+      News, blog posts and selected publications, newest first. See all
+      <a href="{{ '/news/' | relative_url }}">news</a>,
+      <a href="{{ '/blog/' | relative_url }}">posts</a> or
+      <a href="{{ '/publications/' | relative_url }}">publications</a>.
+    </p>
+  </div>
+
+  <div class="tl-track">
+    {% comment %} Rail behind the dots; JS fills it down to the viewport midline. {% endcomment %}
+    <div class="tl-rail" aria-hidden="true"><span class="tl-rail-fill"></span></div>
+  <ol class="tl-list">
+    {% assign last_year = '' %}
+    {% for item in items %}
+      {% assign year = item.date | date: '%Y' %}
+      {% if item.kind == 'paper' %}
+        {% assign kind = 'paper' %}
+        {% assign kind_label = 'Paper' %}
+      {% elsif item.collection == 'news' %}
+        {% assign kind = 'news' %}
+        {% assign kind_label = 'News' %}
+      {% else %}
+        {% assign kind = 'post' %}
+        {% assign kind_label = 'Post' %}
+      {% endif %}
+
+      <li class="tl-item tl-{{ kind }}{% if year != last_year %} tl-new-year{% endif %}">
+        <div class="tl-date">
+          {% if year != last_year %}<span class="tl-year">{{ year }}</span>{% endif %}
+          {% if kind == 'paper' %}
+            {% if item.abbr %}<span class="tl-day">{{ item.abbr }}</span>{% endif %}
+          {% else %}
+            <time class="tl-day" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: '%b %-d' }}</time>
+          {% endif %}
+        </div>
+
+        <div class="tl-body">
+          {% comment %}
+            Collapsed state shows label + title; .tl-detail opens when the entry
+            reaches the middle of the viewport (assets/js/home-timeline.js).
+          {% endcomment %}
+          <span class="tl-kind">{{ kind_label }}</span>
+
+          {% assign tl_img = nil %}
+          {% assign tl_desc = nil %}
+          {% assign tl_img_class = 'tl-image' %}
+
+          {% if kind == 'paper' %}
+            <h3 class="tl-title">
+              {% if item.url %}
+                <a href="{{ item.url }}">{{ item.title }}</a>
+              {% else %}
+                {{ item.title }}
+              {% endif %}
+            </h3>
+            {% assign tl_desc = item.venue %}
+            {% if item.preview %}
+              {% assign tl_img = item.preview | prepend: '/assets/img/publication_preview/' | relative_url %}
+              {% assign tl_img_class = 'tl-image tl-image-contain' %}
+            {% endif %}
+          {% elsif kind == 'news' and item.inline %}
+            {% comment %} One-line news has no title: its text is the title. {% endcomment %}
+            <div class="tl-title tl-text">{{ item.content | remove: '<p>' | remove: '</p>' }}</div>
+          {% else %}
+            {% comment %}
+              Posts and full news pages. Image: front-matter `thumbnail` if set,
+              otherwise the first <img> in the rendered body.
+            {% endcomment %}
+            {% if item.thumbnail %}
+              {% assign tl_img = item.thumbnail | prepend: '/' | replace: '//', '/' | relative_url %}
+            {% else %}
+              {% assign img_parts = item.content | split: '<img' %}
+              {% if img_parts.size > 1 %}
+                {% assign src_parts = img_parts[1] | split: 'src="' %}
+                {% assign tl_img = src_parts[1] | split: '"' | first %}
+              {% endif %}
+            {% endif %}
+
+            {% if item.description %}
+              {% assign tl_desc = item.description %}
+            {% elsif kind == 'news' %}
+              {% assign tl_desc = item.content | split: '</p>' | first %}
+            {% endif %}
+
+            <h3 class="tl-title"><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
+          {% endif %}
+
+          {% if tl_desc or tl_img %}
+            <div class="tl-detail">
+              <div class="tl-detail-inner">
+                {% if tl_desc %}<p class="tl-desc">{{ tl_desc | strip_html | truncatewords: 32 }}</p>{% endif %}
+                {% if tl_img %}
+                  <img class="{{ tl_img_class }}" src="{{ tl_img }}" alt="{{ item.title | escape }}" loading="lazy">
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </li>
+      {% assign last_year = year %}
+    {% endfor %}
+  </ol>
+  </div>
+
+  <div class="tl-end" aria-hidden="true"></div>
+</section>
+<script defer src="{{ '/assets/js/home-timeline.js' | relative_url | bust_file_cache }}"></script>

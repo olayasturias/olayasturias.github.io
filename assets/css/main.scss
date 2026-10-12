@@ -455,3 +455,305 @@ h2, h3 {
 html[data-theme="dark"] .progress-bar {
   background-color: #d98bec;
 }
+
+/* --- Home-page timeline ----------------------------------------------------
+   Full column width, no frame; the only rule is the timeline rail itself.
+   Markup: _includes/home_timeline.liquid. */
+.home-timeline {
+  --tl-rule: var(--global-divider-color);
+  --tl-date-col: 6.5rem;
+  margin: 3rem 0 2.5rem;
+}
+
+.tl-intro {
+  padding: 0 0 1.5rem;
+}
+
+.tl-intro h2 {
+  margin: 0.9rem 0 0.6rem;
+  font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+  letter-spacing: -0.02em;
+}
+
+.tl-intro p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--global-text-color-light);
+}
+
+.tl-badge,
+.tl-kind {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--tl-rule);
+  border-radius: 999px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--global-text-color-light);
+}
+
+.tl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: var(--tl-date-col) 1fr;
+  margin: 0;
+}
+
+.tl-date {
+  padding: 1.6rem 1.25rem 0 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.tl-year {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.tl-day {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--global-text-color-light);
+}
+
+/* The rail: a vertical rule on the body column, with a dot per item. */
+.tl-body {
+  position: relative;
+  border-left: 1px solid transparent; /* geometry only; .tl-rail draws the line */
+  padding: 1.6rem 0 1.6rem 1.75rem;
+  min-width: 0;
+}
+
+.tl-body::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 2.05rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--global-bg-color);
+  border: 2px solid var(--global-text-color-light);
+}
+
+.tl-paper .tl-body::before {
+  border-color: var(--global-theme-color);
+  background: var(--global-theme-color);
+}
+
+/* A new year opens with a short gap in the rail. */
+.tl-new-year:not(:first-child) {
+  margin-top: 1.25rem;
+}
+
+.tl-title {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: 0.6rem 0 0.35rem;
+}
+
+.tl-title a {
+  color: var(--global-text-color);
+}
+
+.tl-title a:hover {
+  color: var(--global-theme-color);
+}
+
+.tl-desc,
+.tl-text {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--global-text-color-light);
+  font-size: 0.95rem;
+}
+
+.tl-text {
+  margin-top: 0.6rem;
+  color: var(--global-text-color);
+}
+
+.tl-image {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin-top: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--tl-rule);
+  box-shadow: var(--card-shadow);
+}
+
+/* Graphical abstracts are diagrams: show them whole on a card surface. */
+.tl-image-contain {
+  object-fit: contain;
+  background: var(--global-card-bg-color);
+  padding: 0.75rem;
+}
+
+.tl-end {
+  height: 1.5rem;
+}
+
+/* Continuous rail with a scroll-linked fill in the highlight purple. */
+.home-timeline {
+  --tl-fill-color: #bd3fd8;
+}
+
+html[data-theme="dark"] .home-timeline {
+  --tl-fill-color: #d98bec;
+}
+
+.tl-track {
+  position: relative;
+}
+
+.tl-rail {
+  position: absolute;
+  top: 2.3rem; /* first dot */
+  bottom: 2rem;
+  left: var(--tl-date-col);
+  width: 1px;
+  background: var(--tl-rule);
+  pointer-events: none;
+}
+
+.tl-rail-fill {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 3px;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--tl-fill-color);
+  transform-origin: top;
+  transform: scaleY(var(--tl-fill, 0));
+}
+
+/* Dots above the midline are passed: filled with the rail colour. */
+.tl-item.is-passed .tl-body::before {
+  background: var(--tl-fill-color);
+  border-color: var(--tl-fill-color);
+}
+
+.tl-body::before {
+  z-index: 1;
+  transition: transform var(--dur-fluid) var(--ease-fluid), background-color 200ms ease, border-color 200ms ease;
+}
+
+/* The timeline is the home page's progress indicator; hide the page-top bar there. */
+body:has(.home-timeline) #progress,
+body:has(.home-timeline) .progress-container {
+  display: none;
+}
+
+@media (max-width: 575.98px) {
+  .tl-list {
+    padding-left: 0.4rem; /* room for the rail dots */
+  }
+
+  /* Single column: date sits above the entry, on the rail. */
+  .tl-item {
+    grid-template-columns: 1fr;
+    border-left: 1px solid transparent;
+  }
+
+  .tl-rail {
+    left: 0.4rem;
+  }
+
+  .tl-date {
+    padding: 1.4rem 0 0 1.25rem;
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  .tl-year {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .tl-body {
+    border-left: 0;
+    padding: 0 0 1.4rem 1.25rem;
+  }
+
+  .tl-body::before {
+    left: -5px;
+    top: -1.55rem;
+  }
+
+  .tl-new-year:not(:first-child) {
+    margin-top: 0;
+    padding-top: 1rem;
+  }
+}
+
+/* Timeline scroll-focus: with JS on (.tl-js), only the entry nearest the viewport
+   centre (.is-active) shows its description and image. Without JS everything is open. */
+.tl-list {
+  overflow-anchor: none; /* home-timeline.js keeps the open entry in place itself */
+}
+
+.tl-detail-inner {
+  padding-top: 0.35rem; /* padding, not child margin, so offsetHeight is the full height */
+}
+
+/* JS drives .tl-detail height with a spring and publishes the open fraction as --tl-p
+   (0 closed, 1 open). Content fades and settles with that same value, so text, image and
+   height move as one; opacity lags the height (p squared) so text never shows clipped. */
+.tl-js .tl-detail {
+  height: 0;
+  overflow: hidden;
+}
+
+.tl-js .tl-detail-inner {
+  opacity: calc(var(--tl-p, 0) * var(--tl-p, 0));
+  transform: translateY(calc((1 - var(--tl-p, 0)) * -8px)) scale(calc(0.985 + 0.015 * var(--tl-p, 0)));
+  transform-origin: top left;
+  will-change: opacity, transform;
+}
+
+/* Closed entries recede a little; the open one reads at full strength. */
+.tl-js .tl-item .tl-title,
+.tl-js .tl-item .tl-kind {
+  transition: opacity 300ms ease, color 300ms ease;
+}
+
+.tl-js .tl-item:not(.is-active) .tl-title {
+  opacity: 0.72;
+}
+
+.tl-js .tl-item.is-active .tl-kind {
+  color: var(--global-theme-color);
+  border-color: var(--global-theme-color);
+}
+
+.tl-js .tl-body::before {
+  transition: transform var(--dur-fluid) var(--ease-fluid), background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+.tl-js .tl-item.is-active .tl-body::before {
+  transform: scale(1.35);
+  border-color: var(--global-theme-color);
+}
+
+/* The detail panel's padding lives inside it so the closed row is title-tight. */
+.tl-js .tl-body {
+  padding-bottom: 1.1rem;
+}
