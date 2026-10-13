@@ -784,11 +784,12 @@ html[data-theme="dark"] #beams-background {
   opacity: 1;
 }
 
-/* Marine snow over the beams (assets/js/marine-snow.js). Particles take `color`. */
+/* Marine snow over the beams (assets/js/marine-snow.js draws it on a canvas inside).
+   `color` sets the particle colour; the script reads it. */
 #marine-snow {
   position: fixed;
   inset: 0;
-  z-index: -1; /* after the canvas in the DOM, so it paints above the beams */
+  z-index: -1; /* after the beams canvas in the DOM, so it paints above them */
   overflow: hidden;
   pointer-events: none;
   color: rgba(255, 255, 255, 0.9);
@@ -798,32 +799,10 @@ html[data-theme="dark"] #marine-snow {
   color: #ffffff;
 }
 
-.snow-parallax {
-  position: absolute;
-  inset: 0;
-  will-change: transform;
-}
-
-.snow-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2000px;
-  will-change: transform; /* translated by marine-snow.js */
-}
-
-/* The theme sets the page text colour on every div; let the particles (and the wrapper
-   divs above them) inherit the marine-snow colour instead. */
-#marine-snow div {
-  color: inherit;
-}
-
-.snow-dots {
-  position: absolute;
-  left: 0;
-  border-radius: 50%;
-  background: transparent;
+#marine-snow canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
 }
 
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
@@ -838,6 +817,60 @@ html[data-theme="dark"] #marine-snow {
   #beams-background,
   #marine-snow {
     display: none;
+  }
+}
+
+/* Effects switched off from the navbar (assets/js/effects.js). */
+html[data-effects="off"] :is(#beams-background, #marine-snow, #spotlight, .spotlight-light, .spotlight-snow) {
+  display: none;
+}
+
+/* Effects toggle: same footprint and behaviour as the theme toggle next to it. */
+#effects-toggle {
+  padding: 0;
+  border: 0;
+  background-color: inherit;
+  color: var(--global-text-color);
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--dur-press) ease-out, color 150ms ease, opacity 200ms ease;
+}
+
+#effects-toggle:hover {
+  color: var(--global-hover-color);
+}
+
+#effects-toggle:active {
+  transform: scale(0.96);
+}
+
+#effects-toggle[aria-pressed="false"] {
+  opacity: 0.5;
+}
+
+@media (min-width: 576px) {
+  #effects-toggle {
+    transform: translateY(4px);
+  }
+
+  #effects-toggle:active {
+    transform: translateY(4px) scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #effects-toggle:active {
+    transform: none;
+  }
+
+  @media (min-width: 576px) {
+    #effects-toggle:active {
+      transform: translateY(4px);
+    }
   }
 }
 

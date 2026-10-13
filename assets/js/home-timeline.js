@@ -114,7 +114,11 @@
     // read stays still. "instant" overrides the page's smooth scroll-behavior.
     if (anchor) {
       const shift = docTop(anchor) - anchorBefore;
-      if (Math.abs(shift) > 0.1) window.scrollBy({ top: shift, behavior: "instant" });
+      if (Math.abs(shift) > 0.1) {
+        window.scrollBy({ top: shift, behavior: "instant" });
+        // Not the reader's scroll: marine snow must not react to it (effects.js).
+        if (window.siteEffects) window.siteEffects.compensateScroll(shift);
+      }
     }
 
     updateRail();

@@ -67,6 +67,7 @@
     <!-- Animated beams background + marine snow overlay; copied from al_folio_core 1.0.11 default.liquid to add this. -->
     <canvas id="beams-background" aria-hidden="true"></canvas>
     <div id="marine-snow" aria-hidden="true"></div>
+    <script defer src="{{ '/assets/js/effects.js' | relative_url | bust_file_cache }}"></script>
     <script defer src="{{ '/assets/js/beams-background.js' | relative_url | bust_file_cache }}"></script>
     <script defer src="{{ '/assets/js/marine-snow.js' | relative_url | bust_file_cache }}"></script>
     <!-- Spotlight: dims the page and lights the block at the middle of the view. -->

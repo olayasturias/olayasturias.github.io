@@ -6,8 +6,10 @@
 // - Drawn at quarter resolution and scaled up by the browser; the beams are blurred anyway,
 //   so this looks the same at a fraction of the cost (no full-screen CSS/backdrop blurs).
 // - Beam motion is time-based, so it runs at the same speed on 60 Hz and 120 Hz displays.
-// - The overlay's 10 s opacity loop is dropped (slow full-screen oscillation is a
-//   vestibular trigger); prefers-reduced-motion gets a single still frame.
+// - The overlay's 10 s opacity loop is dropped, and each beam's brightness pulse is slowed
+//   from a 2-5 s cycle to 12-21 s (slow oscillation near 0.2 Hz is a vestibular trigger);
+//   prefers-reduced-motion gets a single still frame.
+// - The loop stops while the effects are switched off (assets/js/effects.js) or hidden.
 // - Hues follow the site palette (blue to purple) and adapt to light/dark mode.
 (() => {
   const canvas = document.getElementById("beams-background");
@@ -39,7 +41,7 @@
     opacity: 0.12 + Math.random() * 0.16,
     hue: HUE_MIN + Math.random() * HUE_RANGE,
     pulse: Math.random() * Math.PI * 2,
-    pulseSpeed: 0.02 + Math.random() * 0.03,
+    pulseSpeed: 0.005 + Math.random() * 0.004, // rad per 60 Hz frame: one cycle every 12-21 s
   });
 
   // Recycle a beam below the viewport, spread over three columns.
@@ -102,8 +104,15 @@
     frameId = requestAnimationFrame(step);
   };
 
+  const hiddenByPreference = window.matchMedia("(prefers-reduced-transparency: reduce), (prefers-contrast: more)");
+  const visible = () => (!window.siteEffects || window.siteEffects.enabled()) && !hiddenByPreference.matches;
+
   const start = () => {
     cancelAnimationFrame(frameId);
+    if (!visible()) {
+      ctx.clearRect(0, 0, width, height);
+      return;
+    }
     if (reducedMotion.matches) {
       draw();
       return;
@@ -117,11 +126,13 @@
 
   window.addEventListener("resize", () => {
     resize();
-    if (reducedMotion.matches) draw();
+    if (reducedMotion.matches && visible()) draw();
   });
   reducedMotion.addEventListener("change", start);
+  hiddenByPreference.addEventListener("change", start);
+  if (window.siteEffects) window.siteEffects.onChange(start);
   // Redraw a still frame immediately when the theme toggles under reduced motion.
-  new MutationObserver(() => reducedMotion.matches && draw()).observe(document.documentElement, {
+  new MutationObserver(() => reducedMotion.matches && visible() && draw()).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],
   });
