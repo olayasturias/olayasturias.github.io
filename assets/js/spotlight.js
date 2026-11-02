@@ -45,7 +45,7 @@ const SPOTLIGHT_SETTINGS = {
   LIGHT_COLOUR: "124, 145, 182", // r, g, b of the beam (the reference's steel blue)
   // Opacity of the beam's glow where it meets the circle; the cursor end gets
   // BEAM_GLOW_AT_CURSOR times this. Dark mode needs more to be visible.
-  BEAM_GLOW_LIGHT_MODE: 0.22,
+  BEAM_GLOW_LIGHT_MODE: 0.10,
   BEAM_GLOW_DARK_MODE: 0.4,
   BEAM_GLOW_AT_CURSOR: 0.5,
   // Opacity of the glow in the middle of the circle, and how far it spreads (x radius).
